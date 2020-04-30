@@ -4,7 +4,7 @@ from sys import path
 path.append('../')
 
 import unittest
-from test_parent import BaseTest
+from includes.test_parent import BaseTest
 from includes.util import run_test
 
 

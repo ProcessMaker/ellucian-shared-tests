@@ -7,7 +7,7 @@ import unittest
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from test_parent import BaseTest
+from includes.test_parent import BaseTest
 from includes.util import run_test
 
 
