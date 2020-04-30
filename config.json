@@ -1,7 +1,7 @@
 [	
   {
     "name": "mep-login-landing-page",
-    "path": "test_mep_login_landing_page.py"
+    "path": "tests/test_mep_login_landing_page.py"
   },
   {				
     "name": "mep-login-fields",				
@@ -9,22 +9,22 @@
   },
   {
     "name": "mep-correct-credentials",
-    "path": "test_mep_correct_credentials.py"
+    "path": "tests/test_mep_correct_credentials.py"
   },
   {
     "name": "mep-admin-landing-page",
-    "path": "test_mep_admin_landing_page.py"
+    "path": "tests/test_mep_admin_landing_page.py"
   },
   {
     "name": "mep-plugins-landing-page",
-    "path": "test_mep_plugins_landing_page.py"
+    "path": "tests/test_mep_plugins_landing_page.py"
   },
   {
     "name": "mep-ethos-ellucian-integration-settings",
-    "path": "test_mep_ethos_ellucian_integration_settings.py"
+    "path": "tests/test_mep_ethos_ellucian_integration_settings.py"
   },
   {
     "name": "mep-shared-technology-platform",
-    "path": "test_mep_shared_technology_platform.py"
+    "path": "tests/test_mep_shared_technology_platform.py"
   }
 ]
