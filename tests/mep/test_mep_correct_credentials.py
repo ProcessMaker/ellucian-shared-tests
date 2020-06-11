@@ -31,7 +31,7 @@ class TestCorrectCredentials(BaseTest):
         self.driver.find_element_by_id('form[BSUBMIT]').click()
         
         # Wait for Processes page to load
-        self.wait.until(EC.element_to_be_clickable((By.ID, 'SETUP')))
+        self.wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'Admin')))
         
         # Verify that Processes page is displayed
         self.assertEqual(self.driver.title, "(admin in mep)")
