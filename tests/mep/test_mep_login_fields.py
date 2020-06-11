@@ -4,8 +4,8 @@ from sys import path
 path.append('../')
 
 import unittest
-from includes.test_parent import BaseTest
-from includes.util import run_test
+from test_parent import BaseTest
+from util import run_test
 
 
 class TestLoginFields(BaseTest):
