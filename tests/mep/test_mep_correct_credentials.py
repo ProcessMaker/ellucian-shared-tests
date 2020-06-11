@@ -22,8 +22,8 @@ class TestCorrectCredentials(BaseTest):
         self.driver.find_element_by_id('sentworkspace').click()
 
         # Wait for login page to load
-        wait = WebDriverWait(self.driver, 30)
-        wait.until(EC.element_to_be_clickable((By.ID, 'form[BSUBMIT]')))
+        self.wait = WebDriverWait(self.driver, 30)
+        self.wait.until(EC.element_to_be_clickable((By.ID, 'form[BSUBMIT]')))
         
         # Enter user credentials and navigate to Processes page
         self.driver.find_element_by_id('form[USR_USERNAME]').send_keys(data['username'])
@@ -31,7 +31,7 @@ class TestCorrectCredentials(BaseTest):
         self.driver.find_element_by_id('form[BSUBMIT]').click()
         
         # Wait for Processes page to load
-        wait.until(EC.element_to_be_clickable((By.ID, 'SETUP')))
+        self.wait.until(EC.element_to_be_clickable((By.ID, 'SETUP')))
         
         # Verify that Processes page is displayed
         self.assertEqual(self.driver.title, "(admin in mep)")

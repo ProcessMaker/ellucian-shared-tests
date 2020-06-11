@@ -22,8 +22,8 @@ class TestPluginPage(BaseTest):
         self.driver.find_element_by_id('sentworkspace').click()
 
         # Wait for login page to load
-        wait = WebDriverWait(self.driver, 30)
-        wait.until(EC.element_to_be_clickable((By.ID, 'form[BSUBMIT]')))
+        self.wait = WebDriverWait(self.driver, 30)
+        self.wait.until(EC.element_to_be_clickable((By.ID, 'form[BSUBMIT]')))
         
         # Enter user credentials and navigate to Processes page
         self.driver.find_element_by_id('form[USR_USERNAME]').send_keys(data['username'])
@@ -31,13 +31,13 @@ class TestPluginPage(BaseTest):
         self.driver.find_element_by_id('form[BSUBMIT]').click()
         
         # Wait for Processes page to load
-        wait.until(EC.element_to_be_clickable((By.ID, 'SETUP')))
+        self.wait.until(EC.element_to_be_clickable((By.ID, 'SETUP')))
         
         # Click Admin link
         self.driver.find_element_by_id('SETUP').click()
         
         # Wait for Admin page to load
-        wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
         
         # Locate and switch to Admin iframe
         self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
@@ -46,7 +46,7 @@ class TestPluginPage(BaseTest):
         self.driver.find_element_by_id('west-panel__plugins').click()
         
         # Wait for Plugins page to load
-        wait.until(EC.visibility_of_element_located((By.ID, 'plugins')))
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'plugins')))
         
         # Verify that Plugins page is displayed
         self.assertTrue(self.driver.find_element_by_id('plugins').is_displayed())
