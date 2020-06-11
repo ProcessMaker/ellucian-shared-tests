@@ -31,7 +31,7 @@ class TestEthosIntegrationPlugin(BaseTest):
         self.driver.find_element_by_id('form[BSUBMIT]').click()
         
         # Wait for Processes page to load
-        wait.until(EC.element_to_be_clickable((By.ID, 'SETUP')))
+        self.wait.until(EC.element_to_be_clickable((By.ID, 'SETUP')))
         
         # Click Admin link
         self.driver.find_element_by_id('SETUP').click()
