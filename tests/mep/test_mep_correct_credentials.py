@@ -17,12 +17,12 @@ class TestCorrectCredentials(BaseTest):
         self.driver.get(data['server_url'])
         
         # Select workspace and navigate to login page
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'display_select_input')))
         self.driver.find_element_by_id('display_select_input').click()
         self.driver.find_element_by_link_text(data['server_workspace']).click()
         self.driver.find_element_by_id('sentworkspace').click()
 
         # Wait for login page to load
-        self.wait = WebDriverWait(self.driver, 30)
         self.wait.until(EC.element_to_be_clickable((By.ID, 'form[BSUBMIT]')))
         
         # Enter user credentials and navigate to Processes page
