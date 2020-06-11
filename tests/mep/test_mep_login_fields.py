@@ -10,7 +10,6 @@ from util import run_test
 
 class TestLoginFields(BaseTest):
     ''' Class to run test that login fields exist. '''
-    data = {}
 
     def test_login_elements(self):
         ''' Test that login elements exist on page. '''
