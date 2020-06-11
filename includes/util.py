@@ -5,6 +5,9 @@
 import unittest
 from contextlib import redirect_stdout
 from io import StringIO
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 
 
 def run_test(classname, data, modulename):
@@ -28,7 +31,8 @@ def run_test(classname, data, modulename):
     with StringIO() as buffer:
         with redirect_stdout(buffer):
             unittest.TextTestRunner(stream=buffer).run(suite)
-            return {"result": parse_results(buffer.getvalue())}
+            message = buffer.getvalue()
+            return {"result": parse_results(message), "message": message}
 
 def parse_results(buffer):
     ''' Function to parse the unittest results into PM4-friendly format.
@@ -38,7 +42,24 @@ def parse_results(buffer):
 
     if buffer.startswith('.'):
         return 'SUCCESS'
-    elif buffer.startswith('E'):
+    elif buffer.startswith('F'):
         return 'FAIL'
     else:
-        return 'Test failed to execute'
+        return 'ERROR'
+
+def login(url, username, password, driver):
+    ''' Function to log user in to workspace.
+    '''
+    # Navigate to server
+    driver.get(url)
+
+    # Wait for login page to load
+    wait = WebDriverWait(driver, 30)
+    wait.until(EC.element_to_be_clickable((By.NAME, 'login')))
+
+    # Login
+    driver.find_element_by_id('username').send_keys(username)
+    driver.find_element_by_id('password').send_keys(password)
+    driver.find_element_by_name('login').click()
+
+    return driver
