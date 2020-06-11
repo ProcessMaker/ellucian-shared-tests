@@ -1,8 +1,5 @@
 #!/usr/local/bin/python3
 
-from sys import path
-path.append('../')
-
 import unittest
 from test_parent import BaseTest
 from util import run_test

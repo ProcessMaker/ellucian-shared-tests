@@ -1,8 +1,5 @@
 #!/usr/local/bin/python3
 
-from sys import path
-path.append('../')
-
 import unittest
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
