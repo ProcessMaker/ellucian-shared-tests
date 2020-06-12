@@ -18,18 +18,11 @@ class TestCorrectCredentials(BaseTest):
         
         # Wait for Processes page to load
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
         
         # Verify that Processes page elements have loaded
         self.assertTrue(self.driver.find_element_by_id('pm_main_table'))
         self.assertTrue(self.driver.find_element_by_id('pm_header'))
         self.assertTrue(self.driver.find_element_by_class_name('Footer'))
-        self.assertTrue(self.driver.find_element_by_id('adminFrame'))
-        self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
-        self.assertTrue(self.driver.find_element_by_id('west-panel'))
-        self.assertTrue(self.driver.find_element_by_id('mif-comp-1002'))
-        self.assertTrue(self.driver.find_element_by_id('setup-frame'))
-        
 
 
 if __name__ == "__main__":
