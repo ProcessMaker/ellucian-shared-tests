@@ -4,8 +4,8 @@ import unittest
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from includes.test_parent import BaseTest
-from includes.util import run_test, login
+from test_parent import BaseTest
+from util import run_test, login
 
 
 class TestCorrectCredentials(BaseTest):
