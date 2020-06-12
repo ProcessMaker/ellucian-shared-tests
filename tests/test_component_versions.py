@@ -20,7 +20,7 @@ class TestComponentVersions(BaseTest):
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
         
         # Navigate to Admin / System Info page
-        self.driver.find_element_by_link_text('Admin').click()
+        self.driver.find_element_by_id('SETUP').click()
         self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
         self.wait.until(EC.visibility_of_element_located((By.ID, 'extdd-34')))
