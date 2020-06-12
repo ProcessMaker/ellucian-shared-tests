@@ -8,11 +8,11 @@ from test_parent import BaseTest
 from util import run_test, login
 
 
-class TestCorrectCredentials(BaseTest):
-    ''' Class to run test that correct login credentials work. '''
+class TestLoginPage(BaseTest):
+    ''' Class to run test that page loads after login. '''
 
-    def test_correct_credentials(self):
-        ''' Test that correct credentials work. '''
+    def test_login(self):
+        ''' Test that landing page loads. '''
         # Login using configured url, workspace, username, and password
         self.driver = login(data, self.driver)
         
@@ -27,4 +27,4 @@ class TestCorrectCredentials(BaseTest):
 
 if __name__ == "__main__":
     import __main__
-    output = run_test(TestCorrectCredentials, data, __main__)
+    output = run_test(TestLoginPage, data, __main__)
