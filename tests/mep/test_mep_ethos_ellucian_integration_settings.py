@@ -37,7 +37,7 @@ class TestEthosIntegrationPlugin(BaseTest):
         self.driver.find_element_by_id('SETUP').click()
 
         # Wait for Admin page to load
-        wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
         
         # Locate and switch to Admin iframe
         self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
