@@ -46,19 +46,19 @@ class TestEthosIntegrationPlugin(BaseTest):
         self.driver.find_element_by_id('west-panel__plugins').click()
 
         # Wait for Plugins page to load
-        wait.until(EC.element_to_be_clickable((By.ID, 'extdd-54')))
+        self.wait.until(EC.element_to_be_clickable((By.ID, 'extdd-54')))
         
         # Click Ellucian Ethos Integration Settings link
         self.driver.find_element_by_id('extdd-54').click()
 
         # Wait for Ellucian Ethos Integration Settings tab to load
-        wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
         
         # Locate and switch to Setup iframe
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
         
         # Wait for Setup tab to load
-        wait.until(EC.element_to_be_clickable((By.ID, 'workspace-setup-tab')))
+        self.wait.until(EC.element_to_be_clickable((By.ID, 'workspace-setup-tab')))
 
         ''' Assert page elements are displayed:
                 New Workspace Setup tab
