@@ -51,6 +51,7 @@ def login(data, driver):
     ''' Function to log user in to workspace.
     '''
     # Navigate to server
+    driver.data = data
     driver.get(data['server_url'])
 
     # Select workspace and navigate to login page
