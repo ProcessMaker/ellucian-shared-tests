@@ -9,10 +9,10 @@ from util import run_test, login
 
 
 class TestComponentVersions(BaseTest):
-    ''' Class to run test that page loads after login. '''
+    ''' Class to navigate to Admin / System Info page. '''
 
     def test_component_version(self):
-        ''' Test that landing page loads. '''
+        ''' Test that versions are correct. '''
         # Login using configured url, workspace, username, and password
         self.driver = login(data, self.driver)
         
