@@ -3,6 +3,8 @@
 import unittest
 from test_parent import BaseTest
 from util import run_test
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class TestLoginFields(BaseTest):
@@ -14,6 +16,7 @@ class TestLoginFields(BaseTest):
         self.driver.get(data['server_url'])
         
         # Select workspace and navigate to login page
+        self.wait.until(EC.element_to_be_clickable((By.ID, 'display_select_input')))
         self.driver.find_element_by_id('display_select_input').click()
         self.driver.find_element_by_link_text(data['server_workspace']).click()
         self.driver.find_element_by_id('sentworkspace').click()
