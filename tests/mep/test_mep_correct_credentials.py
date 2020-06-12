@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from test_parent import BaseTest
-from util import run_test
+from util import run_test, login
 
 
 class TestCorrectCredentials(BaseTest):
@@ -13,22 +13,8 @@ class TestCorrectCredentials(BaseTest):
 
     def test_correct_credentials(self):
         ''' Test that correct credentials work. '''
-        # Navigate to server
-        self.driver.get(data['server_url'])
-        
-        # Select workspace and navigate to login page
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'display_select_input')))
-        self.driver.find_element_by_id('display_select_input').click()
-        self.driver.find_element_by_link_text(data['server_workspace']).click()
-        self.driver.find_element_by_id('sentworkspace').click()
-
-        # Wait for login page to load
-        self.wait.until(EC.element_to_be_clickable((By.ID, 'form[BSUBMIT]')))
-        
-        # Enter user credentials and navigate to Processes page
-        self.driver.find_element_by_id('form[USR_USERNAME]').send_keys(data['username'])
-        self.driver.find_element_by_id('form[USR_PASSWORD_MASK]').send_keys(data['password'])
-        self.driver.find_element_by_id('form[BSUBMIT]').click()
+        # Login using configured url, workspace, username, and password
+        self.driver = login(data, self.driver)
         
         # Wait for Processes page to load
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
