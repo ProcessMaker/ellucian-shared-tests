@@ -1,6 +1,6 @@
 [	
   {
-    "name": "test-login",
-    "path": "tests/test_login.py"
+    "name": "test-1-up",
+    "path": "tests/test_up.py"
   }
 ]
