@@ -2,5 +2,9 @@
   {
     "name": "test-1-up",
     "path": "tests/test_up.py"
+  },
+  {
+    "name": "test-2-verify-component-versions",
+    "path": "tests/test_component_versions.py"
   }
 ]
