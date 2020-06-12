@@ -34,7 +34,7 @@ class TestComponentVersions(BaseTest):
         # Assert PM3 version
         self.assertTrue(self.driver.data['pm3'] in versions[0].text)
         # Assert MySQL version
-        # self.assertTrue(self.driver.data['mysql'] in versions[6].text)
+        self.assertTrue(self.driver.data['mysql'] in versions[6].text)
         # Assert Nginx version
         self.assertTrue(self.driver.data['nginx'] in versions[12].text)
         # Assert PHP version
@@ -44,7 +44,7 @@ class TestComponentVersions(BaseTest):
 if __name__ == "__main__":
     import __main__
     # Assign component version variables
-    data['php'] = '7.3.14'
+    data['php'] = '7.3.15'
     data['mysql'] = '5.7'
     data['nginx'] = '1.16.1'
     data['pm3'] = '3.4.11'
