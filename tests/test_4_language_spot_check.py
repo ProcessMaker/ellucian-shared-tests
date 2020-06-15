@@ -36,5 +36,5 @@ class TestLanguageSpotCheck(BaseTest):
 
 if __name__ == "__main__":
     import __main__
-    data['language'] = ['en', 'es', 'fr']
+    data['language'] = ['en', 'es']
     output = run_test(TestLanguageSpotCheck, data, __main__)
