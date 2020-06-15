@@ -30,9 +30,6 @@ class TestLanguageSpotCheck(BaseTest):
             # Wait for Processes page to load
             self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
 
-            # Wait for Processes page to load
-            self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
-
             # Assert that labels are not present on page
             self.assertEqual(None, re.search(r'\*\*(\w+)\*\*', self.driver.page_source))
 
