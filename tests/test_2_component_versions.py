@@ -44,7 +44,7 @@ class TestComponentVersions(BaseTest):
 if __name__ == "__main__":
     import __main__
     # Assign component version variables
-    data['php'] = '7.3.15'
+    data['php'] = '7.3.17'
     data['mysql'] = '5.7'
     data['nginx'] = '1.16.1'
     data['pm3'] = '3.4.11'
