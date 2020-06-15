@@ -26,6 +26,9 @@ class TestLanguageSpotCheck(BaseTest):
             url = self.driver.current_url
             url = re.sub('/' + langs[i - 1] + '/', '/' + langs[i] + '/', url)
             self.driver.get(url)
+            
+            # Wait for Processes page to load
+            self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
 
             # Wait for Processes page to load
             self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
