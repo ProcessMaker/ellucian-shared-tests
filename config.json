@@ -4,7 +4,15 @@
     "path": "tests/test_1_up.py"
   },
   {
+    "name": "test-2-component-versions",
+    "path": "tests/test_2_component_versions.py"
+  },
+  {
     "name": "test-4-language-spot-check",
     "path": "tests/test_4_language_spot_check.py"
+  },
+  {
+    "name": "test-5-plugin-versions",
+    "path": "tests/test_5_plugin_versions.py"
   }
 ]
