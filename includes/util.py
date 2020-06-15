@@ -32,7 +32,7 @@ def run_test(classname, data, modulename):
         with redirect_stdout(buffer):
             unittest.TextTestRunner(stream=buffer).run(suite)
             message = buffer.getvalue()
-            return {"result": parse_results(message)}
+            return {"result": parse_results(message), "message": message}
 
 def parse_results(buffer):
     ''' Function to parse the unittest results into PM4-friendly format.
@@ -54,20 +54,14 @@ def login(data, driver):
     driver.data = data
     driver.get(data['server_url'])
 
-    # Select workspace and navigate to login page
-    wait = WebDriverWait(driver, 30)
-    wait.until(EC.visibility_of_element_located((By.ID, 'display_select_input')))
-    wait.until(EC.element_to_be_clickable((By.ID, 'sentworkspace')))
-    driver.find_element_by_id('display_select_input').click()
-    driver.find_element_by_link_text(data['server_workspace']).click()
-    driver.find_element_by_id('sentworkspace').click()
-    
     # Wait for login page to load
+    wait = WebDriverWait(driver, 30)
     wait.until(EC.element_to_be_clickable((By.ID, 'form[BSUBMIT]')))
 
     # Login
     driver.find_element_by_id('form[USR_USERNAME]').send_keys(data['username'])
     driver.find_element_by_id('form[USR_PASSWORD_MASK]').send_keys(data['password'])
+    driver.find_element_by_id('form[USER_ENV]').send_keys(data['server_workspace'])
     driver.find_element_by_id('form[BSUBMIT]').click()
 
     return driver
