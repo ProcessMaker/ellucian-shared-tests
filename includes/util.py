@@ -5,6 +5,7 @@
 import unittest
 from contextlib import redirect_stdout
 from io import StringIO
+import selenium
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -55,7 +56,7 @@ def login(data, driver):
     driver.get(data['server_url'])
 
     # Wait for login page to load
-    wait = WebDriverWait(driver, 120)
+    wait = WebDriverWait(driver, 30)
     wait.until(EC.element_to_be_clickable((By.ID, 'form[BSUBMIT]')))
 
     # Login
@@ -63,5 +64,20 @@ def login(data, driver):
     driver.find_element_by_id('form[USR_PASSWORD_MASK]').send_keys(data['password'])
     driver.find_element_by_id('form[USER_ENV]').send_keys(data['server_workspace'])
     driver.find_element_by_id('form[BSUBMIT]').click()
+
+    return timezone_check(driver, wait)
+
+
+def timezone_check(driver, wait):
+    ''' Function to check for time zone config page and bypass it.
+    '''
+    # Wait for page to load
+    wait.until(EC.visibility_of_element_located((By.ID, 'pm_main_table')))
+        
+    try:
+        driver.find_element_by_id('form[BROWSER_TIME_ZONE]')
+        driver.find_element_by_id('form[BTNOK]').click()
+    except selenium.common.exceptions.NoSuchElementException:
+        pass
 
     return driver
