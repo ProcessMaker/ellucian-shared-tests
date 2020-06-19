@@ -1,19 +1,16 @@
 #!/usr/local/bin/python3
-from sys import path
-path.append('../')
 
-#import requests
+import requests
 import json
 import re
-
 import unittest
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
-from includes.test_parent import BaseTest
-from includes.util import run_test, login
-from __init__ import data
+from test_parent import BaseTest
+from util import run_test, login
+
 
 class TestVariablesLoad(BaseTest):
     ''' Class to navigate to /oauth2/applications page to get client_id and client_secret,
@@ -38,43 +35,53 @@ class TestVariablesLoad(BaseTest):
         window_text = self.driver.find_element_by_id('ext-comp-1010').text
         client_id = re.search(r'(?<=ID:\s)\w+', window_text).group(0)
         client_secret = re.search(r'(?<=Secret:\s)\w+', window_text).group(0)
+        auth = {
+            'username': self.driver.data['username'],
+            'password': self.driver.data['password'],
+            'client_id': client_id,
+            'client_secret': client_secret
+        }
+
+        # Verify variables list can be parsed as JSON
+        self.assertTrue(self.parse_response(auth))
 
 
-"""
-def parse_response():
-    ''' Method to verify variable list can be parsed as JSON. '''
-    try:
-        json.loads(get_variable_list())
-        return True
-    except json.decoder.JSONDecodeError:
-        return False
+    def parse_response(self, auth):
+        ''' Method to verify variable list can be parsed as JSON. '''
+        try:
+            json.loads(self.get_variable_list(auth))
+            return True
+        except json.decoder.JSONDecodeError:
+            return False
 
-def get_variable_list():
-    ''' Method to get variable list using project id. '''
-    project_id, token = get_project_id()
-    response = requests.get('https://mep.dev-ellucian-us.processmaker.com/api/1.0/mep/project/' + project_id + '/process-variables', headers=token)
-    print(response.headers['content-type'])
-    return response.text
+    def get_variable_list(self, auth):
+        ''' Method to get variable list using project id. '''
+        project_id, token = self.get_project_id(auth)
+        response = requests.get('https://mep.dev-ellucian-us.processmaker.com/api/1.0/mep/project/' + project_id + '/process-variables', headers=token)
+        return response.text
 
-def get_project_id():
-    ''' Method to get project id of first process in process list. '''
-    token = {"Authorization": 'Bearer ' + get_access_token()}
-    response = requests.get('https://mep.dev-ellucian-us.processmaker.com/api/1.0/mep/project', headers=token)
-    return (json.loads(response.text)[0]['prj_uid'], token)
+    def get_project_id(self, auth):
+        ''' Method to get project id of first process in process list. '''
+        token = {"Authorization": 'Bearer ' + self.get_access_token(auth)}
+        response = requests.get('https://mep.dev-ellucian-us.processmaker.com/api/1.0/mep/project', headers=token)
+        return (json.loads(response.text)[0]['prj_uid'], token)
 
-''' Once requests module is installed into Docker container, move this method to util.py. '''
-def get_access_token():
-    ''' Method to grab access token through password grant. '''
-    payload = [("grant_type", "password"), ("scope", "*"), ("client_id", ''), ("client_secret", ''), ("username", ""), ("password", "")]
-    response = requests.post('https://mep.dev-ellucian-us.processmaker.com/mep/oauth2/token', data=payload)
-    print(response.headers['content-type'])
-    text = json.loads(response.text)
-    return text['access_token']
+    ''' Once requests module is installed into Docker container, move this method to util.py. '''
+    def get_access_token(self, auth):
+        ''' Method to grab access token through password grant. '''
+        payload = [
+            ("grant_type", "password"),
+            ("scope", "*"),
+            ("client_id", auth['client_id']),
+            ("client_secret", auth['client_secret']),
+            ("username", auth['username']),
+            ("password", auth['password'])
+            ]
+        response = requests.post('https://mep.dev-ellucian-us.processmaker.com/mep/oauth2/token', data=payload)
+        text = json.loads(response.text)
+        return text['access_token']
 
-print(parse_response())
-"""
 
 if __name__ == "__main__":
     import __main__
     output = run_test(TestVariablesLoad, data, __main__)
-    print(output)
