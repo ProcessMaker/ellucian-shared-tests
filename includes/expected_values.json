@@ -33,6 +33,10 @@
         "Service Level Agreement": "3.0.2",
         "SAML Authentication": "1.0.3",
         "Enhanced Home Experience": "1.2.0"
-      }
+      },
+      "Languages": [
+        "en",
+        "es"
+      ]
     }
   ]
