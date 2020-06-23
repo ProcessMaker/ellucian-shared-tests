@@ -22,7 +22,7 @@ class TestImport(BaseTest):
         # Open json file
         with open(repository_path + '/includes/expected_values.json') as json_file:
             json_file.read()
-            
+
         # Verify that Processes page elements have loaded
         self.assertTrue(self.driver.find_element_by_id('pm_main_table'))
         self.assertTrue(self.driver.find_element_by_id('pm_header'))
@@ -31,5 +31,5 @@ class TestImport(BaseTest):
 
 if __name__ == "__main__":
     import __main__
-    data.repository_path = repository_path
+    data['repository_path'] = repository_path
     output = run_test(TestImport, data, __main__)
