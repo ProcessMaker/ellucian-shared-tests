@@ -32,7 +32,7 @@ class TestComponentVersions(BaseTest):
         with open(self.driver.data['repository_path'] + '/includes/expected_values.json') as expectedValuesFile:
             expected_values = json.loads(expectedValuesFile.read())
 
-        expected_versions = expected_values['System Information']
+        expected_versions = expected_values[0]['System Information']
 
         # Verify correct versions in Process Info and System Info
         self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
