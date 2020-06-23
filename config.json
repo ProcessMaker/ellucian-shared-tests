@@ -6,5 +6,9 @@
   {
     "name": "test-3-api",
     "path": "tests/test_3_variables_load.py"
+  },
+  {
+    "name": "test-4-languages",
+    "path": "tests/test_4_language_spot_check.py"
   }
 ]
