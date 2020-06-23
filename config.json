@@ -10,5 +10,9 @@
   {
     "name": "test-4-languages",
     "path": "tests/test_4_language_spot_check.py"
+  },
+  {
+    "name": "test-5-plugins",
+    "path": "tests/test_5_plugin_versions.py"
   }
 ]
