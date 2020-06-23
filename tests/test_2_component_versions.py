@@ -1,6 +1,7 @@
 #!/usr/local/bin/python3
 
 import unittest
+import json
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -28,24 +29,26 @@ class TestComponentVersions(BaseTest):
         self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
 
+        with open(self.driver.data['repository_path'] + '/includes/expected_values.json') as expectedValuesFile:
+            expected_values = json.loads(expectedValuesFile.read())
+
+        expected_versions = expected_values['System Information']
+
         # Verify correct versions in Process Info and System Info
         self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
         versions = self.driver.find_elements_by_class_name('x-grid3-row')
         # Assert PM3 version
-        self.assertTrue(self.driver.data['pm3'] in versions[0].text)
+        self.assertTrue(expected_versions['pm3'] in versions[0].text)
         # Assert MySQL version -- currently not visible in same location
         # self.assertTrue(self.driver.data['mysql'] in versions[6].text)
         # Assert Nginx version
-        self.assertTrue(self.driver.data['nginx'] in versions[12].text)
+        self.assertTrue(expected_versions['nginx'] in versions[12].text)
         # Assert PHP version
-        self.assertTrue(self.driver.data['php'] in versions[14].text)
+        self.assertTrue(expected_versions['php'] in versions[14].text)
 
 
 if __name__ == "__main__":
     import __main__
     # Assign component version variables
-    data['php'] = '7.3.17'
-    data['mysql'] = '5.7'
-    data['nginx'] = '1.16.1'
-    data['pm3'] = '3.4.11'
+    data['repository_path'] = repository_path
     output = run_test(TestComponentVersions, data, __main__)
