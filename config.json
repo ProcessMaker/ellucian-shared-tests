@@ -1,7 +1,7 @@
 [	
   {
-    "name": "test-1",
-    "path": "tests/test_1_up.py"
+    "name": "test-2-component-check",
+    "path": "tests/test_2_component_versions.py"
   },
   {
     "name": "test-3-api",
