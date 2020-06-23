@@ -20,7 +20,7 @@ class TestImport(BaseTest):
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
         
         # Open json file
-        with open(repository_path + '/includes/expected_values.json') as json_file:
+        with open(self.driver.data['repository_path'] + '/includes/expected_values.json') as json_file:
             json_file.read()
 
         # Verify that Processes page elements have loaded
