@@ -10,6 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from test_parent import BaseTest
 from util import run_test, login
+from api_requests import parse_response
 
 
 class TestVariablesLoad(BaseTest):
@@ -43,7 +44,7 @@ class TestVariablesLoad(BaseTest):
         }
 
         # Verify variables list can be parsed as JSON
-        self.assertTrue(self.parse_response(auth))
+        self.assertTrue(parse_response(auth))
 
 
     def parse_response(self, auth):
