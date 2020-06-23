@@ -14,5 +14,9 @@
   {
     "name": "test-5-plugin-versions",
     "path": "tests/test_5_plugin_versions.py"
+  },
+  {
+    "name": "test-import",
+    "path": "tests/test_json.py"
   }
 ]
