@@ -30,10 +30,11 @@ class TestComponentVersions(BaseTest):
         self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
 
+        # Get expected System Information versions from expected_values.json
         expected_versions = read_from_json_file(self.driver.data['repository_path'],
                                                 '/includes/expected_values.json', 'System Information')
 
-        # Verify correct versions in Process Info and System Info
+        # Get version values displayed on System Info page
         self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information-bd')))
         self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-System information')))
         process_info = self.driver.find_element_by_id('ext-gen13-gp-section-Process Information-bd').text
@@ -42,10 +43,9 @@ class TestComponentVersions(BaseTest):
         nginx = re.search(r'(?<=nginx/)([^\s]+)', system_info).group(0)
         php = re.search(r'(?<=PHP Version\s)([^\s]+)', system_info).group(0)
 
+        # Verify versions match expected
         # Assert PM3 version
         self.assertTrue(expected_versions['pm3'] in pm3)
-        # Assert MySQL version -- currently not visible in same location
-        # self.assertTrue(self.driver.data['mysql'] in versions[6].text)
         # Assert Nginx version
         self.assertTrue(expected_versions['nginx'] in nginx)
         # Assert PHP version
@@ -55,6 +55,5 @@ class TestComponentVersions(BaseTest):
 
 if __name__ == "__main__":
     import __main__
-    # Assign component version variables
     data['repository_path'] = repository_path
     output = run_test(TestComponentVersions, data, __main__)
