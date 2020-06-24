@@ -8,6 +8,10 @@
     "path": "tests/test_5_plugin_versions.py"
   },
   {
+    "name": "test-4-language-check",
+    "path": "tests/test_4_language_spot_check.py"
+  },
+  {
     "name": "test-2-component-check",
     "path": "tests/test_2_component_versions.py"
   }
