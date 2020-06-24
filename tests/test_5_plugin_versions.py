@@ -41,6 +41,9 @@ class TestPluginVersions(BaseTest):
         # Wait for each row to load
         self.wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'x-grid3-row')))
 
+        from time import sleep
+        sleep(1)
+
         plugins = [element.text for element in self.driver.find_elements_by_class_name('x-grid3-row')]
         for elem in plugins:
             for key, val in expected_values[0]['Custom Plugins'].items():
