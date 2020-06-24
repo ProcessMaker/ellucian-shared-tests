@@ -61,4 +61,3 @@ if __name__ == "__main__":
     # Assign component version variables
     data['repository_path'] = repository_path
     output = run_test(TestComponentVersions, data, __main__)
-    print(output)
