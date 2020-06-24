@@ -1,6 +1,7 @@
 #!/usr/local/bin/python3
 
 import unittest
+import json
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -30,13 +31,17 @@ class TestPluginVersions(BaseTest):
         self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
 
+        # Open Expected Values file and read
+        with open(self.driver.data['repository_path'] + '/includes/expected_values.json') as expectedValuesFile:
+            expected_values = json.loads(expectedValuesFile.read())
+
         # Verify correct Plugin versions present
         self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3')))
         self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
         from time import sleep
         sleep(1)
         plugins = ' '.join([element.text for element in self.driver.find_elements_by_class_name('x-grid3-row')])
-        for key, val in self.driver.data['plugins'].items():
+        for key, val in expected_values[0]['Custom Plugins'].items():
             self.assertTrue(val in plugins)
             self.assertTrue(key in plugins)
 
@@ -44,11 +49,6 @@ class TestPluginVersions(BaseTest):
 if __name__ == "__main__":
     import __main__
     # Assign plugin version variables
-    data['plugins'] = {
-        "Ellucian Ethos Events": "1.3.0+012",
-        "SSO_SAML": "3.2.5",
-        "Ellucian Ethos Integration": "1.5.0+950",
-        "pmBusinessRules": "3.1.3"
-    }
+    data['repository_path'] = repository_path
     # STM plugin version unknown
     output = run_test(TestPluginVersions, data, __main__)

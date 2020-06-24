@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from test_parent import BaseTest
 from util import run_test, login
 import re
+import json
 
 
 class TestLanguageSpotCheck(BaseTest):
@@ -19,9 +20,13 @@ class TestLanguageSpotCheck(BaseTest):
         
         # Wait for Processes page to load
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
+
+        # Open Expected Values file and read
+        with open(self.driver.data['repository_path'] + '/includes/expected_values.json') as expectedValuesFile:
+            expected_values = json.loads(expectedValuesFile.read())
         
         # Get current URL and re-get URL with different language
-        langs = self.driver.data['language']
+        langs = expected_values[0]['Languages']
         for i in range(1, len(langs)):
             url = self.driver.current_url
             url = re.sub('/' + langs[i - 1] + '/', '/' + langs[i] + '/', url)
@@ -36,5 +41,5 @@ class TestLanguageSpotCheck(BaseTest):
 
 if __name__ == "__main__":
     import __main__
-    data['language'] = ['en', 'es']
+    data['repository_path'] = repository_path
     output = run_test(TestLanguageSpotCheck, data, __main__)
