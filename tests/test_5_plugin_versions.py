@@ -47,13 +47,12 @@ class TestPluginVersions(BaseTest):
         # Verify all custom plugins are visible on page with correct version, and are enabled
         plugins = [element.text for element in self.driver.find_elements_by_class_name('x-grid3-row')]
         for elem in plugins:
-            for key, val in custom_plugins.items():
+            for key in custom_plugins.keys():
                 if key in elem:
-                    self.assertTrue(val in elem)
+                    self.assertTrue(custom_plugins[key] in elem)
                     #self.assertTrue('Enabled' in elem) -- currently SSO_SAML disabled
-                    key = 'found'
-                    break
-            del custom_plugins['found'] 
+                    del custom_plugins[key]
+                    break 
             # Assert custom_plugins is empty (meaning every expected value was found)
             #self.assertEqual(custom_plugins, {})
             # -- needs to be updated when final list of expected plugins is provided
