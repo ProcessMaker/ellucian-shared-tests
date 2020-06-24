@@ -2,21 +2,5 @@
   {
     "name": "test-2-component-check",
     "path": "tests/test_2_component_versions.py"
-  },
-  {
-    "name": "test-3-api",
-    "path": "tests/test_3_variables_load.py"
-  },
-  {
-    "name": "test-4-languages",
-    "path": "tests/test_4_language_spot_check.py"
-  },
-  {
-    "name": "test-5-plugins",
-    "path": "tests/test_5_plugin_versions.py"
-  },
-  {
-    "name": "test-import",
-    "path": "tests/test_json.py"
   }
 ]
