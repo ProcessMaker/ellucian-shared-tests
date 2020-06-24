@@ -31,10 +31,6 @@ class TestPluginVersions(BaseTest):
         self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
 
-        # Retrieve Custom Plugins dictionary from expected_values.json
-        custom_plugins = read_from_json_file(self.driver.data['repository_path'],
-                                        '/includes/expected_values.json', 'Custom Plugins')
-
         # Wait for grid to load
         self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3')))
         self.wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'x-grid3-row')))
@@ -42,6 +38,11 @@ class TestPluginVersions(BaseTest):
         # Work around stale elements issue
         from time import sleep
         sleep(1)
+
+
+        # Retrieve Custom Plugins dictionary from expected_values.json
+        custom_plugins = read_from_json_file(self.driver.data['repository_path'],
+                                             '/includes/expected_values.json', 'Custom Plugins')
 
         # Verify all custom plugins are visible on page with correct version, and are enabled
         plugins = [element.text for element in self.driver.find_elements_by_class_name('x-grid3-row')]
@@ -52,9 +53,7 @@ class TestPluginVersions(BaseTest):
                     #self.assertTrue('Enabled' in elem) -- currently SSO_SAML disabled
                     key = 'found'
                     break
-            # Delete key, val pairs
-            delete = [key for key in custom_plugins if key == 'found']
-            for key in delete: del custom_plugins[key] 
+            del custom_plugins['found'] 
             # Assert custom_plugins is empty (meaning every expected value was found)
             #self.assertEqual(custom_plugins, {})
             # -- needs to be updated when final list of expected plugins is provided
