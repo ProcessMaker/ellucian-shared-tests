@@ -3,6 +3,7 @@
 """
 
 import unittest
+import json
 from contextlib import redirect_stdout
 from io import StringIO
 import selenium
@@ -81,3 +82,13 @@ def timezone_check(driver, wait):
         pass
 
     return driver
+
+def read_from_json_file(repository_path, filename, key=''):
+    ''' Function to open JSON file, read, and deserialize.
+    Return the entire dictionary or specific key.
+    '''
+    with open(repository_path + filename) as jsonFile:
+        expected_values = json.loads(jsonFile.read())
+        if key:
+            return expected_values[0][key]
+        return expected_values[0]
