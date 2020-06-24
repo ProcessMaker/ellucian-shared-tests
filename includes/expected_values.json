@@ -9,7 +9,7 @@
         "pm3": "3.4.11"
       },
       "Custom Plugins": {
-        "SSO_SAML": "3.2.7",
+        "SSO_SAML": "3.2.5",
         "Ellucian Ethos Events": "1.3.0+012",
         "ppsEllucianLdap": "1.5.0",
         "Ellucian Ethos Integration": "1.5.0+950"
