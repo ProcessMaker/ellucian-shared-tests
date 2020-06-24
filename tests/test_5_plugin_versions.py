@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from test_parent import BaseTest
-from util import run_test, login
+from util import run_test, login, read_from_json_file
 
 
 class TestPluginVersions(BaseTest):
@@ -31,11 +31,9 @@ class TestPluginVersions(BaseTest):
         self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
 
-        # Open Expected Values file and read
-        with open(self.driver.data['repository_path'] + '/includes/expected_values.json') as expectedValuesFile:
-            expected_values = json.loads(expectedValuesFile.read())
+        custom_plugins = read_from_json_file(self.driver.data['repository_path'],
+                                        '/includes/expected_values.json', 'Custom Plugins')
 
-        # Verify correct Plugin versions present
         # Wait for grid to load
         self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3')))
         # Wait for each row to load
@@ -46,15 +44,15 @@ class TestPluginVersions(BaseTest):
 
         plugins = [element.text for element in self.driver.find_elements_by_class_name('x-grid3-row')]
         for elem in plugins:
-            for key, val in expected_values[0]['Custom Plugins'].items():
+            for key, val in custom_plugins.items():
                 if key in elem:
                     self.assertTrue(val in elem)
                     #self.assertTrue('Enabled' in elem) -- currently SSO_SAML disabled
                     key = 'found'
                     break # End loop once key is found
             # Delete key, val pairs
-            delete = [key for key in expected_values[0]['Custom Plugins'] if key == 'found']
-            for key in delete: del expected_values[0]['Custom Plugins'][key] 
+            delete = [key for key in custom_plugins if key == 'found']
+            for key in delete: del custom_plugins[key] 
             # Assert dict is empty (meaning every expected value was found)
             #self.assertEqual(expected_values[0]['Custom Plugins'], {})
             # -- needs to be updated when final list of expected plugins is provided

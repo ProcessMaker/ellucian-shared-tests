@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from test_parent import BaseTest
-from util import run_test, login
+from util import run_test, login, read_from_json_file
 
 
 class TestComponentVersions(BaseTest):
@@ -30,10 +30,8 @@ class TestComponentVersions(BaseTest):
         self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
 
-        with open(self.driver.data['repository_path'] + '/includes/expected_values.json') as expectedValuesFile:
-            expected_values = json.loads(expectedValuesFile.read())
-
-        expected_versions = expected_values[0]['System Information']
+        expected_versions = read_from_json_file(self.driver.data['repository_path'],
+                                                '/includes/expected_values.json', 'System Information')
 
         # Verify correct versions in Process Info and System Info
         self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information-bd')))

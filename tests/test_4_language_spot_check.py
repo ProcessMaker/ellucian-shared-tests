@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from test_parent import BaseTest
-from util import run_test, login
+from util import run_test, login, read_from_json_file
 import re
 import json
 
@@ -21,15 +21,13 @@ class TestLanguageSpotCheck(BaseTest):
         # Wait for Processes page to load
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
 
-        # Open Expected Values file and read
-        with open(self.driver.data['repository_path'] + '/includes/expected_values.json') as expectedValuesFile:
-            expected_values = json.loads(expectedValuesFile.read())
+        languages = read_from_json_file(self.driver.data['repository_path'],
+                                                '/includes/expected_values.json', 'Languages')
         
         # Get current URL and re-get URL with different language
-        langs = expected_values[0]['Languages']
-        for i in range(1, len(langs)):
+        for i in range(1, len(languages)):
             url = self.driver.current_url
-            url = re.sub('/' + langs[i - 1] + '/', '/' + langs[i] + '/', url)
+            url = re.sub('/' + languages[i - 1] + '/', '/' + languages[i] + '/', url)
             self.driver.get(url)
             
             # Wait for Processes page to load
