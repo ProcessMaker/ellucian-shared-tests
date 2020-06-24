@@ -28,11 +28,13 @@ class TestVariablesLoad(BaseTest):
         self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
 
-        # Inspect Ellucian workflow and get client id and client secret
+        # Inspect Ellucian workflow
         self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
         self.driver.find_element_by_class_name('x-grid3-row').click()
         self.driver.find_element_by_id('ext-gen42').click()
         self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-comp-1010')))
+
+        # Get client id and client secret from window
         window_text = self.driver.find_element_by_id('ext-comp-1010').text
         client_id = re.search(r'(?<=ID:\s)\w+', window_text).group(0)
         client_secret = re.search(r'(?<=Secret:\s)\w+', window_text).group(0)
