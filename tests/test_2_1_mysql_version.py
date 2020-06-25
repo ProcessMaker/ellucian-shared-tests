@@ -32,6 +32,8 @@ class TestComponentVersions(BaseTest):
 
         # Get version values displayed on Case Builder Cache Info page
         self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen12')))
+        from time import sleep
+        sleep(1)
         cache_info = self.driver.find_element_by_id('ext-gen12').text
         mysql = re.search(r'(?<=MySQL Version\s)([^\s]+)(?=-)', cache_info).group(0)
         
