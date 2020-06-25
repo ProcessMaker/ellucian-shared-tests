@@ -30,14 +30,14 @@ class TestPluginVersions(BaseTest):
         self.driver.find_element_by_id('ext-gen44').click()
         self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
+        
+        # Work around stale elements issue
+        from time import sleep
+        sleep(2)
 
         # Wait for grid to load
         self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3')))
         self.wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'x-grid3-row')))
-
-        # Work around stale elements issue
-        from time import sleep
-        sleep(2)
 
         # Retrieve Custom Plugins dictionary from expected_values.json
         custom_plugins = read_from_json_file(self.driver.data['repository_path'],
