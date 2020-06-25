@@ -37,8 +37,7 @@ class TestPluginVersions(BaseTest):
 
         # Work around stale elements issue
         from time import sleep
-        sleep(1)
-
+        sleep(2)
 
         # Retrieve Custom Plugins dictionary from expected_values.json
         custom_plugins = read_from_json_file(self.driver.data['repository_path'],
