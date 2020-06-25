@@ -21,7 +21,7 @@ class TestComponentVersions(BaseTest):
         # Wait for Processes page to load
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
         
-        # Navigate to Admin / System Info page
+        # Navigate to Admin / Case Builder Cache Info page
         self.driver.find_element_by_id('SETUP').click()
         self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
@@ -30,7 +30,7 @@ class TestComponentVersions(BaseTest):
         self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
 
-        # Get version values displayed on System Info page
+        # Get version values displayed on Case Builder Cache Info page
         self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen12')))
         cache_info = self.driver.find_element_by_id('ext-gen12').text
         mysql = re.search(r'(?<=MySQL Version\s)([^\s]+)(?=-)', cache_info).group(0)
