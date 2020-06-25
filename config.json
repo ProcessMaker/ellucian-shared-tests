@@ -1,4 +1,7 @@
-[	
+[	{
+    "name": "test-1-up",
+    "path": "tests/test_1_up.py"
+  },
   {
     "name": "test-3-api-request",
     "path": "tests/test_3_variables_load.py"
