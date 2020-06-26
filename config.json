@@ -15,10 +15,6 @@
     "path": "tests/test_4_language_spot_check.py"
   },
   {
-    "name": "test-2-1-mysql-check",
-    "path": "tests/test_2_1_mysql_version.py"
-  },
-  {
     "name": "test-2-component-check",
     "path": "tests/test_2_component_versions.py"
   }
