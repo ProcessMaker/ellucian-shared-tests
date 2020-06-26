@@ -16,6 +16,8 @@ class TestComponentVersions(BaseTest):
     def test_component_version(self):
         ''' Test that versions are correct. '''
         # Login using configured url, workspace, username, and password
+        from time import sleep
+        sleep(2)
         self.driver = login(data, self.driver)
         
         # Wait for Processes page to load
@@ -25,17 +27,18 @@ class TestComponentVersions(BaseTest):
         self.driver.find_element_by_id('SETUP').click()
         self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'extdd-34')))
-        self.driver.find_element_by_id('extdd-34').click()
+        self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'System information')))
+        self.driver.find_element_by_link_text('System information').click()
         self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
 
         # Get version values displayed on System Info page
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information-bd')))
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information')))
         self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-System information')))
         process_info = self.driver.find_element_by_id('ext-gen13-gp-section-Process Information-bd').text
         system_info = self.driver.find_element_by_id('ext-gen13-gp-section-System information').text
         pm3 = re.search(r'(?<=ProcessMaker Ver.\s)([^\s]+)', process_info).group(0)
+        mysql = re.search(r'(?<=MySql \(Version\s)([^\s]+)(?=\))', process_info).group(0)
         nginx = re.search(r'(?<=nginx/)([^\s]+)', system_info).group(0)
         php = re.search(r'(?<=PHP Version\s)([^\s]+)', system_info).group(0)
 
@@ -46,11 +49,12 @@ class TestComponentVersions(BaseTest):
         # Verify versions match expected
         # Assert PM3 version
         self.assertTrue(expected_versions['pm3'] in pm3)
+        # Assert MySql version
+        self.assertTrue(expected_versions['mysql'] in mysql) 
         # Assert Nginx version
         self.assertTrue(expected_versions['nginx'] in nginx)
         # Assert PHP version
         self.assertTrue(expected_versions['php'] in php)
-        
 
 
 if __name__ == "__main__":
