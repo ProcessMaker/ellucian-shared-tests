@@ -27,4 +27,7 @@ class TestLoginPage(BaseTest):
 
 if __name__ == "__main__":
     import __main__
-    output = run_test(TestLoginPage, data, __main__)
+    try:
+        output = run_test(TestLoginPage, data, __main__)
+    except:
+        output = {"result": "FAIL", "message": "Unkown Python Error"}
