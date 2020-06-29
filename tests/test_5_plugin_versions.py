@@ -49,12 +49,11 @@ class TestPluginVersions(BaseTest):
             for key in custom_plugins.keys():
                 if key in elem:
                     self.assertTrue(custom_plugins[key] in elem)
-                    #self.assertTrue('Enabled' in elem) -- currently SSO_SAML disabled
+                    self.assertTrue('Enabled' in elem)
                     del custom_plugins[key]
                     break 
             # Assert custom_plugins is empty (meaning every expected value was found)
-            #self.assertEqual(custom_plugins, {})
-            # -- needs to be updated when final list of expected plugins is provided
+            self.assertEqual(custom_plugins, {})
 
 
 if __name__ == "__main__":
