@@ -9,10 +9,11 @@
       "Custom Plugins": {
         "SSO_SAML": "3.2.5",
         "Ellucian Ethos Events": "1.3.0+012",
-        "ppsEllucianLdap": "1.5.0",
-        "Ellucian Ethos Integration": "1.5.0+950"
+        "Ellucian Ethos Integration": "1.5.0+950",
+        "pmBusinessRules": "3.1.3"
       },
       "Enterprise Plugins": {
+        "ppsEllucianLdap": "1.5.0",
         "data Reporting Tools": "1.1.14",
         "Enterprise Data Search": "3.2.3",
         "Multitenant Workspace Management": "3.1.6",
@@ -20,7 +21,6 @@
         "ProcessDocumenter": "1.1.2",
         "advanced Dashboards": "3.0.2",
         "External Registration": "3.3.6",
-        "pmBusinessRules": "3.1.3",
         "pmConnectors": "1.3.1",
         "Enhanced Login": "2.6.3",
         "pmFtpMonitor": "3.1.1",
