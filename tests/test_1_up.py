@@ -17,7 +17,7 @@ class TestLoginPage(BaseTest):
         self.driver = login(data, self.driver)
         
         # Wait for Processes page to load
-        self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'Admin')))
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
         
         # Verify that Processes page elements have loaded
         self.assertTrue(self.driver.find_element_by_id('pm_main_table'))
