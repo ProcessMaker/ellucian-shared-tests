@@ -18,16 +18,16 @@ class TestPluginVersions(BaseTest):
         self.driver = login(data, self.driver)
         
         # Wait for Processes page to load
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
+        self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'Admin')))
         
         # Navigate to Admin / Plugins Manager page
-        self.driver.find_element_by_id('SETUP').click()
+        self.driver.find_element_by_link_text('Admin').click()
         self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen22')))
-        self.driver.find_element_by_id('ext-gen22').click()
-        self.wait.until(EC.visibility_of_element_located((By.ID, "ext-gen44")))
-        self.driver.find_element_by_id('ext-gen44').click()
+        self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'Plugins')))
+        self.driver.find_element_by_link_text('Plugins').click()
+        self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, "Plugins Manager")))
+        self.driver.find_element_by_link_text('Plugins Manager').click()
         self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
         
