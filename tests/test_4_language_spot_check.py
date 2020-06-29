@@ -19,7 +19,7 @@ class TestLanguageSpotCheck(BaseTest):
         self.driver = login(data, self.driver)
         
         # Wait for Processes page to load
-        self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'Admin')))
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
 
         languages = read_from_json_file(self.driver.data['repository_path'],
                                                 '/includes/expected_values.json', 'Languages')
