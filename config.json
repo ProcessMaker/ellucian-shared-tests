@@ -1,6 +1,6 @@
 [	
   {
-    "name": "test-2-component-check",
-    "path": "tests/test_2_component_versions.py"
+    "name": "test-1-server-up",
+    "path": "tests/test_1_up.py"
   }
 ]
