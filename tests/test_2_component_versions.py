@@ -6,8 +6,8 @@ import re
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from includes.test_parent import BaseTest
-from includes.util import run_test, login, read_from_json_file
+from test_parent import BaseTest
+from util import run_test, login, read_from_json_file
 
 
 class TestComponentVersions(BaseTest):
