@@ -6,8 +6,8 @@ import re
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from test_parent import BaseTest
-from util import run_test, login, read_from_json_file
+from includes.test_parent import BaseTest
+from includes.util import run_test, login, read_from_json_file
 
 
 class TestComponentVersions(BaseTest):
@@ -16,12 +16,10 @@ class TestComponentVersions(BaseTest):
     def test_component_version(self):
         ''' Test that versions are correct. '''
         # Login using configured url, workspace, username, and password
-        from time import sleep
-        sleep(2)
         self.driver = login(data, self.driver)
         
         # Wait for Processes page to load
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
+        self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'Admin')))
         
         # Navigate to Admin / System Info page
         self.driver.find_element_by_id('SETUP').click()
@@ -33,10 +31,11 @@ class TestComponentVersions(BaseTest):
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
 
         # Get version values displayed on System Info page
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information')))
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-System information')))
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information-bd')))
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-System information-bd')))
+        self.wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'x-grid3-row')))
         process_info = self.driver.find_element_by_id('ext-gen13-gp-section-Process Information-bd').text
-        system_info = self.driver.find_element_by_id('ext-gen13-gp-section-System information').text
+        system_info = self.driver.find_element_by_id('ext-gen13-gp-section-System information-bd').text
         pm3 = re.search(r'(?<=ProcessMaker Ver.\s)([^\s]+)', process_info).group(0)
         mysql = re.search(r'(?<=MySql \(Version\s)([^\s]+)(?=\))', process_info).group(0)
         nginx = re.search(r'(?<=nginx/)([^\s]+)', system_info).group(0)
