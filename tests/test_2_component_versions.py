@@ -57,7 +57,8 @@ class TestComponentVersions(BaseTest):
 
         self.driver.log.append('Test passed')
         self.log = self.driver.log
-
+        if self.driver.page:
+            self.page = self.driver.page.read()
 
 if __name__ == "__main__":
     import __main__
