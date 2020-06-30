@@ -20,7 +20,7 @@ class TestVariablesLoad(BaseTest):
     def test_variables_load(self):
         ''' Test that variables are in a JSON-parsable format. '''
         # Login using configured url, workspace, username, and password
-        self.driver = login(data, self.driver)
+        self.driver = login(data, self.driver, self.log)
         data_ = self.driver.data
 
         # Navigate to Oauth2 Applications page to get client id and client secret
@@ -47,6 +47,9 @@ class TestVariablesLoad(BaseTest):
 
         # Verify variables list can be parsed as JSON
         self.assertTrue(parse_response(auth))
+
+        self.driver.log.append('Test passed')
+        self.log = self.driver.log
 
 
 if __name__ == "__main__":
