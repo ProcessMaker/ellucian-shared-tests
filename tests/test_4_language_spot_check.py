@@ -16,7 +16,7 @@ class TestLanguageSpotCheck(BaseTest):
     def test_language_spot_check(self):
         ''' Test that there are no visible labels. '''
         # Login using configured url, workspace, username, and password
-        self.driver = login(data, self.driver)
+        self.driver = login(data, self.driver, self.log)
         
         # Wait for Processes page to load
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
@@ -36,6 +36,8 @@ class TestLanguageSpotCheck(BaseTest):
             # Assert that labels are not present on page
             self.assertEqual(None, re.search(r'\*\*(\w+)\*\*', self.driver.page_source))
 
+        self.driver.log.append('Test passed')
+        self.log = self.driver.log
 
 if __name__ == "__main__":
     import __main__
