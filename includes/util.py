@@ -46,12 +46,13 @@ def run_test(classname, data, modulename):
 def parse_log_error(log_message):
     ''' Function to capture ERROR message.
     '''
-    message = re.search(r'(?<=ERROR<\/strong>:\s)([^<]+)', log_message).group(0)
+    return re.search(r'(?<=ERROR<\/strong>:\s)([^<]+)', log_message).group(0)
+
 
 def parse_log_warning(log_message):
     ''' Function to capture WARNING message.
     '''
-    message = re.search(r'(?<=WARNING<\/strong>:\s)([^<]+)', log_message).group(0)
+    return re.search(r'(?<=WARNING<\/strong>:\s)([^<]+)', log_message).group(0)
             
 
 def parse_results(buffer):
