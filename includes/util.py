@@ -80,6 +80,8 @@ def timezone_check(driver, wait):
     try:
         driver.find_element_by_id('form[USR_USERNAME]')
         driver.log.append('Unknown login failure')
+        from time import sleep
+        sleep(2)
         driver.log.append(driver.find_element_by_id('temporalMessageERROR').text)
     except:
         pass
