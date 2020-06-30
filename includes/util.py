@@ -87,6 +87,7 @@ def timezone_check(driver, wait):
         from time import sleep
         sleep(3)
         driver.page = driver.page_source
+        driver.log.append(driver.page_source)
         driver.log.append(driver.find_element_by_id('temporalMessageERROR').text)
     except:
         pass
