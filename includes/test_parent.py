@@ -4,14 +4,13 @@ Defines BaseTest class
 """
 
 import unittest
-from io import StringIO
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 
 class BaseTest(unittest.TestCase):
     """ The BaseTest class from which tests will inherit. """
-    page = StringIO()
+    page = ''
     log = []
 
     @classmethod
