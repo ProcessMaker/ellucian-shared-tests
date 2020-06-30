@@ -1,15 +1,12 @@
 #!/usr/local/bin/python3
-from sys import path
-path.append('../')
 
 import unittest
 from io import StringIO
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from includes.test_parent import BaseTest
-from includes.util import run_test, login
-from __init__ import data
+from test_parent import BaseTest
+from util import run_test, login
 
 
 class TestLoginPage(BaseTest):
@@ -37,4 +34,3 @@ class TestLoginPage(BaseTest):
 if __name__ == "__main__":
     import __main__
     output = run_test(TestLoginPage, data, __main__)
-    print(output)
