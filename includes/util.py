@@ -3,6 +3,7 @@
 """
 
 import unittest
+import re
 import json
 from contextlib import redirect_stdout
 from io import StringIO
@@ -34,12 +35,23 @@ def run_test(classname, data, modulename):
     classname.data = data
     with StringIO() as buffer:
         with redirect_stdout(buffer):
-            text_test_result_obj = CustomTextTestRunner(stream=buffer).run(suite)
+            log = CustomTextTestRunner(stream=buffer).run(suite).log
+            if 'ERROR' in log[-1]:
+                log[-1] = parse_log_error(log[-1])
+            elif 'WARNING' in log[-1]:
+                log[-1] = parse_log_warning(log[-1])
             test_output = buffer.getvalue()
-            if text_test_result_obj.page:
-                return {"result": parse_results(test_output), "message": text_test_result_obj.page}
-            else:
-                return {"result": parse_results(test_output), "message": text_test_result_obj.log[-1]}
+            return {"result": parse_results(test_output), "message": log[-1]}
+
+def parse_log_error(log_message):
+    ''' Function to capture ERROR message.
+    '''
+    message = re.search(r'(?<=ERROR<\/strong>:\s)([^<]+)', log_message).group(0)
+
+def parse_log_warning(log_message):
+    ''' Function to capture WARNING message.
+    '''
+    message = re.search(r'(?<=WARNING<\/strong>:\s)([^<]+)', log_message).group(0)
             
 
 def parse_results(buffer):
@@ -84,10 +96,9 @@ def timezone_check(driver, wait):
     try:
         driver.find_element_by_id('form[USR_USERNAME]')
         driver.log.append('Unknown login failure')
-        wait = WebDriverWait(driver, 5)
-        wait.until(EC.visibility_of_element_located((By.ID, 'temporalMessageERROR')))
-        #driver.page = driver.page_source
-        #driver.log.append(driver.page_source)
+        from time import sleep
+        sleep(3)
+        driver.log.append(driver.page_source)
         driver.log.append(driver.find_element_by_id('temporalMessageERROR').text)
     except:
         pass
