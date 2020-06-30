@@ -10,6 +10,7 @@ import selenium
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from includes.test_classes import CustomTextTestRunner, CustomTestLoader
 
 
 def run_test(classname, data, modulename):
@@ -28,13 +29,14 @@ def run_test(classname, data, modulename):
     if not modulename:
         return 'modulename missing'
 
-    suite = unittest.TestLoader().loadTestsFromModule(modulename)
+
+    suite = CustomTestLoader().loadTestsFromModule(modulename)
     classname.data = data
     with StringIO() as buffer:
         with redirect_stdout(buffer):
-            unittest.TextTestRunner(stream=buffer).run(suite)
-            message = buffer.getvalue()
-            return {"result": parse_results(message), "message": message}
+            log = CustomTextTestRunner(stream=buffer).run(suite).log
+            test_output = buffer.getvalue()
+            return {"result": parse_results(test_output), "message": log[-1]}
 
 def parse_results(buffer):
     ''' Function to parse the unittest results into PM4-friendly format.
@@ -49,15 +51,16 @@ def parse_results(buffer):
     # else:
     #    return 'ERROR'
 
-def login(data, driver):
+def login(data, driver, log):
     ''' Function to log user in to workspace.
     '''
     # Navigate to server
     driver.data = data
+    driver.log = log
     driver.get(data['server_url'])
 
     # Wait for login page to load
-    wait = WebDriverWait(driver, 120)
+    wait = WebDriverWait(driver, 30)
     wait.until(EC.element_to_be_clickable((By.ID, 'form[BSUBMIT]')))
 
     # Login
@@ -66,15 +69,27 @@ def login(data, driver):
     driver.find_element_by_id('form[USER_ENV]').send_keys(data['server_workspace'])
     driver.find_element_by_id('form[BSUBMIT]').click()
 
+    log.append('Login attempted')
+
     return timezone_check(driver, wait)
 
 
 def timezone_check(driver, wait):
     ''' Function to check for time zone config page and bypass it.
     '''
+    try:
+        driver.find_element_by_id('form[USR_USERNAME]')
+        driver.log.append('Unknown login failure')
+        driver.log.append(driver.find_element_by_id('temporalMessageERROR').text)
+    except:
+        driver.log.append('Login succeeded')
+
+    
     # Wait for page to load
     wait.until(EC.visibility_of_element_located((By.ID, 'pm_main_table')))
-        
+    
+    driver.log.append('Checking for timezone checkpoint')
+
     try:
         driver.find_element_by_id('form[BROWSER_TIME_ZONE]')
         driver.find_element_by_id('form[BTNOK]').click()
