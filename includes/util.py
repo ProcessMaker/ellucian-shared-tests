@@ -82,12 +82,12 @@ def timezone_check(driver, wait):
         driver.log.append('Unknown login failure')
         driver.log.append(driver.find_element_by_id('temporalMessageERROR').text)
     except:
-        driver.log.append('Login succeeded')
+        pass
 
     
     # Wait for page to load
     wait.until(EC.visibility_of_element_located((By.ID, 'pm_main_table')))
-    
+    driver.log.append('Login succeeded')
     driver.log.append('Checking for timezone checkpoint')
 
     try:
