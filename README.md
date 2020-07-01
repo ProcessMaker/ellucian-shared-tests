@@ -52,3 +52,18 @@ Notes:
   * If you want to view python unittest results in your terminal, add this line to the bottom of the test file:
     * `print(output)`
   * Sometimes tests will fail to run if there is an `__init__.py` in the `/tests` directory. Remove this file if it exists.
+  
+#### Writing Tests Locally
+
+( Below suggestions may be redundant with use of conditional imports and ENV variable in Docker container, TBD )
+Inside each test file:
+  * Add these lines to the top of your imports:
+    * `from sys import path`
+    * `path.append('../')`
+  * Change these lines:
+    * `from test_parent import BaseTest` to `from includes.test_parent import BaseTest`
+    * `from util import login, run_test, read_from_json_file` to `from includes.util import login, run_test, read_from_json_file`
+    * `from api_requests import parse_response` to `from includes.api_requests import parse_response`
+  * Add this line:
+    * `from __init__ import data`
+
