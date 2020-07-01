@@ -51,3 +51,4 @@ Notes:
     * `# chrome_options.add_argument("--headless")`
   * If you want to view python unittest results in your terminal, add this line to the bottom of the test file:
     * `print(output)`
+  * Sometimes tests will fail to run if there is an `__init__.py` in the `/tests` directory. Remove this file if it exists.
