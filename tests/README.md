@@ -106,3 +106,11 @@ if __name__ == "__main__":
     '''
     output = run_test(TestLoginPage, data, __main__)
 ```
+
+### Helpful Links
+[Python unittest Documentation](https://docs.python.org/3.5/library/unittest.html "Python unittest Documentation")
+[Python unittest Source Code](https://github.com/python/cpython/tree/3.5/Lib/unittest "Python unittest Source Code")
+[Selenium Documentation](https://selenium-python.readthedocs.io "Selenium Documentation")
+[Selenium - Locating Elements](https://selenium-python.readthedocs.io/locating-elements.html "Selenium - Locating Elements")
+[Selenium - Waits](https://selenium-python.readthedocs.io/waits.html "Selenium - Waits")
+[Xpath cheatsheet](https://devhints.io/xpath "Xpath cheatsheet")
