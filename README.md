@@ -30,11 +30,40 @@ You can develop and run tests locally. In order to do so, you must have the foll
 
 * [Homebrew](https://brew.sh) (macOS only)
 
-#### Installing & Running Locally
+#### Installing Locally
 
 * Install pip && `pip install selenium`
 * `brew cask install chromedriver` (macOS only)
 * Add chromedriver to PATH
 * Clone the repository into a directory
-* Navigate to tests folder
-* Execute test file using `python3 test_file.py`
+
+#### Running Tests Locally
+
+* Create `__init__.py` in root directory
+* Write and save this line:
+  * `data = {"server_url": "your/pm4/server/url/here", "server_workspace": "your/server/workspace/here", "username": "your/username/here", "password": "your/password/here"}`
+* Navigate to `/tests` folder
+* Execute test with `./test_you_want_to_run.py`
+  * Note: If test is not executable, run `chmod +x test_you_want_to_run.py`
+
+Notes: 
+  * If you want to view the tests running in the browser, comment out this line in `/includes/test_parent.py`:
+    * `# chrome_options.add_argument("--headless")`
+  * If you want to view python unittest results in your terminal, add this line to the bottom of the test file:
+    * `print(output)`
+  * Sometimes tests will fail to run if there is an `__init__.py` in the `/tests` directory. Remove this file if it exists.
+  
+#### Writing Tests Locally
+
+( Below suggestions may be redundant with use of conditional imports and ENV variable in Docker container, TBD )
+Inside each test file:
+  * Add these lines to the top of your imports:
+    * `from sys import path`
+    * `path.append('../')`
+  * Change these lines:
+    * `from test_parent` to `from includes.test_parent`
+    * `from util` to `from includes.util`
+    * `from api_requests` to `from includes.api_requests`
+  * Add this line:
+    * `from __init__ import data`
+
