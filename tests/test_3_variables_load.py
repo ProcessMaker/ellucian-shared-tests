@@ -50,9 +50,12 @@ class TestVariablesLoad(BaseTest):
         }
 
         # Verify variables list can be parsed as JSON
-        self.assertTrue(parse_response(api, auth))
+        try:
+            self.assertTrue(parse_response(api, auth))
+            self.driver.log.append('Variables loaded')
+        except:
+            self.driver.log.append('JSON could not be parsed')
 
-        self.driver.log.append('Test passed')
         self.log = self.driver.log
 
 
