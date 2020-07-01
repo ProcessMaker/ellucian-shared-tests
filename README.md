@@ -84,4 +84,6 @@ Method | Function | Parameters | Uses
 [`/includes/util.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/util.py "util.py")
 Method | Function | Parameters | Uses
 --- | --- | --- | ---
-`run_test` | <ul><li>Loads and runs test suite, redirects unittest results to memory stream</li><li>returns PM4-friendly output</li></ul> | `classname, data, modulename` | <ul><li>`classname` passes the test class name`</li><li>data passes the configuration in PM4's config task</li><li>modulename</li><li>passes `__main__` from test file</li></ul>
+`run_test` | <ul><li>Loads and runs test suite, redirects unittest results to memory stream</li><li>returns PM4-friendly output</li></ul> | `classname, data, modulename` | <ul><li>`classname` passes the test class name`</li><li>`data` passes the configuration in PM4's config task</li><li>`modulename` passes `__main__` from test file</li></ul>
+`parse_log_error`| <ul><li>Searches text for `'ERROR'`</li><li>returns `ERROR` message</li></ul> | `log_message` | <ul><li>`log_message` passes `HTML` page source</li></ul>
+`parse_log_warning`| <ul><li>Searches text for `'WARNING'`</li><li>returns `WARNING` message</li></ul> | `log_message` | <ul><li>`log_message` passes `HTML` page source</li></ul>
