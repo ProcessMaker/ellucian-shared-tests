@@ -12,6 +12,11 @@ Class | Function | Extends
 `CustomTextTestResult` | Add custom attributes to instantiation | `unittest.TextTestResult`
 `CustomTextTestRunner` | Set custom `resultclass`, add custom attributes, and set custom `_makeResult()` | `unittest.TextTestRunner`
 
+[`/includes/test_parent.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/test_parent.py "test_parent.py")
+Class | Function | Extends | Methods | Attributes
+--- | --- | --- | --- | ---
+`BaseTest` | Defines base test class | `unittest.TestCase` | <ul><li>`setUpClass()`: instantiates webdriver instance</li><li>`tearDownClass()`: closes webdriver instance</li></ul> | <ul><li>`page`: an empty string</li><li>`log`: an empty list</li></ul>
+
 ## Methods
 
 [`/includes/api_requests.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/api_requests.py "api_requests.py")
