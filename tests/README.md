@@ -107,7 +107,7 @@ if __name__ == "__main__":
     output = run_test(TestLoginPage, data, __main__)
 ```
 
-### Helpful Links
+### Helpful Links (Hover for https:// address)
 * [Python unittest Documentation](https://docs.python.org/3.5/library/unittest.html "https://docs.python.org/3.5/library/unittest.html")
 * [Python unittest Source Code](https://github.com/python/cpython/tree/3.5/Lib/unittest "https://github.com/python/cpython/tree/3.5/Lib/unittest")
 * [Selenium Documentation](https://selenium-python.readthedocs.io "https://selenium-python.readthedocs.io")
