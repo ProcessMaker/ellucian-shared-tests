@@ -19,7 +19,20 @@ File | Class | Function | Success | Failure
 File structure:
 
 ```
-import list
+''' Import list.
+'''
+''' Python's unittest module. '''
+import unittest
+''' Selenium's WebDriverWait module. '''
+from selenium.webdriver.support.ui import WebDriverWait
+''' Selenium's By module. For use with WebDriverWait. '''
+from selenium.webdriver.common.by import By
+''' Selenium's expected_conditions module. For use with WebDriverWait. '''
+from selenium.webdriver.support import expected_conditions as EC
+''' BaseTest, which extends unittest.TestCase. Instantiates webdriver. '''
+from test_parent import BaseTest
+''' Methods to run the test and to log in to the provided server. '''
+from util import run_test, login
 
 
 
@@ -48,6 +61,11 @@ class TestName(BaseTest):
     '''
     self.wait
     
+    ''' Login method used at the beginning of each test navigation.
+    login() returns driver.
+    data is used here, but is defined in bootstrap.py file. Editors may underline data.
+    '''
+    self.driver = login(data, self.driver, self.log)
     
 
 ''' Main call. Only used in test file.
@@ -70,6 +88,7 @@ if __name__ == "__main__":
       data['words'] = {'a': 'apple', 'b': 'banana', 'c': 'cantaloupe'}
       data['number'] = 100
       data['vegetables'] = ['pepper', 'spinach', 'squash']
+    '''
     
     ''' output is given back to bootstrap.py after the test is run.
     It is a dictionary with "result" and "message" key, value pairs.
