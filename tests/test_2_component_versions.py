@@ -45,6 +45,7 @@ class TestComponentVersions(BaseTest):
         expected_versions = read_from_json_file(self.driver.data['repository_path'],
                                                 '/includes/expected_values.json', 'System Information')
 
+        fail_flag = 0
         # Verify versions match expected
         try:
             # Assert PM3 version 
@@ -52,6 +53,7 @@ class TestComponentVersions(BaseTest):
             self.driver.log.append('Correct ProcessMaker version')
         except:
             self.driver.log.append('Wrong ProcessMaker version')
+            fail_flag = 1
 
         try:
             # Assert MySql version
@@ -59,6 +61,7 @@ class TestComponentVersions(BaseTest):
             self.driver.log[-1] += '; Correct MySql version'
         except:
             self.driver.log[-1] += '; Wrong MySql version'
+            fail_flag = 1
 
         try:
             # Assert Nginx version
@@ -66,6 +69,7 @@ class TestComponentVersions(BaseTest):
             self.driver.log[-1] += '; Correct Nginx version'
         except:
             self.driver.log[-1] += '; Wrong Nginx version'
+            fail_flag = 1
 
         try:
             # Assert PHP version
@@ -73,6 +77,10 @@ class TestComponentVersions(BaseTest):
             self.driver.log[-1] += '; Correct PHP version'
         except:
             self.driver.log[-1] += '; Wrong PHP version'
+            fail_flag = 1
+
+        if fail_flag == 1:
+            self.fail()
 
         self.log = self.driver.log
 
