@@ -73,8 +73,6 @@ Inside each test file:
 ( Links will be changed to master directory after merge )
 
 #### [`/includes` Directory](https://github.com/ProcessMaker/ellucian-shared-tests/tree/kelly/includes "/includes Directory")
-
-Inside the `/includes` directory:
 * Helper methods
 * Subclasses of `unittest` classes
 * `BaseTest` from which test files inherit
