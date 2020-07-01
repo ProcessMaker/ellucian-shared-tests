@@ -77,3 +77,6 @@ Inside each test file:
 * Subclasses of `unittest` classes
 * `BaseTest` from which test files inherit
 * `JSON` dictionary of plugin versions, component versions, and languages
+
+#### [`/tests` Directory](https://github.com/ProcessMaker/ellucian-shared-tests/tree/kelly/tests "/tests Directory")
+* Test cases
