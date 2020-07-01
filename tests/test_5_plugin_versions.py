@@ -54,12 +54,15 @@ class TestPluginVersions(BaseTest):
                         self.driver.log[-1] += '; Correct ' + key + ' version'
                     except:
                         self.driver.log[-1] += '; Wrong ' + key + ' version'
+                        self.fail()
                     
                     try:
                         self.assertTrue('Enabled' in elem)
                         self.driver.log[-1] += ', Enabled'
                     except:
                         self.driver.log[-1] += ', Disabled'
+                        self.fail()
+
                     del custom_plugins[key]
                     break 
             # Assert custom_plugins is empty (meaning every expected value was found)
@@ -69,6 +72,7 @@ class TestPluginVersions(BaseTest):
         except:
             not_found = ', '.join(custom_plugins)
             self.driver.log[-1] += ';    Plugins not found: ' + not_found
+            self.fail()
 
 
         self.log = self.driver.log
