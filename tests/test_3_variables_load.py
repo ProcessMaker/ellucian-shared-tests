@@ -56,6 +56,7 @@ class TestVariablesLoad(BaseTest):
             self.driver.log.append('Variables loaded')
         except:
             self.driver.log.append('JSON could not be parsed')
+            self.fail()
 
         self.log = self.driver.log
 
