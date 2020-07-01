@@ -63,12 +63,12 @@ class TestPluginVersions(BaseTest):
                     del custom_plugins[key]
                     break 
             # Assert custom_plugins is empty (meaning every expected value was found)
-            try:
-                self.assertEqual(custom_plugins, {})
-                self.driver.log[-1] += ';    All plugins found'
-            except:
-                not_found = ', '.join(custom_plugins)
-                self.driver.log[-1] += ';    Plugins not found: ' + not_found
+        try:
+            self.assertEqual(custom_plugins, {})
+            self.driver.log[-1] += ';    All plugins found'
+        except:
+            not_found = ', '.join(custom_plugins)
+            self.driver.log[-1] += ';    Plugins not found: ' + not_found
 
 
         self.log = self.driver.log
