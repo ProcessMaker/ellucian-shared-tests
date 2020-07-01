@@ -67,3 +67,13 @@ Inside each test file:
   * Add this line:
     * `from __init__ import data`
 
+
+## Files 
+
+( Links will be changed to master directory after merge )
+
+#### [`/includes` Directory](https://github.com/ProcessMaker/ellucian-shared-tests/tree/kelly/includes "/includes Directory")
+* Helper methods
+* Subclasses of `unittest` classes
+* `BaseTest` from which test files inherit
+* `JSON` dictionary of plugin versions, component versions, and languages
