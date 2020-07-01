@@ -72,6 +72,10 @@ class TestName(BaseTest):
     '''
     self.driver = login(data, self.driver, self.log)
     
+    ''' Reattach log to class attribute at end of test.
+    '''
+    self.log = self.driver.log
+    
 
 ''' Main call. Only used in test file.
 '''
