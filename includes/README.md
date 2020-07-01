@@ -1,6 +1,8 @@
-## Files 
+# Files 
 
 ( Links will be changed to master directory after merge )
+
+## Methods
 
 [`/includes/api_requests.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/api_requests.py "api_requests.py")
 Method | Function | Parameters | Uses
