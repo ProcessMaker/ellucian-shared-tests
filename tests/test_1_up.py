@@ -23,11 +23,14 @@ class TestLoginPage(BaseTest):
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
 
         # Verify that Processes page elements have loaded
-        self.assertTrue(self.driver.find_element_by_id('pm_main_table'))
-        self.assertTrue(self.driver.find_element_by_id('pm_header'))
-        self.assertTrue(self.driver.find_element_by_class_name('Footer'))
+        try:
+            self.assertTrue(self.driver.find_element_by_id('pm_main_table'))
+            self.assertTrue(self.driver.find_element_by_id('pm_header'))
+            self.assertTrue(self.driver.find_element_by_class_name('Footer'))
+            self.driver.log.append('Main page loaded successfully')
+        except: 
+            self.driver.log.append('Main page failed to load')
 
-        self.driver.log.append('Test passed')
         self.log = self.driver.log
 
 
