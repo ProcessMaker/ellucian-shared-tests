@@ -46,16 +46,34 @@ class TestComponentVersions(BaseTest):
                                                 '/includes/expected_values.json', 'System Information')
 
         # Verify versions match expected
-        # Assert PM3 version
-        self.assertTrue(expected_versions['pm3'] in pm3)
-        # Assert MySql version
-        self.assertTrue(expected_versions['mysql'] in mysql) 
-        # Assert Nginx version
-        self.assertTrue(expected_versions['nginx'] in nginx)
-        # Assert PHP version
-        self.assertTrue(expected_versions['php'] in php)
+        try:
+            # Assert PM3 version 
+            self.assertTrue(expected_versions['pm3'] in pm3)
+            self.driver.log.append('Correct ProcessMaker version')
+        except:
+            self.driver.log.append('Wrong ProcessMaker version')
 
-        self.driver.log.append('Test passed')
+        try:
+            # Assert MySql version
+            self.assertTrue(expected_versions['mysql'] in mysql)
+            self.driver.log[-1] += '; Correct MySql version'
+        except:
+            self.driver.log[-1] += '; Wrong MySql version'
+
+        try:
+            # Assert Nginx version
+            self.assertTrue(expected_versions['nginx'] in nginx)
+            self.driver.log[-1] += '; Correct Nginx version'
+        except:
+            self.driver.log[-1] += '; Wrong Nginx version'
+
+        try:
+            # Assert PHP version
+            self.assertTrue(expected_versions['php'] in php)
+            self.driver.log[-1] += '; Correct PHP version'
+        except:
+            self.driver.log[-1] += '; Wrong PHP version'
+
         self.log = self.driver.log
         if self.driver.page:
             self.page = self.driver.page.read()
