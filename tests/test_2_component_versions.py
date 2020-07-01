@@ -38,7 +38,6 @@ class TestComponentVersions(BaseTest):
         process_info = self.driver.find_element_by_id('ext-gen13-gp-section-Process Information-bd').text
         system_info = self.driver.find_element_by_id('ext-gen13-gp-section-System information-bd').text
         pm3 = re.search(r'(?<=ProcessMaker Ver.\s)([^\s]+)', process_info).group(0)
-        mysql = re.search(r'(?<=MySql \(Version\s)([^\s]+)(?=\))', process_info).group(0)
         nginx = re.search(r'(?<=nginx/)([^\s]+)', system_info).group(0)
         php = re.search(r'(?<=PHP Version\s)([^\s]+)', system_info).group(0)
 
@@ -55,14 +54,6 @@ class TestComponentVersions(BaseTest):
             self.driver.log[-1] += 'Correct ProcessMaker'
         except:
             self.driver.log[-1] += 'Wrong ProcessMaker'
-            fail_flag = 1
-
-        try:
-            # Assert MySql version
-            self.assertTrue(expected_versions['mysql'] in mysql)
-            self.driver.log[-1] += '; Correct MySql'
-        except:
-            self.driver.log[-1] += '; Wrong MySql'
             fail_flag = 1
 
         try:
