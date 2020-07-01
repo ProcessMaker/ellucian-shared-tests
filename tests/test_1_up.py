@@ -29,8 +29,6 @@ class TestLoginPage(BaseTest):
 
         self.driver.log.append('Test passed')
         self.log = self.driver.log
-        if self.driver.page:
-            self.page = self.driver.page
 
 
 if __name__ == "__main__":
