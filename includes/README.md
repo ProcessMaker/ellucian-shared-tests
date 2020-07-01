@@ -2,6 +2,16 @@
 
 ( Links will be changed to master directory after merge )
 
+## Classes
+
+[`/includes/test_classes.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/test_classes.py "test_classes.py")
+Class | Function | Extends
+--- | --- | ---
+`CustomTestSuite` | Add custom attributes | `unittest.TestSuite`
+`CustomTestLoader` | Set custom `suiteClass` | `unittest.TestLoader`
+`CustomTextTestResult` | Add custom attributes to instantiation | `unittest.TextTestResult`
+`CustomTextTestRunner` | Set custom `resultclass`, add custom attributes, and set custom `_makeResult()` | `unittest.TextTestRunner`
+
 ## Methods
 
 [`/includes/api_requests.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/api_requests.py "api_requests.py")
