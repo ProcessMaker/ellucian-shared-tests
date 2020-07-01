@@ -44,6 +44,6 @@ class CustomTextTestRunner(unittest.TextTestRunner):
         return super(CustomTextTestRunner, self).run(test_suite)
 
     def _makeResult(self):
-        """Creates and returns a result instance that knows the count of test cases"""
+        """Creates and returns a result instance that has custom attributes"""
         return CustomTextTestResult(self.stream, self.descriptions, self.verbosity, self.log, self.page)
 
