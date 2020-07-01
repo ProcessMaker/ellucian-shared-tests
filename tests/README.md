@@ -23,14 +23,19 @@ File structure:
 '''
 ''' Python's unittest module. '''
 import unittest
+
 ''' Selenium's WebDriverWait module. '''
 from selenium.webdriver.support.ui import WebDriverWait
+
 ''' Selenium's By module. For use with WebDriverWait. '''
 from selenium.webdriver.common.by import By
+
 ''' Selenium's expected_conditions module. For use with WebDriverWait. '''
 from selenium.webdriver.support import expected_conditions as EC
+
 ''' BaseTest, which extends unittest.TestCase. Instantiates webdriver. '''
 from test_parent import BaseTest
+
 ''' Methods to run the test and to log in to the provided server. '''
 from util import run_test, login
 
