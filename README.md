@@ -76,4 +76,4 @@ Inside each test file:
 * Helper methods
 * Subclasses of `unittest` classes
 * `BaseTest` from which test files inherit
-* Dictionary of plugin versions, component versions, and languages
+* `JSON` dictionary of plugin versions, component versions, and languages
