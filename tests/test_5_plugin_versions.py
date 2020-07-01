@@ -52,7 +52,7 @@ class TestPluginVersions(BaseTest):
                 if key in elem:
                     try:
                         self.assertTrue(custom_plugins[key] in elem)
-                        self.driver.log[-1] += 'Correct ' + key + ' version , '
+                        self.driver.log[-1] += 'Correct ' + key + ', '
                     except:
                         self.driver.log[-1] += 'Wrong ' + key + ' version , '
                         fail_flag = 1
@@ -69,7 +69,7 @@ class TestPluginVersions(BaseTest):
             # Assert custom_plugins is empty (meaning every expected value was found)
         try:
             self.assertEqual(custom_plugins, {})
-            self.driver.log[-1] += 'All plugins found'
+            self.driver.log[-1] += 'All found'
         except:
             not_found = ', '.join(custom_plugins)
             self.driver.log[-1] += 'Not found: ' + not_found
