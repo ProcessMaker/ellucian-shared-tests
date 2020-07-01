@@ -47,12 +47,13 @@ class TestComponentVersions(BaseTest):
 
         fail_flag = 0
         # Verify versions match expected
+        self.driver.log.append('Versions: ')
         try:
             # Assert PM3 version 
             self.assertTrue(expected_versions['pm3'] in pm3)
-            self.driver.log.append('Correct ProcessMaker version')
+            self.driver.log[-1] += 'Correct ProcessMaker'
         except:
-            self.driver.log.append('Wrong ProcessMaker version')
+            self.driver.log[-1] += 'Wrong ProcessMaker'
             fail_flag = 1
 
         try:
