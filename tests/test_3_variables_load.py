@@ -38,6 +38,10 @@ class TestVariablesLoad(BaseTest):
         window_text = self.driver.find_element_by_id('ext-comp-1010').text
         client_id = re.search(r'(?<=ID:\s)\w+', window_text).group(0)
         client_secret = re.search(r'(?<=Secret:\s)\w+', window_text).group(0)
+        api = {
+            'url': self.driver.data['server_url'],
+            'workspace': self.driver.data['server_workspace']
+        }
         auth = {
             'username': self.driver.data['username'],
             'password': self.driver.data['password'],
@@ -46,7 +50,7 @@ class TestVariablesLoad(BaseTest):
         }
 
         # Verify variables list can be parsed as JSON
-        self.assertTrue(parse_response(auth))
+        self.assertTrue(parse_response(api, auth))
 
         self.driver.log.append('Test passed')
         self.log = self.driver.log
