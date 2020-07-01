@@ -39,7 +39,7 @@ class TestVariablesLoad(BaseTest):
         window_text = self.driver.find_element_by_id('ext-comp-1010').text
         client_id = re.search(r'(?<=ID:\s)\w+', window_text).group(0)
         client_secret = re.search(r'(?<=Secret:\s)\w+', window_text).group(0)
-        api = {
+        self.driver.api = {
             'url': self.driver.data['server_url'],
             'workspace': self.driver.data['server_workspace']
         }
@@ -51,12 +51,8 @@ class TestVariablesLoad(BaseTest):
         }
 
         # Verify variables list can be parsed as JSON
-        try:
-            self.assertTrue(parse_response(api, auth))
-            self.driver.log.append('Variables loaded')
-        except:
-            self.driver.log.append('JSON could not be parsed')
-            self.fail()
+        response, self.driver = parse_response(self.driver, auth)
+        self.assertTrue(response)
 
         self.log = self.driver.log
 
