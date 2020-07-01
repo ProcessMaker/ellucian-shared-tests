@@ -61,9 +61,9 @@ Inside each test file:
     * `from sys import path`
     * `path.append('../')`
   * Change these lines:
-    * `from test_parent import BaseTest` to `from includes.test_parent import BaseTest`
-    * `from util import login, run_test, read_from_json_file` to `from includes.util import login, run_test, read_from_json_file`
-    * `from api_requests import parse_response` to `from includes.api_requests import parse_response`
+    * `from test_parent` to `from includes.test_parent`
+    * `from util` to `from includes.util`
+    * `from api_requests` to `from includes.api_requests`
   * Add this line:
     * `from __init__ import data`
 
