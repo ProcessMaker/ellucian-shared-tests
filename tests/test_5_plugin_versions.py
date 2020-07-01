@@ -46,7 +46,7 @@ class TestPluginVersions(BaseTest):
         # Verify all custom plugins are visible on page with correct version, and are enabled
         plugins = [element.text for element in self.driver.find_elements_by_class_name('x-grid3-row')]
         fail_flag = 0
-        self.driver.log.append('Plugins: ')
+        self.driver.log.append('Plugin versions: ')
         for elem in plugins:
             for key in custom_plugins.keys():
                 if key in elem:
