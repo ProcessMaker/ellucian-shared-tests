@@ -2,8 +2,6 @@
 
 ( Links will be changed to master directory after merge )
 
-#### [`/includes` Directory](https://github.com/ProcessMaker/ellucian-shared-tests/tree/kelly/includes "/includes Directory")
-
 [`/includes/api_requests.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/api_requests.py "api_requests.py")
 Method | Function | Parameters | Uses
 --- | --- | --- | ---
