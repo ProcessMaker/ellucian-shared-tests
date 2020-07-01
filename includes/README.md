@@ -5,12 +5,12 @@
 ## Classes
 
 [`/includes/test_classes.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/test_classes.py "test_classes.py")
-Class | Function | Extends
+Class | Extends | Changes
 --- | --- | ---
-`CustomTestSuite` | Add custom attributes | `unittest.TestSuite`
-`CustomTestLoader` | Set custom `suiteClass` | `unittest.TestLoader`
-`CustomTextTestResult` | Add custom attributes to instantiation | `unittest.TextTestResult`
-`CustomTextTestRunner` | Set custom `resultclass`, add custom attributes, and set custom `_makeResult()` | `unittest.TextTestRunner`
+`CustomTestSuite` | `unittest.TestSuite` | Add custom attributes
+`CustomTestLoader` | `unittest.TestLoader` | Set custom `suiteClass`
+`CustomTextTestResult` | `unittest.TextTestResult` | Add custom attributes to instantiation
+`CustomTextTestRunner` | `unittest.TextTestRunner` | Set custom `resultclass`, add custom attributes, and set custom `_makeResult()`
 
 [`/includes/test_parent.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/test_parent.py "test_parent.py")
 Class | Function | Extends | Methods | Attributes
