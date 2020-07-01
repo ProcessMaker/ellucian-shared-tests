@@ -10,11 +10,11 @@ from test_parent import BaseTest
 from util import run_test, login, read_from_json_file
 
 
-class TestComponentVersions(BaseTest):
-    ''' Class to navigate to Admin / System Info page. '''
+class TestRDSVersions(BaseTest):
+    ''' Class to navigate to Admin / Case List Cache Builder page. '''
 
     def test_component_version(self):
-        ''' Test that versions are correct. '''
+        ''' Test that MySQL version is correct. '''
         # Login using configured url, workspace, username, and password
         self.log.append('Attempting login...')
         self.driver = login(data, self.driver)
@@ -22,7 +22,7 @@ class TestComponentVersions(BaseTest):
         # Wait for Processes page to load
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
         
-        # Navigate to Admin / Case Builder Cache Info page
+        # Navigate to Admin / Case List Cache Builder page
         self.driver.find_element_by_id('SETUP').click()
         self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
@@ -31,7 +31,7 @@ class TestComponentVersions(BaseTest):
         self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
 
-        # Get version values displayed on Case Builder Cache Info page
+        # Get version values displayed on Case List Cache Builder page
         self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen12')))
         from time import sleep
         sleep(1)
@@ -56,4 +56,4 @@ class TestComponentVersions(BaseTest):
 if __name__ == "__main__":
     import __main__
     data['repository_path'] = repository_path
-    output = run_test(TestComponentVersions, data, __main__)
+    output = run_test(TestRDSVersions, data, __main__)
