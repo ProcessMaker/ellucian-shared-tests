@@ -77,7 +77,7 @@ def login(data, driver, log):
     driver.get(data['server_url'])
 
     # Wait for login page to load
-    wait = WebDriverWait(driver, 30)
+    wait = WebDriverWait(driver, 120)
     wait.until(EC.element_to_be_clickable((By.ID, 'form[BSUBMIT]')))
 
     # Login
