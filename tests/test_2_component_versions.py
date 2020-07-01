@@ -16,6 +16,7 @@ class TestComponentVersions(BaseTest):
     def test_component_version(self):
         ''' Test that versions are correct. '''
         # Login using configured url, workspace, username, and password
+        self.log.append('Attempting login...')
         self.driver = login(data, self.driver, self.log)
         
         # Wait for Processes page to load

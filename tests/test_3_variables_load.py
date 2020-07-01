@@ -20,6 +20,7 @@ class TestVariablesLoad(BaseTest):
     def test_variables_load(self):
         ''' Test that variables are in a JSON-parsable format. '''
         # Login using configured url, workspace, username, and password
+        self.log.append('Attempting login...')
         self.driver = login(data, self.driver, self.log)
         data_ = self.driver.data
 
