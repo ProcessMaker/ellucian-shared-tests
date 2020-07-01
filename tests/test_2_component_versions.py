@@ -59,25 +59,25 @@ class TestComponentVersions(BaseTest):
         try:
             # Assert MySql version
             self.assertTrue(expected_versions['mysql'] in mysql)
-            self.driver.log[-1] += '; Correct MySql version'
+            self.driver.log[-1] += '; Correct MySql'
         except:
-            self.driver.log[-1] += '; Wrong MySql version'
+            self.driver.log[-1] += '; Wrong MySql'
             fail_flag = 1
 
         try:
             # Assert Nginx version
             self.assertTrue(expected_versions['nginx'] in nginx)
-            self.driver.log[-1] += '; Correct Nginx version'
+            self.driver.log[-1] += '; Correct Nginx'
         except:
-            self.driver.log[-1] += '; Wrong Nginx version'
+            self.driver.log[-1] += '; Wrong Nginx'
             fail_flag = 1
 
         try:
             # Assert PHP version
             self.assertTrue(expected_versions['php'] in php)
-            self.driver.log[-1] += '; Correct PHP version'
+            self.driver.log[-1] += '; Correct PHP'
         except:
-            self.driver.log[-1] += '; Wrong PHP version'
+            self.driver.log[-1] += '; Wrong PHP'
             fail_flag = 1
 
         if fail_flag == 1:
