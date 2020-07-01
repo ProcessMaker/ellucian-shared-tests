@@ -2,5 +2,25 @@
   {
     "name": "test-2-1-mysql-version",
     "path": "tests/test_2_1_mysql_version.py"
+  },
+  {
+    "name": "test-1-up",
+    "path": "tests/test_1_up.py"
+  },
+  {
+    "name": "test-3-api-request",
+    "path": "tests/test_3_variables_load.py"
+  },
+  {
+    "name": "test-5-plugin-versions",
+    "path": "tests/test_5_plugin_versions.py"
+  },
+  {
+    "name": "test-4-language-check",
+    "path": "tests/test_4_language_spot_check.py"
+  },
+  {
+    "name": "test-2-component-check",
+    "path": "tests/test_2_component_versions.py"
   }
 ]
