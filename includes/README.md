@@ -37,3 +37,14 @@ Method | Function | Parameters | Uses
 `login` | <ul><li>Navigates to login page and sends keys to log in</li><li>returns `timezone_check()` method call</li></ul> | `data, driver, log` | <ul><li>`data` passes the configuration from PM4's config task</li><li>`driver` passes webdriver instance</li><li>`log` passes event log</li></ul>
 `timezone_check` | <ul><li>Checks that login was successful and looks for timezone checkpoint</li><li>returns driver</li></ul> | `driver, wait` | <ul><li>`driver` passes webdriver instance</li><li>`wait` passes `WebDriverWait` instance</li></ul>
 `read_from_json_file` | <ul><li>Reads `JSON` file</li><li>returns decoded JSON: whole file or specific key</li></ul> | `repository_path, filename, key=''` | <ul><li>`repository_path` passes the mounted path from `bootstrap.py`, which loads file in Docker container</li><li>`filename` passes the name of the relative path of the file to read</li><li>`key` passes the name of the nested dictionary desired (optional parameter)</li></ul>
+
+## JSON
+
+[`/includes/expected_values.json`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/expected_values.json "expected_values.json")
+Dictionary | Contents 
+--- | ---
+`RDS` | MySQL version
+`System Information` | PHP, Nginx, and PM3 versions
+`Custom Plugins` | Ellucian custom plugin versions
+`Enterprise Plugins` | Enterprise plugin versions
+`Languages` | Supported languages
