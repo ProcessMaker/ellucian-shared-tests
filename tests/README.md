@@ -44,7 +44,8 @@ from util import run_test, login
 ''' All Test classes must extend BaseTest. '''
 class TestName(BaseTest):
   
-  ''' Maximum one test per class. '''
+  ''' Maximum one test per class. 
+  Python's unittest convention requires that test methods begin with "test". '''
   def test_to_run(self):
   
     ''' List to hold log messages: the last string in the list is returned to PM4 output in run_test().
