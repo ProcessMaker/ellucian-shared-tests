@@ -97,7 +97,7 @@ if __name__ == "__main__":
       data['words'] = {'a': 'apple', 'b': 'banana', 'c': 'cantaloupe'}
       data['number'] = 100
       data['vegetables'] = ['pepper', 'spinach', 'squash']
-      data['memory_stream'] = StringIO()
+      data['class_instance'] = Class()
     
     data comes with:
       data['server_url']
