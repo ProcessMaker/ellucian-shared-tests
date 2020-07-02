@@ -91,12 +91,18 @@ if __name__ == "__main__":
     '''
     data['repository_path'] = repository_path
     
-    ''' Here you may add any key, value pairs to the data object. 
+    ''' You may add any key, value pairs to the data object. 
     Examples:
       data['word'] = 'apple'
       data['words'] = {'a': 'apple', 'b': 'banana', 'c': 'cantaloupe'}
       data['number'] = 100
       data['vegetables'] = ['pepper', 'spinach', 'squash']
+    
+    data comes with:
+      data['server_url']
+      data['server_workspace']
+      data['username']
+      data['password']
     '''
     
     ''' output is given back to bootstrap.py after the test is run.
