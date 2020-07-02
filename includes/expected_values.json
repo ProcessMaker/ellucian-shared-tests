@@ -2,9 +2,7 @@
     {
       "RDS": {
         "mysql": "5.7"
-      }
-    },
-    {
+      },
       "System Information": {
         "php": "7.3.17",
         "nginx": "1.16.1",
