@@ -1,5 +1,3 @@
-#!/usr/local/bin/python3
-
 import unittest
 from io import StringIO
 from selenium.webdriver.support.ui import WebDriverWait
