@@ -71,6 +71,8 @@ def parse_results(buffer):
 def login(data, driver, log):
     ''' Function to log user in to workspace.
     '''
+    log.append('Attempting login...')
+
     # Navigate to server
     driver.data = data
     driver.log = log
