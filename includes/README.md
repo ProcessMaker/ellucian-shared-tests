@@ -1,10 +1,8 @@
 # Files 
 
-( Links will be changed to master directory after merge )
-
 ## Classes
 
-[`/includes/test_classes.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/test_classes.py "test_classes.py")
+[`/includes/test_classes.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/master/includes/test_classes.py "test_classes.py")
 Class | Extends | Changes
 --- | --- | ---
 `CustomTestSuite` | `unittest.TestSuite` | Add custom attributes
@@ -12,14 +10,14 @@ Class | Extends | Changes
 `CustomTextTestResult` | `unittest.TextTestResult` | Add custom attributes to instantiation
 `CustomTextTestRunner` | `unittest.TextTestRunner` | Set custom `resultclass`, add custom attributes, and set custom `_makeResult()`
 
-[`/includes/test_parent.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/test_parent.py "test_parent.py")
+[`/includes/test_parent.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/master/includes/test_parent.py "test_parent.py")
 Class | Function | Extends | Methods | Attributes
 --- | --- | --- | --- | ---
 `BaseTest` | Defines base test class | `unittest.TestCase` | <ul><li>`setUpClass()`: instantiates webdriver instance</li><li>`tearDownClass()`: closes webdriver instance</li></ul> | <ul><li>`page`: an empty string</li><li>`log`: an empty list</li></ul>
 
 ## Methods
 
-[`/includes/api_requests.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/api_requests.py "api_requests.py")
+[`/includes/api_requests.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/master/includes/api_requests.py "api_requests.py")
 Method | Function | Parameters | Uses
 --- | --- | --- | ---
 `get_access_token` | <ul><li>Uses post request to acquire access token through password grant</li><li>returns access token and driver</li></ul> | `driver, auth` | <ul><li>`driver` passes server url, server workspace, and log</li><li>`auth` passes password grant body key, value pairs</li></ul>
@@ -27,7 +25,7 @@ Method | Function | Parameters | Uses
 `get_variable_list`| <ul><li>Uses project id to get request variable list of process</li><li>returns response text and driver</li></ul> | `driver, auth` | <ul><li>`driver` passes server url, server workspace, and log</li><li>`auth` passes password grant body key, value pairs</li></ul>
 `parse_response` | <ul><li>Parses variable list with `json.loads()` to verify GUI list will be populated</li><li>returns boolean and driver</li></ul> | `driver, auth` | <ul><li>`driver` passes server url, server workspace, and log</li><li>`auth` passes password grant body key, value pairs</li></ul>
 
-[`/includes/util.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/util.py "util.py")
+[`/includes/util.py`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/master/includes/util.py "util.py")
 Method | Function | Parameters | Uses
 --- | --- | --- | ---
 `run_test` | <ul><li>Loads and runs test suite, redirects `unittest` results to memory stream</li><li>returns PM4-friendly output dictionary</li></ul> | `classname, data, modulename` | <ul><li>`classname` passes the test class name</li><li>`data` passes the configuration from PM4's config task</li><li>`modulename` passes `__main__` from test file</li></ul>
@@ -40,7 +38,7 @@ Method | Function | Parameters | Uses
 
 ## JSON
 
-[`/includes/expected_values.json`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/kelly/includes/expected_values.json "expected_values.json")
+[`/includes/expected_values.json`](https://github.com/ProcessMaker/ellucian-shared-tests/blob/master/includes/expected_values.json "expected_values.json")
 Dictionary | Contents 
 --- | ---
 `RDS` | MySQL version
