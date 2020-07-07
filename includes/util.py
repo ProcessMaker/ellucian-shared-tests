@@ -11,7 +11,7 @@ import selenium
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from test_classes import CustomTextTestRunner, CustomTestLoader
+from includes.test_classes import CustomTextTestRunner, CustomTestLoader
 
 
 def run_test(classname, data, modulename):
@@ -71,6 +71,7 @@ def parse_results(buffer):
 def login(data, driver, log):
     ''' Function to log user in to workspace.
     '''
+    log.append('Attempting login...')
     # Navigate to server
     driver.data = data
     driver.log = log
@@ -80,7 +81,7 @@ def login(data, driver, log):
     wait = WebDriverWait(driver, 120)
     wait.until(EC.element_to_be_clickable((By.ID, 'form[BSUBMIT]')))
 
-    # Login
+    # Login using configured url, workspace, username, and password
     driver.find_element_by_id('form[USR_USERNAME]').send_keys(data['username'])
     driver.find_element_by_id('form[USR_PASSWORD_MASK]').send_keys(data['password'])
     driver.find_element_by_id('form[USER_ENV]').send_keys(data['server_workspace'])
@@ -116,6 +117,8 @@ def timezone_check(driver, wait):
         driver.find_element_by_id('form[BTNOK]').click()
     except selenium.common.exceptions.NoSuchElementException:
         pass
+
+    driver.log.append('Timezone checkpoint passed')
 
     return driver
 
