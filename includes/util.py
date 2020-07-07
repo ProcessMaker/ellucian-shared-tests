@@ -119,6 +119,8 @@ def timezone_check(driver, wait):
     except selenium.common.exceptions.NoSuchElementException:
         pass
 
+    driver.log.append('Timezone checkpoint passed')
+
     return driver
 
 def read_from_json_file(repository_path, filename, key=''):
