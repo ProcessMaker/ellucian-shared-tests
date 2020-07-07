@@ -14,8 +14,7 @@ class TestLoginPage(BaseTest):
 
     def test_login(self):
         ''' Test that landing page loads. '''
-        # Login using configured url, workspace, username, and password
-        self.log.append('Attempting login...')
+
         self.driver = login(data, self.driver, self.log)
 
         # Wait for Processes page to load
