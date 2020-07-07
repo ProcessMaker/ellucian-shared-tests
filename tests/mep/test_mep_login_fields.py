@@ -1,5 +1,3 @@
-#!/usr/local/bin/python3
-
 import unittest
 from test_parent import BaseTest
 from util import run_test
