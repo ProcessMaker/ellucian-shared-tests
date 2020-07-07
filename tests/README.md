@@ -1,7 +1,5 @@
 # Files 
 
-( Links will be changed to master directory after merge )
-
 ## Tests
 
 File | Class | Function | Success | Failure
