@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3
+
 import unittest
 import json
 from selenium.webdriver.support.ui import WebDriverWait

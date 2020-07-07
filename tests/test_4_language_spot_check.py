@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3
+
 import unittest
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
