@@ -1,30 +1,26 @@
-[	
+[
   {
-    "name": "mep-login-landing-page",
-    "path": "tests/test_mep_login_landing_page.py"
-  },
-  {				
-    "name": "mep-login-fields",				
-    "path": "tests/test_mep_login_fields.py"		      		
+    "name": "test-2-1-mysql-version",
+    "path": "tests/test_2_1_mysql_version.py"
   },
   {
-    "name": "mep-correct-credentials",
-    "path": "tests/test_mep_correct_credentials.py"
+    "name": "test-1-up",
+    "path": "tests/test_1_up.py"
   },
   {
-    "name": "mep-admin-landing-page",
-    "path": "tests/test_mep_admin_landing_page.py"
+    "name": "test-3-api-request",
+    "path": "tests/test_3_variables_load.py"
   },
   {
-    "name": "mep-plugins-landing-page",
-    "path": "tests/test_mep_plugins_landing_page.py"
+    "name": "test-5-plugin-versions",
+    "path": "tests/test_5_plugin_versions.py"
   },
   {
-    "name": "mep-ethos-ellucian-integration-settings",
-    "path": "tests/test_mep_ethos_ellucian_integration_settings.py"
+    "name": "test-4-language-check",
+    "path": "tests/test_4_language_spot_check.py"
   },
   {
-    "name": "mep-shared-technology-platform",
-    "path": "tests/test_mep_shared_technology_platform.py"
+    "name": "test-2-component-check",
+    "path": "tests/test_2_component_versions.py"
   }
 ]

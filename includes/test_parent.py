@@ -6,9 +6,12 @@ Defines BaseTest class
 import unittest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
 
 class BaseTest(unittest.TestCase):
     """ The BaseTest class from which tests will inherit. """
+    page = ''
+    log = []
 
     @classmethod
     def setUpClass(cls):
@@ -17,6 +20,9 @@ class BaseTest(unittest.TestCase):
         chrome_options.add_argument("--headless")
         chrome_options.add_argument("--window-size=1920,1080")
         cls.driver = webdriver.Chrome(options=chrome_options)
+
+        # Global driver wait variable
+        cls.wait = WebDriverWait(cls.driver, 120)
 
     @classmethod
     def tearDownClass(cls):
