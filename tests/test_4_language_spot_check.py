@@ -15,8 +15,7 @@ class TestLanguageSpotCheck(BaseTest):
 
     def test_language_spot_check(self):
         ''' Test that there are no visible labels. '''
-        # Login using configured url, workspace, username, and password
-        self.log.append('Attempting login...')
+
         self.driver = login(data, self.driver, self.log)
         
         # Wait for Processes page to load
