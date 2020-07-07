@@ -82,7 +82,7 @@ def login(data, driver, log):
     wait = WebDriverWait(driver, 120)
     wait.until(EC.element_to_be_clickable((By.ID, 'form[BSUBMIT]')))
 
-    # Login
+    # Login using configured url, workspace, username, and password
     driver.find_element_by_id('form[USR_USERNAME]').send_keys(data['username'])
     driver.find_element_by_id('form[USR_PASSWORD_MASK]').send_keys(data['password'])
     driver.find_element_by_id('form[USER_ENV]').send_keys(data['server_workspace'])
