@@ -39,6 +39,10 @@ You can develop and run tests locally. In order to do so, you must have the foll
 
 * [Homebrew](https://brew.sh) (macOS only)
 
+For testing API requests, you must have:
+
+* [Python's requests module](https://requests.readthedocs.io/en/master/)
+
 #### Installing Locally
 
 * Install pip && `pip install selenium`
