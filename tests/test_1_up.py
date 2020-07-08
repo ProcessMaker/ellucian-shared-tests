@@ -29,6 +29,7 @@ class TestLoginPage(BaseTest):
             self.driver.log.append('Main page loaded successfully')
         except: 
             self.driver.log.append('Main page failed to load')
+            self.fail()
 
         self.log = self.driver.log
 
