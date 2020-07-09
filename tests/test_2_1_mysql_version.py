@@ -20,11 +20,9 @@ class TestRDSVersions(BaseTest):
         
         # Navigate to Admin / Case List Cache Builder page
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP'))).click()
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
-        self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
+        self.wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'adminFrame')))
         self.wait.until(EC.visibility_of_element_located((By.XPATH, "//span[contains(text(),'Case List Cache Builder')]"))).click()
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
-        self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
+        self.wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'setup-frame')))
 
         # Get version values displayed on Case List Cache Builder page
         self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen12')))
