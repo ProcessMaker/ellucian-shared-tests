@@ -1,11 +1,11 @@
 [
   {
-    "name": "test-1-up",
-    "path": "tests/test_1_up.py"
-  },
-  {
     "name": "test-2-1-mysql-version",
     "path": "tests/test_2_1_mysql_version.py"
+  },
+  {
+    "name": "test-1-up",
+    "path": "tests/test_1_up.py"
   },
   {
     "name": "test-3-api-request",
