@@ -18,15 +18,11 @@ class TestComponentVersions(BaseTest):
 
         self.driver = login(data, self.driver, self.log)
         
-        # Wait for Processes page to load
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
-        
         # Navigate to Admin / System Info page
-        self.driver.find_element_by_id('SETUP').click()
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP'))).click()
         self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
-        self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'System information')))
-        self.driver.find_element_by_link_text('System information').click()
+        self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'System information'))).click()
         self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
 
