@@ -25,8 +25,7 @@ class TestVariablesLoad(BaseTest):
 
         # Navigate to Oauth2 Applications page to get client id and client secret
         self.driver.get(data_['server_url'] + '/sys' + data_['server_workspace'] + '/en/neoclassic/oauth2/applications')
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
-        self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
+        self.wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'adminFrame')))
 
         # Inspect Ellucian workflow
         self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
