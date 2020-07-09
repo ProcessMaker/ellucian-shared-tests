@@ -22,12 +22,10 @@ class TestPluginVersions(BaseTest):
         
         # Navigate to Admin / Plugins Manager page
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP'))).click()
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
-        self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
+        self.wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'adminFrame')))
         self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'Plugins'))).click()
         self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, "Plugins Manager"))).click()
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
-        self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
+        self.wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'setup-frame')))
         
         # Work around stale elements issue
         from time import sleep
