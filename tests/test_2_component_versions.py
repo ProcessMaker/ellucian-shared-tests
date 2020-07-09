@@ -26,10 +26,8 @@ class TestComponentVersions(BaseTest):
 
         # Get version values displayed on System Info page
         process_info = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information-bd'))).text
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-System information-bd')))
+        system_info = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-System information-bd'))).text
         self.wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'x-grid3-row')))
-        #process_info = self.driver.find_element_by_id('ext-gen13-gp-section-Process Information-bd').text
-        system_info = self.driver.find_element_by_id('ext-gen13-gp-section-System information-bd').text
         pm3 = re.search(r'(?<=ProcessMaker Ver.\s)([^\s]+)', process_info).group(0)
         nginx = re.search(r'(?<=nginx/)([^\s]+)', system_info).group(0)
         php = re.search(r'(?<=PHP Version\s)([^\s]+)', system_info).group(0)
