@@ -21,10 +21,9 @@ class TestVariablesLoad(BaseTest):
         ''' Test that variables are in a JSON-parsable format. '''
 
         self.driver = login(data, self.driver, self.log)
-        data_ = self.driver.data
 
         # Navigate to Oauth2 Applications page to get client id and client secret
-        self.driver.get(data_['server_url'] + '/sys' + data_['server_workspace'] + '/en/neoclassic/oauth2/applications')
+        self.driver.get(data['server_url'] + '/sys' + data['server_workspace'] + '/en/neoclassic/oauth2/applications')
         self.wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'adminFrame')))
 
         # Inspect Ellucian workflow
