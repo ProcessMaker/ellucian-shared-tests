@@ -18,15 +18,11 @@ class TestRDSVersions(BaseTest):
 
         self.driver = login(data, self.driver)
         
-        # Wait for Processes page to load
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
-        
         # Navigate to Admin / Case List Cache Builder page
-        self.driver.find_element_by_id('SETUP').click()
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP'))).click()
         self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, "//span[contains(text(),'Case List Cache Builder')]")))
-        self.driver.find_element_by_xpath("//span[contains(text(),'Case List Cache Builder')]").click()
+        self.wait.until(EC.visibility_of_element_located((By.XPATH, "//span[contains(text(),'Case List Cache Builder')]"))).click()
         self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
         self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
 
