@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from test_parent import BaseTest
 from util import run_test, login
 from login_page import LoginPage
+from processes_page import ProcessesPage
 
 
 class TestLoginPage(BaseTest):
@@ -18,19 +19,7 @@ class TestLoginPage(BaseTest):
 
         self.driver = LoginPage(self.driver, self.data).login()
 
-        # Wait for Processes page to load
-        self.driver.log.append('Waiting for main page to load')
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
-
-        # Verify that Processes page elements have loaded
-        try:
-            self.assertTrue(self.driver.find_element_by_id('pm_main_table'))
-            self.assertTrue(self.driver.find_element_by_id('pm_header'))
-            self.assertTrue(self.driver.find_element_by_class_name('Footer'))
-            self.driver.log.append('Main page loaded successfully')
-        except: 
-            self.driver.log.append('Main page failed to load')
-            self.fail()
+        self.assertTrue(ProcessesPage(self.driver, self.data).is_loaded())
 
 
 if __name__ == "__main__":
