@@ -14,12 +14,13 @@ class ProcessesPage:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 120)
         self.data = data
+        self.processes_page_url = self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/ellucianux/processes/main'
 
     def get_processes_page(self):
-        self.driver.get(self.data['server_url'])
+        self.driver.get(self.processes_page_url)
 
     def is_processes_page(self):
-        return (self.driver.current_url == self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/ellucianux/processes/main')
+        return (self.driver.current_url == self.processes_page_url)
 
     def is_loaded(self):
         self.driver.log.append('Waiting for main page to load')
@@ -31,4 +32,3 @@ class ProcessesPage:
         except:
             self.driver.log.append('Main page failed to load')
             return False
-            
