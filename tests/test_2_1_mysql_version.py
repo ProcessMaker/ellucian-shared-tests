@@ -9,6 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from test_parent import BaseTest
 from util import run_test, login, read_from_json_file
 from login_page import LoginPage
+from admin_page import AdminPage
 
 
 class TestRDSVersions(BaseTest):
@@ -19,23 +20,7 @@ class TestRDSVersions(BaseTest):
 
         self.driver = LoginPage(self.driver, self.data).login()
         
-        # Wait for Processes page to load
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
-        
-        # Navigate to Admin / Case List Cache Builder page
-        self.driver.find_element_by_id('SETUP').click()
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
-        self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, "//span[contains(text(),'Case List Cache Builder')]")))
-        self.driver.find_element_by_xpath("//span[contains(text(),'Case List Cache Builder')]").click()
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
-        self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
-
-        # Get version values displayed on Case List Cache Builder page
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen12')))
-        from time import sleep
-        sleep(1)
-        cache_info = self.driver.find_element_by_id('ext-gen12').text
+        cache_info = AdminPage(self.driver, self.data).get_case_list_cache_builder()
         mysql = re.search(r'(?<=MySQL Version\s)([^\s]+)(?=-)', cache_info).group(0)
         
         # Get expected RDS versions from expected_values.json
