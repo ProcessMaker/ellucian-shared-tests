@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from test_parent import BaseTest
 from util import run_test, login
+from login_page import LoginPage
 
 
 class TestLoginPage(BaseTest):
@@ -15,7 +16,7 @@ class TestLoginPage(BaseTest):
     def test_login(self):
         ''' Test that landing page loads. '''
 
-        self.driver = login(data, self.driver, self.log)
+        self.driver = LoginPage(self.driver, self.data).login()
 
         # Wait for Processes page to load
         self.driver.log.append('Waiting for main page to load')
@@ -30,8 +31,6 @@ class TestLoginPage(BaseTest):
         except: 
             self.driver.log.append('Main page failed to load')
             self.fail()
-
-        self.log = self.driver.log
 
 
 if __name__ == "__main__":
