@@ -15,6 +15,7 @@ class LoginPage:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 120)
         self.data = data
+        self.login_page_url = self.data['server_url'] + '/sys/en/ellucianux/login/login'
 
 
     def find_elements(self):
@@ -25,7 +26,7 @@ class LoginPage:
     
 
     def get_login_page(self):
-        self.driver.get(self.data['server_url'])
+        self.driver.get(self.login_page_url)
 
 
     def login(self):
