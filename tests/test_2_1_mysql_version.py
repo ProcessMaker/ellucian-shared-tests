@@ -33,7 +33,6 @@ class TestRDSVersions(BaseTest):
             self.log.append('Wrong MySQL version')
             self.fail()
 
-        self.log = self.driver.log
 
 if __name__ == "__main__":
     import __main__
