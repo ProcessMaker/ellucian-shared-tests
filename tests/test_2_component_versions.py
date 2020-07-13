@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from test_parent import BaseTest
 from util import run_test, login, read_from_json_file
+from login_page import LoginPage
 
 
 class TestComponentVersions(BaseTest):
@@ -16,7 +17,7 @@ class TestComponentVersions(BaseTest):
     def test_component_version(self):
         ''' Test that versions are correct. '''
 
-        self.driver = login(data, self.driver, self.log)
+        self.driver = LoginPage(self.driver, self.data).login()
         
         # Wait for Processes page to load
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))

@@ -8,6 +8,7 @@ from test_parent import BaseTest
 from util import run_test, login, read_from_json_file
 import re
 import json
+from login_page import LoginPage
 
 
 class TestLanguageSpotCheck(BaseTest):
@@ -16,7 +17,7 @@ class TestLanguageSpotCheck(BaseTest):
     def test_language_spot_check(self):
         ''' Test that there are no visible labels. '''
 
-        self.driver = login(data, self.driver, self.log)
+        self.driver = LoginPage(self.driver, self.data).login()
         
         # Wait for Processes page to load
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
