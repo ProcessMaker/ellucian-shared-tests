@@ -40,7 +40,7 @@ class AdminPage:
     def get_case_list_cache_builder(self):
         self.get_admin_page()
         self.switch_to_adminFrame()
-        self.case_list_cache_builder.cick()
+        self.case_list_cache_builder.click()
         self.switch_to_setup_frame()
         return self.table.text
         
