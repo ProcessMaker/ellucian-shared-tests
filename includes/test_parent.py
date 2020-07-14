@@ -17,12 +17,12 @@ class BaseTest(unittest.TestCase):
     def setUpClass(cls):
         ''' Set up browser instance. '''
         chrome_options = Options()
-        #chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--headless")
         chrome_options.add_argument("--window-size=1920,1080")
         cls.driver = webdriver.Chrome(options=chrome_options)
 
         # Global driver wait variable
-        cls.wait = WebDriverWait(cls.driver, 120)
+        cls.wait = WebDriverWait(cls.driver, 30)
 
         # Assign log to driver
         cls.driver.log = BaseTest.log
