@@ -1,9 +1,6 @@
 #!/usr/local/bin/python3
 
 import unittest
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from test_parent import BaseTest
 from util import run_test, login, read_from_json_file
 import re
