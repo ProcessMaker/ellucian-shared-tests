@@ -25,7 +25,7 @@ class AdminPage:
         self.case_list_cache_builder = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//span[contains(text(),'Case List Cache Builder')]")))
         self.setup_frame = self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
 
-    def find_elements_on_setup_frame(self):
+    def find_case_list_cache_builder_elements(self):
         self.workflow_applications_cache_info = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen12')))
     
     def get_admin_page(self):
@@ -39,8 +39,11 @@ class AdminPage:
 
     def get_case_list_cache_builder(self):
         self.get_admin_page()
+        self.find_elements()
         self.switch_to_adminFrame()
+        self.find_elements_on_adminFrame()
         self.case_list_cache_builder.click()
         self.switch_to_setup_frame()
+        self.find_case_list_cache_builder_elements()
         return self.workflow_applications_cache_info.text
         
