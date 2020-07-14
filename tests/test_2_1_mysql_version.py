@@ -4,7 +4,7 @@ import unittest
 import json
 import re
 from test_parent import BaseTest
-from util import run_test, login, read_from_json_file
+from util import run_test, login, read_from_json_file, regex
 from login_page import LoginPage
 from admin_page import AdminPage
 
@@ -17,8 +17,8 @@ class TestRDSVersions(BaseTest):
 
         self.driver = LoginPage(self.driver, self.data).login()
         
-        cache_info = AdminPage(self.driver, self.data).get_case_list_cache_builder()
-        mysql = re.search(r'(?<=MySQL Version\s)([^\s]+)(?=-)', cache_info).group(0)
+        mysql = regex("r'(?<=MySQL Version\s)([^\s]+)(?=-)'",
+                      AdminPage(self.driver, self.data).get_case_list_cache_builder())
         
         # Get expected RDS versions from expected_values.json
         expected_versions = read_from_json_file(self.driver.data['repository_path'],
