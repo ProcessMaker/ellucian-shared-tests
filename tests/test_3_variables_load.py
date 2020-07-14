@@ -4,10 +4,6 @@ import requests
 import json
 import re
 import unittest
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
 from test_parent import BaseTest
 from util import run_test, login
 from api_requests import parse_response
