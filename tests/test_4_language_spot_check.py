@@ -9,6 +9,7 @@ from util import run_test, login, read_from_json_file
 import re
 import json
 from login_page import LoginPage
+from processes_page import ProcessesPage
 
 
 class TestLanguageSpotCheck(BaseTest):
@@ -19,8 +20,7 @@ class TestLanguageSpotCheck(BaseTest):
 
         self.driver = LoginPage(self.driver, self.data).login()
         
-        # Wait for Processes page to load
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
+        ProcessesPage(self.driver, self.data).is_loaded()
 
         languages = read_from_json_file(self.driver.data['repository_path'],
                                                 '/includes/expected_values.json', 'Languages')
@@ -31,8 +31,7 @@ class TestLanguageSpotCheck(BaseTest):
             url = re.sub('/' + languages[i - 1] + '/', '/' + languages[i] + '/', url)
             self.driver.get(url)
             
-            # Wait for Processes page to load
-            self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
+            ProcessesPage(self.driver, self.data).is_loaded()
 
             # Assert that labels are not present on page
             try:
