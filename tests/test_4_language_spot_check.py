@@ -40,8 +40,6 @@ class TestLanguageSpotCheck(BaseTest):
             except:
                 self.driver.log.append('Labels found')
 
-        self.log = self.driver.log
-
 
 if __name__ == "__main__":
     import __main__
