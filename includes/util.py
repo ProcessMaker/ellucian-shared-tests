@@ -132,3 +132,8 @@ def read_from_json_file(repository_path, filename, key=''):
         if key:
             return expected_values[0][key]
         return expected_values[0]
+
+def regex(pattern, source):
+    ''' Function to search a string for a pattern using regex.
+    '''
+    return re.search(pattern, source).group(0)
