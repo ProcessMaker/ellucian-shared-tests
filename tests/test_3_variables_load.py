@@ -49,8 +49,6 @@ class TestVariablesLoad(BaseTest):
         response, self.driver = parse_response(self.driver, auth)
         self.assertTrue(response)
 
-        self.log = self.driver.log
-
 
 if __name__ == "__main__":
     import __main__
