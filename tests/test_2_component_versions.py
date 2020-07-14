@@ -3,12 +3,10 @@
 import unittest
 import json
 import re
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from test_parent import BaseTest
-from util import run_test, login, read_from_json_file
+from util import run_test, login, read_from_json_file, regex
 from login_page import LoginPage
+from admin_page import AdminPage
 
 
 class TestComponentVersions(BaseTest):
@@ -19,28 +17,12 @@ class TestComponentVersions(BaseTest):
 
         self.driver = LoginPage(self.driver, self.data).login()
         
-        # Wait for Processes page to load
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
+        process_info, system_info = AdminPage(self.driver, self.data).get_system_information()
+
+        pm3 = regex("r'(?<=ProcessMaker Ver.\s)([^\s]+)'", process_info)
+        nginx = regex("r'(?<=nginx/)([^\s]+)'", system_info)
+        php = regex("r'(?<=PHP Version\s)([^\s]+)'", system_info)
         
-        # Navigate to Admin / System Info page
-        self.driver.find_element_by_id('SETUP').click()
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
-        self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
-        self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'System information')))
-        self.driver.find_element_by_link_text('System information').click()
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
-        self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
-
-        # Get version values displayed on System Info page
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information-bd')))
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-System information-bd')))
-        self.wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'x-grid3-row')))
-        process_info = self.driver.find_element_by_id('ext-gen13-gp-section-Process Information-bd').text
-        system_info = self.driver.find_element_by_id('ext-gen13-gp-section-System information-bd').text
-        pm3 = re.search(r'(?<=ProcessMaker Ver.\s)([^\s]+)', process_info).group(0)
-        nginx = re.search(r'(?<=nginx/)([^\s]+)', system_info).group(0)
-        php = re.search(r'(?<=PHP Version\s)([^\s]+)', system_info).group(0)
-
         # Get expected System Information versions from expected_values.json
         expected_versions = read_from_json_file(self.driver.data['repository_path'],
                                                 '/includes/expected_values.json', 'System Information')
