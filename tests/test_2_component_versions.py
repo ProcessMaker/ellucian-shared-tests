@@ -22,7 +22,7 @@ class TestComponentVersions(BaseTest):
         pm3 = regex("r'(?<=ProcessMaker Ver.\s)([^\s]+)'", process_info)
         nginx = regex("r'(?<=nginx/)([^\s]+)'", system_info)
         php = regex("r'(?<=PHP Version\s)([^\s]+)'", system_info)
-        
+
         # Get expected System Information versions from expected_values.json
         expected_versions = read_from_json_file(self.driver.data['repository_path'],
                                                 '/includes/expected_values.json', 'System Information')
@@ -57,7 +57,6 @@ class TestComponentVersions(BaseTest):
         if fail_flag == 1:
             self.fail()
 
-        self.log = self.driver.log
 
 if __name__ == "__main__":
     import __main__
