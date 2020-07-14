@@ -26,7 +26,7 @@ class AdminPage:
         self.setup_frame = self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
 
     def find_elements_on_setup_frame(self):
-        self.table = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen12')))
+        self.workflow_applications_cache_info = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen12')))
     
     def get_admin_page(self):
         self.driver.get(self.page_url)
@@ -42,5 +42,5 @@ class AdminPage:
         self.switch_to_adminFrame()
         self.case_list_cache_builder.click()
         self.switch_to_setup_frame()
-        return self.table.text
+        return self.workflow_applications_cache_info.text
         
