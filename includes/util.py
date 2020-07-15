@@ -137,3 +137,8 @@ def regex(pattern, source):
     ''' Function to search a string for a pattern using regex.
     '''
     return re.search(pattern, source).group(0)
+
+def substitute(pattern, source):
+    ''' Function to substitute a pattern inside a string using regex.
+    '''
+    return re.sub(pattern, source)
