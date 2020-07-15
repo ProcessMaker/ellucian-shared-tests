@@ -38,13 +38,6 @@ class TestPluginVersions(BaseTest):
                     except:
                         self.driver.log[-1] += 'Wrong ' + key + ' version , '
                         fail_flag = 1
-                    
-                    try:
-                        self.assertTrue('Enabled' in elem)
-                        self.driver.log[-1] += 'Enabled; '
-                    except:
-                        self.driver.log[-1] += 'Disabled; '
-                        fail_flag = 1
 
                     del custom_plugins[key]
                     break 
