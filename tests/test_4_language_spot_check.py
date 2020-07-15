@@ -2,7 +2,7 @@
 
 import unittest
 from test_parent import BaseTest
-from util import run_test, login, read_from_json_file
+from util import run_test, login, read_from_json_file, regex
 import re
 import json
 from login_page import LoginPage
@@ -32,7 +32,7 @@ class TestLanguageSpotCheck(BaseTest):
 
             # Assert that labels are not present on page
             try:
-                self.assertEqual(None, re.search(r'\*\*(\w+)\*\*', self.driver.page_source))
+                self.assertEqual(None, regex("r'\*\*(\w+)\*\*'", self.driver.page_source))
                 self.driver.log.append('Labels not found')
             except:
                 self.driver.log.append('Labels found')
