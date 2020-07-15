@@ -24,8 +24,7 @@ class TestLanguageSpotCheck(BaseTest):
         
         # Get current URL and re-get URL with different language
         for i in range(1, len(languages)):
-            url = self.driver.current_url
-            url = substitute('/' + languages[i - 1] + '/', '/' + languages[i] + '/', url)
+            url = substitute('/' + languages[i - 1] + '/', '/' + languages[i] + '/', self.driver.current_url)
             self.driver.get(url)
             
             ProcessesPage(self.driver, self.data).is_loaded()
