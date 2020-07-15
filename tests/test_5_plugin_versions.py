@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from test_parent import BaseTest
 from util import run_test, login, read_from_json_file
 from login_page import LoginPage
+from admin_page import AdminPage
 
 
 class TestPluginVersions(BaseTest):
@@ -17,35 +18,15 @@ class TestPluginVersions(BaseTest):
         ''' Test that versions are correct. '''
 
         self.driver = LoginPage(self.driver, self.data).login()
-        
-        # Wait for Processes page to load
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
-        
-        # Navigate to Admin / Plugins Manager page
-        self.driver.find_element_by_id('SETUP').click()
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
-        self.driver.switch_to.frame(self.driver.find_element_by_id('adminFrame'))
-        self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'Plugins')))
-        self.driver.find_element_by_link_text('Plugins').click()
-        self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, "Plugins Manager")))
-        self.driver.find_element_by_link_text('Plugins Manager').click()
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame')))
-        self.driver.switch_to.frame(self.driver.find_element_by_id('setup-frame'))
-        
-        # Work around stale elements issue
-        from time import sleep
-        sleep(2)
-
-        # Wait for grid to load
-        self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3')))
-        self.wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, 'x-grid3-row')))
 
         # Retrieve Custom Plugins dictionary from expected_values.json
         custom_plugins = read_from_json_file(self.driver.data['repository_path'],
                                              '/includes/expected_values.json', 'Custom Plugins')
 
         # Verify all custom plugins are visible on page with correct version, and are enabled
-        plugins = [element.text for element in self.driver.find_elements_by_class_name('x-grid3-row')]
+        plugins = AdminPage(self.driver, self.data).get_plugins()
+
+        
         fail_flag = 0
         self.driver.log.append('Plugin versions: ')
         for elem in plugins:
