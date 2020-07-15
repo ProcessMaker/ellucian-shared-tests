@@ -2,7 +2,7 @@
 
 import unittest
 from test_parent import BaseTest
-from util import run_test, login, read_from_json_file, regex
+from util import run_test, login, read_from_json_file, regex, substitute
 import re
 import json
 from login_page import LoginPage
@@ -25,7 +25,7 @@ class TestLanguageSpotCheck(BaseTest):
         # Get current URL and re-get URL with different language
         for i in range(1, len(languages)):
             url = self.driver.current_url
-            url = re.sub('/' + languages[i - 1] + '/', '/' + languages[i] + '/', url)
+            url = substitute('/' + languages[i - 1] + '/', '/' + languages[i] + '/', url)
             self.driver.get(url)
             
             ProcessesPage(self.driver, self.data).is_loaded()
