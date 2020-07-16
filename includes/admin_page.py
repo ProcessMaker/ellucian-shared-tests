@@ -53,8 +53,8 @@ class AdminPage:
 
     def find_system_information_elements(self):
         self.driver.log.append('Find elements on System information panel')
-        self.process_information_table = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information-bd')))
-        self.system_information_table = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-System information-bd')))
+        self.process_information_table = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information-bd'))).text
+        self.system_information_table = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-System information-bd'))).text
 
     def find_case_list_cache_builder_elements(self):
         self.driver.log.append('Find elements on Case List Cache Builder panel')
@@ -74,7 +74,7 @@ class AdminPage:
         self.system_information.click()
         self.switch_to_setup_frame()
         self.find_system_information_elements()
-        return (self.process_information_table.text, self.system_information_table.text)
+        return (self.process_information_table, self.system_information_table)
 
     ''' Plugins panel
     '''
