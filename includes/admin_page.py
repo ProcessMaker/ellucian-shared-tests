@@ -81,6 +81,8 @@ class AdminPage:
         self.plugins_manager = self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, "Plugins Manager")))
 
     def find_elements_on_setup_frame(self):
+        from time import sleep
+        sleep(2)
         self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
         self.elements = self.driver.find_elements_by_class_name('x-grid3-row')
 
