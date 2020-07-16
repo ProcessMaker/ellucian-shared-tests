@@ -70,6 +70,7 @@ class AdminPage:
         
     def get_system_information(self):
         self.get_adminFrame()
+        self.find_elements_on_settings_tab()
         self.system_information.click()
         self.switch_to_setup_frame()
         self.find_system_information_elements()
