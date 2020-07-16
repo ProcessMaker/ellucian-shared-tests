@@ -53,6 +53,8 @@ class AdminPage:
 
     def find_system_information_elements(self):
         self.driver.log.append('Find elements on System information panel')
+        from time import sleep
+        sleep(2)
         self.process_information_table = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information-bd'))).text
         self.system_information_table = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-System information-bd'))).text
 
