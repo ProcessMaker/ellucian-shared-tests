@@ -22,8 +22,8 @@ class TestVariablesLoad(BaseTest):
 
         oauth_detail = OauthPage(self.driver, self.data).get_oauth_detail()
 
-        client_id = regex("r'(?<=ID:\s)\w+'", oauth_detail)
-        client_secret = regex("r'(?<=Secret:\s)\w+'", oauth_detail)
+        client_id = re.search(r'(?<=ID:\s)\w+', oauth_detail).group(0)
+        client_secret = re.search(r'(?<=Secret:\s)\w+', oauth_detail).group(0)
 
         self.driver.api = {
             'url': data['server_url'],
