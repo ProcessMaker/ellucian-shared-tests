@@ -18,25 +18,30 @@ class AdminPage:
         self.page_url = self.data['server_url'] + '/sys' + data['server_workspace'] + '/en/ellucianux/setup/main'
 
     def find_elements(self):
+        self.driver.log.append('Find elements on Admin Page')
         self.adminFrame = self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
 
     def get_admin_page(self):
+        self.driver.log.append('Get Admin page')
         self.driver.get(self.page_url)
 
     def switch_to_adminFrame(self):
+        self.driver.log.append('Switch to adminFrame')
         self.driver.switch_to.frame(self.adminFrame)
 
     def switch_to_setup_frame(self):
+        self.driver.log.append('Switch to setup_frame')
         self.driver.switch_to.frame(self.wait.until(EC.visibility_of_element_located((By.ID, 'setup-frame'))))
+
+    def find_elements_on_adminFrame(self):
+        self.driver.log.append('Find elements on adminFrame')
+        self.plugins = self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'Plugins')))
 
     def get_adminFrame(self):
         self.get_admin_page()
         self.find_elements()
         self.switch_to_adminFrame()
         self.find_elements_on_adminFrame()
-
-    def find_elements_on_adminFrame(self):
-        self.plugins = self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'Plugins')))
  
     ''' Settings panel
     '''
