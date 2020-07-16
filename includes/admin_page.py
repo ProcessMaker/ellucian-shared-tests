@@ -15,7 +15,7 @@ class AdminPage:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 120)
         self.data = data
-        self.page_url = self.data['server_url'] + '/sys' + data['server_workspace'] + '/en/ellucianux/setup/main'
+        self.page_url = self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/ellucianux/setup/main'
 
     def find_elements(self):
         self.driver.log.append('Find elements on Admin Page')
