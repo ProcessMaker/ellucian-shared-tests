@@ -47,14 +47,17 @@ class AdminPage:
     '''
 
     def find_elements_on_settings_tab(self):
+        self.driver.log.append('Find elements on Settings tab')
         self.case_list_cache_builder = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//span[contains(text(),'Case List Cache Builder')]")))
         self.system_information = self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'System information')))
 
     def find_system_information_elements(self):
+        self.driver.log.append('Find elements on System information panel')
         self.process_information_table = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information-bd')))
         self.system_information_table = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-System information-bd')))
 
     def find_case_list_cache_builder_elements(self):
+        self.driver.log.append('Find elements on Case List Cache Builder panel')
         self.workflow_applications_cache_info = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen12')))
 
     def get_case_list_cache_builder(self):
