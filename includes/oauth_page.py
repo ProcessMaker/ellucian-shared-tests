@@ -33,14 +33,18 @@ class OauthPage:
         self.applications_table = self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
         self.detail = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen42')))
 
+    def get_adminFrame(self):
+        self.driver.log.append('Switch to adminFrame')
+        self.get_admin_page()
+        self.find_elements()
+        self.switch_to_adminFrame()
+        self.find_elements_on_adminFrame()
+
     def find_elements_on_detail_window(self):
         self.detail_window = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-comp-1010')))
 
     def get_oauth_detail(self):
-        self.get_oauth_page()
-        self.find_elements()
-        self.switch_to_adminFrame()
-        self.find_elements_on_adminFrame()
+        self.get_adminFrame()
         self.applications_table.click()
         self.detail.click()
         self.find_elements_on_detail_window()
