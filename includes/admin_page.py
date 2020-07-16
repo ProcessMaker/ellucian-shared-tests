@@ -60,6 +60,8 @@ class AdminPage:
 
     def find_case_list_cache_builder_elements(self):
         self.driver.log.append('Find elements on Case List Cache Builder panel')
+        from time import sleep
+        sleep(2)
         self.workflow_applications_cache_info = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen12'))).text
 
     def get_case_list_cache_builder(self):
