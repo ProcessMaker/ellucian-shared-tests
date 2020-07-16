@@ -27,6 +27,7 @@ class OauthPage:
 
     def switch_to_adminFrame(self):
         self.driver.log.append('Switch to adminFrame')
+        self.find_elements()
         self.driver.switch_to.frame(self.adminFrame)
 
     def find_elements_on_adminFrame(self):
