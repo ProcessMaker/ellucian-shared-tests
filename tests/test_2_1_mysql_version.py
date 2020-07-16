@@ -19,7 +19,7 @@ class TestRDSVersions(BaseTest):
         
         html = AdminPage(self.driver, self.data).get_case_list_cache_builder()
         if html:
-            mysql = regex("r'(?<=MySQL Version\s)([^\s]+)(?=-)'", html)
+            mysql = re.search(r'(?<=MySQL Version\s)([^\s]+)(?=-)', html).group(0)
         
         # Get expected RDS versions from expected_values.json
         expected_versions = read_from_json_file(self.driver.data['repository_path'],
