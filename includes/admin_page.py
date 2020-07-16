@@ -93,4 +93,4 @@ class AdminPage:
         self.switch_to_setup_frame()
         self.find_elements_on_setup_frame()
         # Double check this line
-        return [element.text for element in elements]
+        return [element.text for element in self.elements]
