@@ -15,7 +15,7 @@ class OauthPage:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 120)
         self.data = data
-        self.page_url = self.data_['server_url'] + '/sys' + self.data_['server_workspace'] + '/en/neoclassic/oauth2/applications'
+        self.page_url = self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/neoclassic/oauth2/applications'
 
     def get_oauth_page(self):
         self.driver.get(self.page_url)
