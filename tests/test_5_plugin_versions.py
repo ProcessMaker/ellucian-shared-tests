@@ -20,7 +20,7 @@ class TestPluginVersions(BaseTest):
         self.driver = LoginPage(self.driver, self.data).login()
 
         # Retrieve Custom Plugins dictionary from expected_values.json
-        custom_plugins = read_from_json_file(self.driver.data['repository_path'],
+        custom_plugins = read_from_json_file(self.data['repository_path'],
                                              '/includes/expected_values.json', 'Custom Plugins')
 
         # Verify all custom plugins are visible on page with correct version, and are enabled
