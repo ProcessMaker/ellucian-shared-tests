@@ -48,7 +48,7 @@ class AdminPage:
 
     def find_elements_on_settings_tab(self):
         self.driver.log.append('Find elements on Settings tab')
-        self.case_list_cache_builder = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//span[contains(text(),'Case List Cache Builder')]")))
+        self.case_list_cache_builder = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//span[contains(text(),'Case List Cache Builder')]"))).text
         self.system_information = self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'System information')))
 
     def find_system_information_elements(self):
@@ -66,7 +66,7 @@ class AdminPage:
         self.case_list_cache_builder.click()
         self.switch_to_setup_frame()
         self.find_case_list_cache_builder_elements()
-        return self.workflow_applications_cache_info.text
+        return self.workflow_applications_cache_info
         
     def get_system_information(self):
         self.get_adminFrame()
