@@ -41,11 +41,11 @@ class OauthPage:
         self.find_elements_on_adminFrame()
 
     def find_elements_on_detail_window(self):
-        self.detail_window = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-comp-1010')))
+        self.detail_window = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-comp-1010'))).text
 
     def get_oauth_detail(self):
         self.get_adminFrame()
         self.applications_table.click()
         self.detail.click()
         self.find_elements_on_detail_window()
-        return self.detail_window.text
+        return self.detail_window
