@@ -18,9 +18,15 @@ class OauthPage:
         self.page_url = self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/neoclassic/oauth2/applications'
 
     def get_oauth_page(self):
+        self.driver.log.append('Get Oauth Page')
         self.driver.get(self.page_url)
+    
+    def find_elements(self):
+        self.driver.log.append('Get elements on Oauth Page')
+        self.adminFrame = self.wait.until(EC.visibility_of_element_located((By.ID, 'adminFrame')))
 
     def switch_to_adminFrame(self):
+        self.driver.log.append('Switch to adminFrame')
         self.driver.switch_to.frame(self.adminFrame)
 
     def find_elements_on_adminFrame(self):
