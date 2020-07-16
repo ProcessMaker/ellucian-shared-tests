@@ -19,7 +19,7 @@ class TestLanguageSpotCheck(BaseTest):
         
         ProcessesPage(self.driver, self.data).is_loaded()
 
-        languages = read_from_json_file(self.driver.data['repository_path'],
+        languages = read_from_json_file(self.data['repository_path'],
                                                 '/includes/expected_values.json', 'Languages')
         
         # Get current URL and re-get URL with different language
