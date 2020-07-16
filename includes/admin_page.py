@@ -84,6 +84,7 @@ class AdminPage:
         self.get_adminFrame()
         self.find_elements_on_adminFrame()
         self.plugins.click()
+        self.find_elements_on_plugins_tab()
         self.plugins_manager.click()
         self.switch_to_setup_frame()
         # Double check this line
