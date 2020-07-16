@@ -80,6 +80,10 @@ class AdminPage:
     def find_elements_on_plugins_tab(self):
         self.plugins_manager = self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, "Plugins Manager")))
 
+    def find_elements_on_setup_frame(self):
+        self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
+        self.elements = self.driver.find_elements_by_class_name('x-grid3-row')
+
     def get_plugins(self):
         self.get_adminFrame()
         self.find_elements_on_adminFrame()
@@ -87,5 +91,6 @@ class AdminPage:
         self.find_elements_on_plugins_tab()
         self.plugins_manager.click()
         self.switch_to_setup_frame()
+        self.find_elements_on_setup_frame()
         # Double check this line
-        return [element.text for element in self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))]
+        return [element.text for element in elements]
