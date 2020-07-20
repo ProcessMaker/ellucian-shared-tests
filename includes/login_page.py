@@ -6,6 +6,7 @@ import selenium
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from api_requests import get_response_code
 
 
 class LoginPage:
@@ -26,7 +27,10 @@ class LoginPage:
     
 
     def get_login_page(self):
-        self.driver.get(self.login_page_url)
+        if get_response_code(self.driver, self.data):
+            self.driver.get(self.login_page_url)
+        else:
+            self.driver.log.append('Server Unavailable')
 
 
     def login(self):

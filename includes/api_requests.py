@@ -3,6 +3,7 @@
 import json
 import requests
 
+
 def parse_response(driver, auth):
     ''' Method to verify variable list can be parsed as JSON. '''
     try:
@@ -14,6 +15,7 @@ def parse_response(driver, auth):
         driver.log.append('JSON Decode Error. First 20 chars of response: ' + variable_list[:20])
         return False, driver
 
+
 def get_variable_list(driver, auth):
     ''' Method to get variable list using project id. '''
     ret = get_project_id(driver, auth)
@@ -24,6 +26,7 @@ def get_variable_list(driver, auth):
     driver.log.append('Acquired variable list')
     return response.text, driver
 
+
 def get_project_id(driver, auth):
     ''' Method to get project id of first process in process list. '''
     access_token, driver = get_access_token(driver, auth)
@@ -32,7 +35,7 @@ def get_project_id(driver, auth):
     driver.log.append('Acquired project id')
     return [json.loads(response.text)[0]['prj_uid'], token, driver]
 
-''' Once requests module is installed into Docker container, move this method to util.py. '''
+
 def get_access_token(driver, auth):
     ''' Method to grab access token through password grant. '''
     payload = [
@@ -47,3 +50,12 @@ def get_access_token(driver, auth):
     text = json.loads(response.text)
     driver.log.append('Acquired access token')
     return text['access_token'], driver
+
+
+def get_response_code(driver, data):
+    ''' Method to check the response code of a GET request to server URL provided. '''
+    response = requests.get(data['server_url'])
+    driver.log.append('Requested provided server URL')
+    if '50' in json.loads(response.text):
+        return False
+    return True
