@@ -56,6 +56,6 @@ def get_response_code(driver, data):
     ''' Method to check the response code of a GET request to server URL provided. '''
     response = requests.get(data['server_url'])
     driver.log.append('Requested provided server URL')
-    if '50' in response:
+    if '50' in json.loads(response):
         return False, response
     return True, response
