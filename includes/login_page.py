@@ -27,11 +27,8 @@ class LoginPage:
     
 
     def get_login_page(self):
-        server_response = get_response_code(self.driver, self.data)
-        if server_response[0]:
-            self.driver.get(self.login_page_url)
-        else:
-            self.driver.log.append(server_response[1])
+        self.driver.log.append(get_response_code(self.driver, self.data))
+        self.driver.get(self.login_page_url)
 
 
     def login(self):
