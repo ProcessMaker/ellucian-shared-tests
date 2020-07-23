@@ -74,14 +74,15 @@ def login(data, driver, log):
     '''
     log.append('Attempting login...')
     
+    driver.data = data
+    driver.log = log
+    
     server_response = get_response_code(data)
     if '50' in server_response or '40' in server_response:
-        log.append(server_response)
+        driver.log.append(server_response)
         return driver
 
     # Navigate to server
-    driver.data = data
-    driver.log = log
     driver.get(data['server_url'])
 
     # Wait for login page to load
