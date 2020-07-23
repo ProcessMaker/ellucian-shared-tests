@@ -50,5 +50,4 @@ def get_access_token(driver, auth):
 
 def check_response_code(driver)
     ''' Method to get response code for GET request. '''
-    response = requests.get(driver.api['url'])
-    driver.log.append(response)
+    return requests.get(driver.api['url'])
