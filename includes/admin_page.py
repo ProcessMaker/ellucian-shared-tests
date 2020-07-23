@@ -60,15 +60,12 @@ class AdminPage:
 
     def find_case_list_cache_builder_elements(self):
         self.driver.log.append('Find elements on Case List Cache Builder panel')
+        self.driver.get(self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/ellucianux/setup/appCacheViewConf')
         from time import sleep
         sleep(2)
-        self.workflow_applications_cache_info = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen12'))).text
+        self.workflow_applications_cache_info = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen20'))).text
 
     def get_case_list_cache_builder(self):
-        self.get_adminFrame()
-        self.find_elements_on_settings_tab()
-        self.case_list_cache_builder.click()
-        self.switch_to_setup_frame()
         self.find_case_list_cache_builder_elements()
         return self.workflow_applications_cache_info
         
