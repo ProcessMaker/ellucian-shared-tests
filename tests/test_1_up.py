@@ -18,7 +18,6 @@ class TestLoginPage(BaseTest):
         self.driver = login(data, self.driver, self.log)
 
         # Wait for Processes page to load
-        self.driver.log.append('Waiting for main page to load')
         self.wait.until(EC.visibility_of_element_located((By.ID, 'SETUP')))
 
         # Verify that Processes page elements have loaded
