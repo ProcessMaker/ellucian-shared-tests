@@ -54,6 +54,4 @@ def get_access_token(driver, auth):
 
 def get_response_code(driver, data):
     ''' Method to check the response code of a GET request to server URL provided. '''
-    response = requests.get(data['server_url'])
-    driver.log.append('Requested provided server URL')
-    return response
+    return requests.get(data['server_url'])
