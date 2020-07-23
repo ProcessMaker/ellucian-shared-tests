@@ -78,8 +78,8 @@ def login(data, driver, log):
     driver.log = log
     
     server_response = get_response_code(data)
-    if '50' in server_response or '40' in server_response:
-        driver.log.append(server_response)
+    driver.log.append(server_response)
+    if '50' in str(server_response) or '40' in str(server_response):  
         return driver
 
     # Navigate to server
