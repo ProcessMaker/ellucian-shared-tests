@@ -12,6 +12,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from test_classes import CustomTextTestRunner, CustomTestLoader
+from api_requests import get_response_code
 
 
 def run_test(classname, data, modulename):
@@ -72,6 +73,11 @@ def login(data, driver, log):
     ''' Function to log user in to workspace.
     '''
     log.append('Attempting login...')
+    
+    server_response = get_response_code(data)
+    if '50' in server_response or '40' in server_response:
+        log.append(server_response)
+        return driver
 
     # Navigate to server
     driver.data = data
