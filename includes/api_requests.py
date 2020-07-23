@@ -3,7 +3,6 @@
 import json
 import requests
 
-
 def parse_response(driver, auth):
     ''' Method to verify variable list can be parsed as JSON. '''
     try:
@@ -15,7 +14,6 @@ def parse_response(driver, auth):
         driver.log.append('JSON Decode Error. First 20 chars of response: ' + variable_list[:20])
         return False, driver
 
-
 def get_variable_list(driver, auth):
     ''' Method to get variable list using project id. '''
     ret = get_project_id(driver, auth)
@@ -25,7 +23,6 @@ def get_variable_list(driver, auth):
     response = requests.get(driver.api['url'] + '/api/1.0/' + driver.api['workspace'] + '/project/' + project_id + '/process-variables', headers=token)
     driver.log.append('Acquired variable list')
     return response.text, driver
-
 
 def get_project_id(driver, auth):
     ''' Method to get project id of first process in process list. '''
@@ -51,9 +48,7 @@ def get_access_token(driver, auth):
     driver.log.append('Acquired access token')
     return text['access_token'], driver
 
-
-def get_response_code(driver, data):
-    ''' Method to check the response code of a GET request to server URL provided. '''
-    response = requests.get(data['server_url'])
-    driver.log.append('Requested provided server URL')
-    return response
+def check_response_code(driver)
+    ''' Method to get response code for GET request. '''
+    response = requests.get(driver.api['url'])
+    driver.log.append(response)
