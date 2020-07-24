@@ -69,35 +69,6 @@ def parse_results(buffer):
     # else:
     #    return 'ERROR'
 
-def login(data, driver, log):
-    ''' Function to log user in to workspace.
-    '''
-    log.append('Attempting login...')
-
-    server_response = get_response_code(data)
-    if '50' in server_response or '40' in server_response:
-        log.append(server_response)
-        return driver
-    
-    # Navigate to server
-    driver.data = data
-    driver.log = log
-    driver.get(data['server_url'])
-
-    # Wait for login page to load
-    wait = WebDriverWait(driver, 120)
-    wait.until(EC.element_to_be_clickable((By.ID, 'form[BSUBMIT]')))
-
-    # Login using configured url, workspace, username, and password
-    driver.find_element_by_id('form[USR_USERNAME]').send_keys(data['username'])
-    driver.find_element_by_id('form[USR_PASSWORD_MASK]').send_keys(data['password'])
-    driver.find_element_by_id('form[USER_ENV]').send_keys(data['server_workspace'])
-    driver.find_element_by_id('form[BSUBMIT]').click()
-
-    log.append('Login attempted')
-
-    return timezone_check(driver, wait)
-
 
 def timezone_check(driver, wait):
     ''' Function to check for time zone config page and bypass it.
