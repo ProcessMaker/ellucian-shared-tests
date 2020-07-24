@@ -5,7 +5,7 @@ import json
 import re
 import unittest
 from test_parent import BaseTest
-from util import run_test, login, regex
+from util import run_test
 from api_requests import parse_response
 from login_page import LoginPage
 from oauth_page import OauthPage
