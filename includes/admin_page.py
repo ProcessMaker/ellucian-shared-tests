@@ -79,19 +79,15 @@ class AdminPage:
     def find_elements_on_plugins_tab(self):
         self.plugins_manager = self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, "Plugins Manager")))
 
-    def find_elements_on_setup_frame(self):
-        from time import sleep
-        sleep(2)
+    def find_elements_on_plugins_manager(self):
         self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
         self.elements = self.driver.find_elements_by_class_name('x-grid3-row')
 
     def get_plugins(self):
-        self.get_adminFrame()
-        self.find_elements_on_adminFrame()
-        self.plugins.click()
-        self.find_elements_on_plugins_tab()
-        self.plugins_manager.click()
-        self.switch_to_setup_frame()
-        self.find_elements_on_setup_frame()
+        self.driver.log.append('Find elements on System information panel')
+        self.driver.get(self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/ellucianux/setup/pluginsMain')
+        from time import sleep
+        sleep(2)
+        self.find_elements_on_plugins_manager()
         # Double check this line
         return [element.text for element in self.elements]
