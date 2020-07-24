@@ -39,7 +39,7 @@ class TestPluginVersions(BaseTest):
                     try:
                         self.assertTrue(custom_plugins[key] in elem)
                         self.driver.log[-1] += 'Correct ' + key + ', '
-                    except AssertionError, e:
+                    except AssertionError as e:
                         self.driver.log[-1] += 'Wrong ' + key + ' version , '
                         self.assertionFailures.append(str(e))
 
@@ -50,7 +50,7 @@ class TestPluginVersions(BaseTest):
         try:
             self.assertEqual(custom_plugins, {})
             self.driver.log[-1] += 'All found'
-        except AssertionError, e:
+        except AssertionError as e:
             not_found = ', '.join(custom_plugins)
             self.driver.log[-1] += 'Not found: ' + not_found
             self.assertionFailures.append(str(e))
