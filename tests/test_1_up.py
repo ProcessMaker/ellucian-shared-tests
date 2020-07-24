@@ -1,8 +1,8 @@
-#!/usr/local/bin/python3
+#!/usr/loca/bin/python3
 
 import unittest
 from test_parent import BaseTest
-from util import run_test, login
+from util import run_test
 from login_page import LoginPage
 from processes_page import ProcessesPage
 
