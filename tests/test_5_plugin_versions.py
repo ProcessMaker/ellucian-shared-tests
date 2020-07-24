@@ -40,7 +40,7 @@ class TestPluginVersions(BaseTest):
                         self.assertTrue(custom_plugins[key] in elem)
                         self.driver.log[-1] += 'Correct ' + key + ', '
                     except AssertionError as e:
-                        self.driver.log[-1] += 'Wrong ' + key + ' version , '
+                        self.driver.log[-1] += 'Wrong ' + key + ' version, '
                         self.assertionFailures.append(str(e))
 
                     del custom_plugins[key]
