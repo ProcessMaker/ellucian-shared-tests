@@ -24,7 +24,7 @@ class TestComponentVersions(BaseTest):
         php = re.search(r'(?<=PHP Version\s)([^\s]+)', system_info).group(0)
 
         # Get expected System Information versions from expected_values.json
-        expected_versions = read_from_json_file(self.driver.data['repository_path'],
+        expected_versions = read_from_json_file(data['repository_path'],
                                                 '/includes/expected_values.json', 'System Information')
 
         fail_flag = 0
