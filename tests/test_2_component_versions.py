@@ -4,7 +4,7 @@ import unittest
 import json
 import re
 from test_parent import BaseTest
-from util import run_test, login, read_from_json_file, regex
+from util import run_test, login, read_from_json_file
 from login_page import LoginPage
 from admin_page import AdminPage
 
@@ -19,9 +19,9 @@ class TestComponentVersions(BaseTest):
         
         process_info, system_info = AdminPage(self.driver, self.data).get_system_information()
 
-        pm3 = regex("r'(?<=ProcessMaker Ver.\s)([^\s]+)'", process_info)
-        nginx = regex("r'(?<=nginx/)([^\s]+)'", system_info)
-        php = regex("r'(?<=PHP Version\s)([^\s]+)'", system_info)
+        pm3 = re.search(r'(?<=ProcessMaker Ver.\s)([^\s]+)', process_info).group(0)
+        nginx = re.search(r'(?<=nginx/)([^\s]+)', system_info).group(0)
+        php = re.search(r'(?<=PHP Version\s)([^\s]+)', system_info).group(0)
 
         # Get expected System Information versions from expected_values.json
         expected_versions = read_from_json_file(self.driver.data['repository_path'],
