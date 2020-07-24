@@ -19,19 +19,22 @@ class TestLanguageSpotCheck(BaseTest):
         
         ProcessesPage(self.driver, self.data).is_loaded()
 
-        languages = read_from_json_file(self.data['repository_path'],
-                                                '/includes/expected_values.json', 'Languages')
-        
+        languages = read_from_json_file(data['repository_path'],
+                                        '/includes/expected_values.json', 'Languages')
+
         # Get current URL and re-get URL with different language
         for i in range(1, len(languages)):
             url = re.sub('/' + languages[i - 1] + '/', '/' + languages[i] + '/', self.driver.current_url)
+            print(url)
             self.driver.get(url)
             
             ProcessesPage(self.driver, self.data).is_loaded()
 
+            labels = re.search(r'\*\*(\w+)\*\*', self.driver.page_source)
+
             # Assert that labels are not present on page
             try:
-                self.assertEqual(None, re.search(r'\*\*(\w+)\*\*', self.driver.page_source).group(0))
+                self.assertEqual(None, labels)
                 self.driver.log.append('Labels not found')
             except:
                 self.driver.log.append('Labels found')
