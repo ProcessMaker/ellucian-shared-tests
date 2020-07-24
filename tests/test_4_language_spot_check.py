@@ -35,6 +35,7 @@ class TestLanguageSpotCheck(BaseTest):
                 self.driver.log.append('Labels not found')
             except:
                 self.driver.log.append('Labels found')
+                self.fail()
 
 
 if __name__ == "__main__":
