@@ -31,7 +31,7 @@ class TestLanguageSpotCheck(BaseTest):
 
             # Assert that labels are not present on page
             try:
-                self.assertEqual(None, regex("r'\*\*(\w+)\*\*'", self.driver.page_source))
+                self.assertEqual(None, re.search(r'\*\*(\w+)\*\*', self.driver.page_source).group(0))
                 self.driver.log.append('Labels not found')
             except:
                 self.driver.log.append('Labels found')
