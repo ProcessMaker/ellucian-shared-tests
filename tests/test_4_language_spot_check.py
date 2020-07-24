@@ -2,7 +2,7 @@
 
 import unittest
 from test_parent import BaseTest
-from util import run_test, login, read_from_json_file, regex, substitute
+from util import run_test, read_from_json_file
 import re
 import json
 from login_page import LoginPage
