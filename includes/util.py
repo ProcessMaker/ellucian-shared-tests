@@ -11,8 +11,8 @@ import selenium
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from includes.test_classes import CustomTextTestRunner, CustomTestLoader
-from includes.api_requests import get_response_code
+from test_classes import CustomTextTestRunner, CustomTestLoader
+from api_requests import get_response_code
 
 
 def run_test(classname, data, modulename):
