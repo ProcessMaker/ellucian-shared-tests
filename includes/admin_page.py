@@ -53,6 +53,7 @@ class AdminPage:
 
     def find_system_information_elements(self):
         self.driver.log.append('Find elements on System information panel')
+        self.driver.get(self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/ellucianux/setup/systemInfo?option=processInfo')
         from time import sleep
         sleep(2)
         self.process_information_table = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information-bd'))).text
@@ -70,10 +71,6 @@ class AdminPage:
         return self.workflow_applications_cache_info
         
     def get_system_information(self):
-        self.get_adminFrame()
-        self.find_elements_on_settings_tab()
-        self.system_information.click()
-        self.switch_to_setup_frame()
         self.find_system_information_elements()
         return (self.process_information_table, self.system_information_table)
 

@@ -6,7 +6,8 @@ import selenium
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from api_requests import get_response_code
+from includes.api_requests import get_response_code
+from includes.util import timezone_check
 
 
 class LoginPage:
@@ -27,7 +28,7 @@ class LoginPage:
     
 
     def get_login_page(self):
-        self.driver.log.append(get_response_code(self.driver, self.data))
+        self.driver.log.append(get_response_code(self.data))
         self.driver.get(self.login_page_url)
 
 
@@ -39,5 +40,5 @@ class LoginPage:
         self.password_field.send_keys(self.data['password'])
         self.workspace_dropdown.send_keys(self.data['server_workspace'])
         self.submit_button.click()
-        return self.driver
+        return timezone_check(self.driver, self.wait)
 
