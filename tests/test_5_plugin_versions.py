@@ -14,6 +14,12 @@ from admin_page import AdminPage
 class TestPluginVersions(BaseTest):
     ''' Class to navigate to Admin / Plugins Manager page. '''
 
+    def setUp(self):
+        self.assertionFailures = []
+
+    def tearDown(self):
+        self.assertEqual([], self.assertionFailures)
+
     def test_plugin_versions(self):
         ''' Test that versions are correct. '''
 
@@ -26,8 +32,6 @@ class TestPluginVersions(BaseTest):
         # Verify all custom plugins are visible on page with correct version, and are enabled
         plugins = AdminPage(self.driver, self.data).get_plugins()
 
-        
-        fail_flag = 0
         self.driver.log.append('Plugin versions: ')
         for elem in plugins:
             for key in custom_plugins.keys():
@@ -35,24 +39,21 @@ class TestPluginVersions(BaseTest):
                     try:
                         self.assertTrue(custom_plugins[key] in elem)
                         self.driver.log[-1] += 'Correct ' + key + ', '
-                    except:
+                    except AssertionError, e:
                         self.driver.log[-1] += 'Wrong ' + key + ' version , '
-                        fail_flag = 1
+                        self.assertionFailures.append(str(e))
 
                     del custom_plugins[key]
                     break 
-            # Assert custom_plugins is empty (meaning every expected value was found)
+        
+        # Assert custom_plugins is empty (meaning every expected value was found)
         try:
             self.assertEqual(custom_plugins, {})
             self.driver.log[-1] += 'All found'
-        except:
+        except AssertionError, e:
             not_found = ', '.join(custom_plugins)
             self.driver.log[-1] += 'Not found: ' + not_found
-            fail_flag = 1
-
-        if fail_flag == 1:
-            self.fail()
-        self.log = self.driver.log
+            self.assertionFailures.append(str(e))
 
 
 if __name__ == "__main__":
