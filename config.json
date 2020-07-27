@@ -22,5 +22,9 @@
   {
     "name": "test-6-enterprise-plugins",
     "path": "tests/test_6_enterprise_plugin_versions.py"
+  },
+  {
+    "name": "test-7-new-project-two-elements",
+    "path": "tests/test_7_two_elements.py"
   }
 ]
