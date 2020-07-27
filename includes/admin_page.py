@@ -80,14 +80,21 @@ class AdminPage:
         self.plugins_manager = self.wait.until(EC.visibility_of_element_located((By.LINK_TEXT, "Plugins Manager")))
 
     def find_elements_on_plugins_manager(self):
-        self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
-        self.elements = self.driver.find_elements_by_class_name('x-grid3-row')
+        self.elements = self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
+
+    def find_elements_on_panel(self):
+        self.elements = self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
 
     def get_plugins(self):
         self.driver.log.append('Find elements on System information panel')
         self.driver.get(self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/ellucianux/setup/pluginsMain')
         from time import sleep
         sleep(2)
-        self.find_elements_on_plugins_manager()
-        # Double check this line
+        self.find_elements_on_panel()
+        return [element.text for element in self.elements]
+
+    def get_enterprise_plugins(self):
+        self.driver.log.append('Find elements on Enterprise Manager panel')
+        self.driver.get(self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/ellucianux/enterprise/addonsStore')
+        self.find_elements_on_panel()
         return [element.text for element in self.elements]
