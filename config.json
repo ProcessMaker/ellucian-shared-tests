@@ -18,5 +18,9 @@
   {
     "name": "test-2-component-check",
     "path": "tests/test_2_component_versions.py"
+  },
+  {
+    "name": "test-6-enterprise-plugins",
+    "path": "tests/test_6_enterprise_plugin_versions.py"
   }
 ]
