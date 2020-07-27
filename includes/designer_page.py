@@ -38,7 +38,9 @@ class DesignerPage:
         self.new_button.click()
         self.get_dropdown_elements()
         if len(self.dropdown_elements) == 2:
+            self.log.append('Two elements found')
             return True
+        self.log.append('Incorrect number of elements')
         return False
 
 
