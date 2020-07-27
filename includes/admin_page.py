@@ -83,7 +83,8 @@ class AdminPage:
         self.elements = self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
 
     def find_elements_on_panel(self):
-        self.elements = self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
+        self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'x-grid3-row')))
+        self.elements = self.driver.find_elements_by_class_name('x-grid3-row')
 
     def get_plugins(self):
         self.driver.log.append('Find elements on System information panel')
