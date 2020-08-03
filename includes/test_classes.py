@@ -10,7 +10,7 @@ class CustomTestSuite(unittest.TestSuite):
     page = ''
     log = []
 
-    def run(self, result): 
+    def run(self, result):
         ''' Add test case attributes to result. '''
         for test in self._tests:
             result.page = test.page
@@ -46,4 +46,3 @@ class CustomTextTestRunner(unittest.TextTestRunner):
     def _makeResult(self):
         """Creates and returns a result instance that has custom attributes"""
         return CustomTextTestResult(self.stream, self.descriptions, self.verbosity, self.log, self.page)
-
