@@ -24,6 +24,10 @@
     "path": "tests/test_6_enterprise_plugin_versions.py"
   },
   {
+    "name": "test-3-api-call-do-variables-load",
+    "path": "tests/test_3_variables_load.py"
+  },
+  {
     "name": "test-7-new-project-two-elements",
     "path": "tests/test_7_two_elements.py"
   }
