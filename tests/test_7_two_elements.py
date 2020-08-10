@@ -19,6 +19,11 @@ Verify there are two elements in dropdown menu
 
 import unittest
 import json
+from os import getenv
+if getenv("ENVIRONMENT") == "local":
+    from sys import path
+    path.append('../includes')
+    from __init__ import data
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
