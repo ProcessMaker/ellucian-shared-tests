@@ -108,6 +108,11 @@ class BasePage(BasePageShell):
                 BasePageElement.
             This attribute is available to class instances.
 
+        WorkspaceFieldElement:
+            Includes locator attribute. Inherits self.element_type from
+                BasePageElement.
+            This attribute is available to class instances.
+
 """
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
