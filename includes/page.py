@@ -4,6 +4,7 @@ from element import *
 from locators import *
 import util
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
     Classes:
@@ -115,14 +116,20 @@ class UsernameFieldElement(BasePageElement):
     """ Class to get username field using specified locator. """
 
     # Locator for search box where string is entered
-    locator = 'form[USR_USERNAME]'
+    locator = (*LoginPageLocators.USERNAME)
 
 
 class PasswordFieldElement(BasePageElement):
     """ Class to get password field using specified locator. """
 
     # Locator for search box where string is entered
-    locator = 'form[USR_PASSWORD_MASK]'
+    locator = (*LoginPageLocators.PASSWORD)
+
+class WorkspaceFieldElement(BasePageElement):
+    """ Class to get workspace field using specified locator. """
+
+    # Locator for workspace field where string is entered
+    locator = (*LoginPageLocators.WORKSPACE)[1]
 
 
 class LoginPage(BasePageShell):
@@ -133,6 +140,7 @@ class LoginPage(BasePageShell):
 
     username_field_element = UsernameFieldElement('ID')
     password_field_element = PasswordFieldElement('ID')
+    workspace_field_element = WorkspaceFieldElement('ID')
 
     def __init__(self, driver, data):
         ''' Instantiate LoginPage class. '''
@@ -145,6 +153,7 @@ class LoginPage(BasePageShell):
         # Login
         self.username_field_element = self.data['username']
         self.password_field_element = self.data['password']
+        self.workspace_field_element = self.data['server_workspace']
         submit_button_element = self.driver.find_element(*LoginPageLocators.SUBMIT_BUTTON)
         submit_button_element.click()
 
