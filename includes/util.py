@@ -42,7 +42,7 @@ def run_test(classname, data, modulename):
             elif 'WARNING' in log[-1]:
                 log[-1] = parse_log_warning(log[-1])
             test_output = buffer.getvalue()
-            return {"result": parse_results(test_output), "message": log[-1]}
+            return {"result": parse_results(test_output), "message": test_output}
 
 def parse_log_error(log_message):
     ''' Function to capture ERROR message.
@@ -54,7 +54,7 @@ def parse_log_warning(log_message):
     ''' Function to capture WARNING message.
     '''
     return 'WARNING: ' + re.search(r'(?<=WARNING<\/strong>:\s)([^<]+)', log_message).group(0)
-            
+
 
 def parse_results(buffer):
     ''' Function to parse the unittest results into PM4-friendly format.
@@ -84,7 +84,7 @@ def timezone_check(driver, wait):
     except:
         pass
 
-    
+
     # Wait for page to load
     wait.until(EC.visibility_of_element_located((By.ID, 'pm_main_table')))
     driver.log.append('Login succeeded')
