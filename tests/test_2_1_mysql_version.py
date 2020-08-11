@@ -12,10 +12,13 @@ from admin_page import AdminPage
 class TestRDSVersions(BaseTest):
     ''' Class to navigate to Admin / Case List Cache Builder page. '''
 
+    def setUp(self):
+        ''' Setup class. '''
+        login_page = LoginPage(self.driver, data)
+        login_page.login()
+
     def test_component_version(self):
         ''' Test that MySQL version is correct. '''
-
-        self.driver = LoginPage(self.driver, self.data).login()
 
         html = AdminPage(self.driver, self.data).get_case_list_cache_builder()
         if html:
