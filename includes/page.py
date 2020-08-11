@@ -164,7 +164,7 @@ class LoginPage(BasePageShell):
         submit_button_element = self.driver.find_element(*LoginPageLocators.SUBMIT_BUTTON)
         submit_button_element.click()
 
-        return self.driver
+        return util.timezone_check(self.driver, self.wait)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
