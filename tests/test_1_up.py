@@ -20,7 +20,7 @@ class TestLoginPage(BaseTest):
         # Navigate to login page and log in
         login_page = LoginPage(self.driver, data)
         login_page.go_to_page()
-        self.driver = login_page.login()
+        login_page.login()
 
         # Verify Designer page loads
         designer_page = DesignerPage(self.driver, data)
