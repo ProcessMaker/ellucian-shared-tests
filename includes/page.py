@@ -89,7 +89,7 @@ class BasePage(BasePageShell):
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
     Login Page
-    Endpoint: /login
+    Endpoint: login/login
     Classes:
         LoginPage:
             Reinitializes page_url attribute. self.driver and self.data are
@@ -121,20 +121,20 @@ class UsernameFieldElement(BasePageElement):
     """ Class to get username field using specified locator. """
 
     # Locator for search box where string is entered
-    locator = (*LoginPageLocators.USERNAME)[1]
+    locator = (LoginPageLocators.USERNAME)[1]
 
 
 class PasswordFieldElement(BasePageElement):
     """ Class to get password field using specified locator. """
 
     # Locator for search box where string is entered
-    locator = (*LoginPageLocators.PASSWORD)[1]
+    locator = (LoginPageLocators.PASSWORD)[1]
 
 class WorkspaceFieldElement(BasePageElement):
     """ Class to get workspace field using specified locator. """
 
     # Locator for workspace field where string is entered
-    locator = (*LoginPageLocators.WORKSPACE)[1]
+    locator = (LoginPageLocators.WORKSPACE)[1]
 
 
 class LoginPage(BasePageShell):
@@ -150,8 +150,6 @@ class LoginPage(BasePageShell):
     def __init__(self, driver, data):
         ''' Instantiate LoginPage class. '''
         super(LoginPage, self).__init__(driver, data)
-        self.page_url = self.page_url + '/sys' + self.data['server_workspace'] +\
-            '/en/ellucianux/login/login'
 
     def login(self):
         ''' Function to log user in to workspace.
@@ -168,7 +166,7 @@ class LoginPage(BasePageShell):
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
-    Requests Page
+    Home Page
     Endpoint: /requests
     Classes:
         RequestsPage:
@@ -180,6 +178,30 @@ class LoginPage(BasePageShell):
 """
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+class HomePage(BasePage):
+    """ Home Page actions.
+
+        HomePageLocators are found in /includes/locators.py.
+    """
+
+    def __init__(self, driver, data):
+        ''' Instantiate HomePage class. '''
+        super(HomePage, self).__init__(driver, data)
+        self.page_url = self.page_url + '/sys' + self.data['server_workspace'] +\
+            '/en/ellucianux/cases/main'
+
+    def is_loaded(self):
+        ''' Verify Home Page loads after login. '''
+        self.driver.log.append('Waiting for Home page to load')
+        try:
+            self.driver.find_element(*BasePageLocators.ADMIN_LINK)
+            self.driver.find_element(*BasePageLocators.CASES_IFRAME)
+            self.driver.log.append('Home page loaded successfully')
+            return True
+        except:
+            self.driver.log.append('Home page failed to load')
+            return False
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
@@ -205,10 +227,11 @@ class AdminPage(BasePage):
     """
 
     def __init__(self, driver, data):
-        ''' Instantiate DesignerPage class. '''
+        ''' Instantiate AdminPage class. '''
         super(AdminPage, self).__init__(driver, data)
         self.page_url = self.page_url + '/sys' + self.data['server_workspace'] +\
-            '/en/ellucianux/cases/main'
+            '/en/ellucianux/setup/main'
+        self.driver.switch_to.frame(*AdminPageLocators.ADMIN_IFRAME)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -240,6 +263,17 @@ class DesignerPage(BasePage):
         self.page_url = self.data['server_url'] + '/sys' + self.data['server_workspace'] +\
             '/en/ellucianux/processes/main'
 
+    def is_loaded(self):
+        ''' Verify Designer Page loads after login. '''
+        self.driver.log.append('Waiting for Designer page to load')
+        try:
+            self.driver.find_element(*BasePageLocators.ADMIN_LINK)
+            self.driver.find_element(*DesignerPageLocators.MAIN_IFRAME)
+            self.driver.log.append('Designer page loaded successfully')
+            return True
+        except:
+            self.driver.log.append('Designer page failed to load')
+            return False
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
