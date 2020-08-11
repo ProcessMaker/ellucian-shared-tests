@@ -150,7 +150,8 @@ class LoginPage(BasePageShell):
     def __init__(self, driver, data):
         ''' Instantiate LoginPage class. '''
         super(LoginPage, self).__init__(driver, data)
-        self.page_url = self.page_url + '/login'
+        self.page_url = self.page_url + '/sys' + self.data['server_workspace'] +\
+            '/en/ellucianux/login/login'
 
     def login(self):
         ''' Function to log user in to workspace.
@@ -206,7 +207,8 @@ class AdminPage(BasePage):
     def __init__(self, driver, data):
         ''' Instantiate DesignerPage class. '''
         super(AdminPage, self).__init__(driver, data)
-        self.page_url = self.page_url + '/admin/users'
+        self.page_url = self.page_url + '/sys' + self.data['server_workspace'] +\
+            '/en/ellucianux/cases/main'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -235,7 +237,8 @@ class DesignerPage(BasePage):
     def __init__(self, driver, data):
         ''' Instantiate DesignerPage class. '''
         super(DesignerPage, self).__init__(driver, data)
-        self.page_url = self.data['server_url'] + '/processes'
+        self.page_url = self.data['server_url'] + '/sys' + self.data['server_workspace'] +\
+            '/en/ellucianux/processes/main'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
