@@ -14,7 +14,8 @@ class LoginPageLocators(object):
     """ Class for Login Page locators. All Login page locators here. """
     USERNAME = (By.ID, 'form[USR_USERNAME]')
     PASSWORD = (By.ID, 'form[USR_PASSWORD_MASK]')
-    SUBMIT_BUTTON = (By.ID, 'form[USER_ENV]')
+    WORKSPACE = (By.ID, 'form[USER_ENV]')
+    SUBMIT_BUTTON = (By.ID, 'form[BSUBMIT]')
 
 class HomePageLocators(object):
     """ Class for Designer Page locators. All Designer page locators here. """
