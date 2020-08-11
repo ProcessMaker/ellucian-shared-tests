@@ -121,14 +121,14 @@ class UsernameFieldElement(BasePageElement):
     """ Class to get username field using specified locator. """
 
     # Locator for search box where string is entered
-    locator = (*LoginPageLocators.USERNAME)
+    locator = (*LoginPageLocators.USERNAME)[1]
 
 
 class PasswordFieldElement(BasePageElement):
     """ Class to get password field using specified locator. """
 
     # Locator for search box where string is entered
-    locator = (*LoginPageLocators.PASSWORD)
+    locator = (*LoginPageLocators.PASSWORD)[1]
 
 class WorkspaceFieldElement(BasePageElement):
     """ Class to get workspace field using specified locator. """
