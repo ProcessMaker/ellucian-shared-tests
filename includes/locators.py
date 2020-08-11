@@ -37,4 +37,4 @@ class KPIsPageLocators(object):
 class AdminPageLocators(object):
     """ Class for Admin Page locators. All Admin page locators here. """
     ADMIN_IFRAME = (By.ID, 'adminFrame')
-    ADMIN_SUB_FRAME = (By.ID, 'setup-frame')
+    ADMIN_SUB_IFRAME = (By.ID, 'setup-frame')
