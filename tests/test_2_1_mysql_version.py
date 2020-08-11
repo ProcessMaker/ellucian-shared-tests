@@ -32,7 +32,7 @@ class TestRDSVersions(BaseTest):
         # Assert MySQL version
         try:
             self.assertTrue(expected_versions['mysql'] in mysql)
-            self.log.append('Correct MySQL version: ' + '<html><br />' + expected_versions['mysql'] + '</html>')
+            self.log.append('Correct MySQL version: ' + '<br />' + expected_versions['mysql'])
         except:
             self.log.append('Incorrect MySQL version: ' + mysql + ', Expected: ' + expected_versions['mysql'])
             self.fail()
