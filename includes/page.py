@@ -161,7 +161,7 @@ class LoginPage(BasePageShell):
         self.username_field_element = self.data['username']
         self.password_field_element = self.data['password']
         self.workspace_field_element = self.data['server_workspace']
-        submit_button_element = self.driver.find_element(*LoginPageLocators.SUBMIT_BUTTON)
+        submit_button_element = self.wait.until(visible(LoginPageLocators.SUBMIT_BUTTON))
         submit_button_element.click()
 
         return util.timezone_check(self.driver, self.wait)
