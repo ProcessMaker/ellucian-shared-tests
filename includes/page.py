@@ -268,7 +268,7 @@ class DesignerPage(BasePage):
         self.driver.log.append('Waiting for Designer page to load')
         try:
             self.driver.find_element(*BasePageLocators.ADMIN_LINK)
-            self.driver.find_element(*DesignerPageLocators.MAIN_IFRAME)
+            self.driver.find_element(*DesignerPageLocators.NEW_BUTTON)
             self.driver.log.append('Designer page loaded successfully')
             return True
         except:
