@@ -6,7 +6,6 @@ if getenv("ENVIRONMENT") == 'local':
     path.append('../includes')
     from __init__ import data
 
-import unittest
 from test_parent import BaseTest
 from util import run_test
 from page import *
