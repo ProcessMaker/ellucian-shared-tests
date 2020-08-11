@@ -3,6 +3,8 @@
 from element import *
 from locators import *
 import util
+from selenium.webdriver.support.expected_conditions import visibility_of_element_located as visible
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -42,6 +44,7 @@ class BasePageShell(object):
         self.driver = driver
         self.data = data
         self.page_url = self.data['server_url']
+        self.wait = WebDriverWait(self.driver, 30)
 
     def go_to_page(self):
         ''' Navigates to page_url:
@@ -191,18 +194,6 @@ class HomePage(BasePage):
         self.page_url = self.page_url + '/sys' + self.data['server_workspace'] +\
             '/en/ellucianux/cases/main'
 
-    def is_loaded(self):
-        ''' Verify Home Page loads after login. '''
-        self.driver.log.append('Waiting for Home page to load')
-        try:
-            self.driver.find_element(*BasePageLocators.ADMIN_LINK)
-            self.driver.find_element(*BasePageLocators.CASES_IFRAME)
-            self.driver.log.append('Home page loaded successfully')
-            return True
-        except:
-            self.driver.log.append('Home page failed to load')
-            return False
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
     Admin Page
@@ -267,10 +258,10 @@ class DesignerPage(BasePage):
         ''' Verify Designer Page loads after login. '''
         self.driver.log.append('Waiting for Designer page to load')
         try:
-            self.driver.find_element(*BasePageLocators.ADMIN_LINK)
+            self.wait.until(visible(BasePageLocators.ADMIN_LINK))
             self.driver.log.append('Admin Link loaded')
-            self.driver.find_element(*DesignerPageLocators.NEW_BUTTON)
-            self.driver.log.append('New Project button loaded')
+            self.wait.until(visible(DesignerPageLocators.MAIN_IFRAME))
+            self.driver.log.append('Main iframe loaded')
             self.driver.log.append('Designer page loaded successfully')
             return True
         except:
