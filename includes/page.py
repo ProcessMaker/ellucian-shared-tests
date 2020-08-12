@@ -264,8 +264,9 @@ class AdminPage(BasePage):
         self.driver.log.append('Switching to iframe')
         self.driver.switch_to.frame(self.wait.until(visible(AdminPageLocators.ADMIN_IFRAME)))
 
-        self.driver.log.append('Waiting for Oauth app table')
+        self.driver.log.append('Selecting first Oauth app table row')
         self.applications_table = self.wait.until(visible(AdminPageLocators.OAUTH_APP_TABLE))
+        self.applications_table.click()
 
         self.driver.log.append('Clicking on Oauth app detail button')
         self.app_detail_button = self.wait.until(visible(AdminPageLocators.OAUTH_APP_DETAIL_BUTTON))
