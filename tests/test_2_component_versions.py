@@ -12,13 +12,14 @@ class TestComponentVersions(BaseTest):
     ''' Class to navigate to Admin / System Info page. '''
 
     def setUp(self):
-        ''' Setup class. '''
+        ''' Run before each test method. '''
         login_page = LoginPage(self.driver, data)
         login_page.go_to_page()
         login_page.login()
         self.assertionFailures = []
 
     def tearDown(self):
+        ''' Run after each test method. '''
         self.assertEqual([], self.assertionFailures)
 
     def test_component_version(self):
