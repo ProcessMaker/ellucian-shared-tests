@@ -39,11 +39,11 @@ class TestComponentVersions(BaseTest):
         try:
             # Assert PM3 version
             self.assertTrue(expected_versions['pm3'] in pm3)
-            self.driver.log[-1] += 'Correct ProcessMaker version: ' + pm3 +\
-                ' ---------- '
+            self.driver.log.append('Correct ProcessMaker version: ' + pm3 +\
+                ' ---------- ')
         except AssertionError as e:
-            self.driver.log[-1] += 'Incorrect ProcessMaker version: ' + pm3 +\
-                ', Expected: ' + expected_versions['pm3'] + ' ---------- '
+            self.driver.log.append('Incorrect ProcessMaker version: ' + pm3 +\
+                ', Expected: ' + expected_versions['pm3'] + ' ---------- ')
             self.assertionFailures.append(str(e))
 
         try:
