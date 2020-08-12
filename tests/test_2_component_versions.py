@@ -6,7 +6,6 @@ import re
 from test_parent import BaseTest
 from util import run_test, read_from_json_file
 from page import *
-from admin_page import AdminPage
 
 
 class TestComponentVersions(BaseTest):
