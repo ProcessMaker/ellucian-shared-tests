@@ -256,6 +256,25 @@ class AdminPage(BasePage):
 
         return (self.process_information_table, self.system_information_table)
 
+    def get_oauth_credentials(self):
+        ''' Get oauth client id and client secret. '''
+        self.driver.log.append('Navigating to Oauth Applications page')
+        self.go_to_page(self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/neoclassic/oauth2/applications')
+
+        self.driver.log.append('Switching to iframe')
+        self.driver.switch_to.frame(self.wait.until(visible(AdminPageLocators.ADMIN_IFRAME)))
+
+        self.driver.log.append('Waiting for Oauth app table')
+        self.applications_table = self.wait.until(visible(AdminPageLocators.OAUTH_APP_TABLE))
+
+        self.driver.log.append('Clicking on Oauth app detail button')
+        self.app_detail_button = self.wait.until(visible(AdminPageLocators.OAUTH_APP_DETAIL_BUTTON))
+        self.app_detail_button.click()
+
+        self.driver.log.append('Viewing Oauth app detail')
+        self.oauth_detail_window = self.wait.until(visible(AdminPageLocators.OAUTH_APP_DETAIL_WINDOW)).text
+
+        return self.oauth_detail_window
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
