@@ -163,11 +163,13 @@ class LoginPage(BasePageShell):
         ''' Function to log user in to workspace.
         '''
         # Login
+        self.driver.log.append('Sending credentials')
         self.username_field_element = self.data['username']
         self.password_field_element = self.data['password']
         self.workspace_field_element = self.data['server_workspace']
         submit_button_element = self.wait.until(visible(LoginPageLocators.SUBMIT_BUTTON))
         submit_button_element.click()
+        self.driver.log.append('Credentials submitted')
 
         return util.timezone_check(self.driver, self.wait)
 
