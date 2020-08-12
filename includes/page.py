@@ -225,7 +225,7 @@ class AdminPage(BasePage):
         super(AdminPage, self).__init__(driver, data)
         self.page_url = self.page_url + '/sys' + self.data['server_workspace'] +\
             '/en/ellucianux/setup/main'
-        self.driver.switch_to.frame(self.wait.until(visible(AdminPageLocators.ADMIN_IFRAME)))
+        self.wait.until(frame_to_be_available_and_switch_to_it(AdminPageLocators.ADMIN_IFRAME))
 
     def get_case_list_cache_builder(self):
         ''' Get text in Case List Cache Builder. '''
