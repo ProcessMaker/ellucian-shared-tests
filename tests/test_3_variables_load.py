@@ -7,7 +7,7 @@ import unittest
 from test_parent import BaseTest
 from util import run_test
 from api_requests import parse_response
-from login_page import LoginPage
+from page import *
 from oauth_page import OauthPage
 
 
