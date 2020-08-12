@@ -12,10 +12,18 @@ from admin_page import AdminPage
 class TestComponentVersions(BaseTest):
     ''' Class to navigate to Admin / System Info page. '''
 
+    def setUp(self):
+        ''' Setup class. '''
+        login_page = LoginPage(self.driver, data)
+        login_page.go_to_page()
+        login_page.login()
+        self.assertionFailures = []
+
+    def tearDown(self):
+        self.assertEqual([], self.assertionFailures)
+
     def test_component_version(self):
         ''' Test that versions are correct. '''
-
-        self.driver = LoginPage(self.driver, self.data).login()
 
         process_info, system_info = AdminPage(self.driver, self.data).get_system_information()
 
@@ -27,39 +35,34 @@ class TestComponentVersions(BaseTest):
         expected_versions = read_from_json_file(data['repository_path'],
                                                 '/includes/expected_values.json', 'System Information')
 
-        fail_flag = 0
         # Verify versions match expected
-        self.driver.log.append('Versions: ')
         try:
             # Assert PM3 version
             self.assertTrue(expected_versions['pm3'] in pm3)
             self.driver.log[-1] += 'Correct ProcessMaker version: ' + pm3 +\
                 ' ---------- '
-        except:
+        except AssertionError as e:
             self.driver.log[-1] += 'Incorrect ProcessMaker version: ' + pm3 +\
                 ', Expected: ' + expected_versions['pm3'] + ' ---------- '
-            fail_flag = 1
+            self.assertionFailures.append(str(e))
 
         try:
             # Assert Nginx version
             self.assertTrue(expected_versions['nginx'] in nginx)
             self.driver.log[-1] += 'Correct Nginx version: ' + nginx + ' ---------- '
-        except:
+        except AssertionError as e:
             self.driver.log[-1] += 'Incorrect Nginx version: ' + nginx + ', Expected: ' +\
                 expected_versions['nginx'] + ' ---------- '
-            fail_flag = 1
+            self.assertionFailures.append(str(e))
 
         try:
             # Assert PHP version
             self.assertTrue(expected_versions['php'] in php)
             self.driver.log[-1] += 'Correct PHP version: ' + php
-        except:
+        except AssertionError as e:
             self.driver.log[-1] += 'Incorrect PHP version: ' + php + ', Expected: ' +\
                 expected_versions['php']
-            fail_flag = 1
-
-        if fail_flag == 1:
-            self.fail()
+            self.assertionFailures.append(str(e))
 
 
 if __name__ == "__main__":
