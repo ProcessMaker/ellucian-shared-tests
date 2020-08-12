@@ -274,8 +274,6 @@ class DesignerPage(BasePage):
         try:
             self.wait.until(visible(BasePageLocators.ADMIN_LINK))
             self.driver.log.append('Admin Link loaded')
-            self.wait.until(visible(DesignerPageLocators.MAIN_IFRAME))
-            self.driver.log.append('Main iframe loaded')
             self.driver.log.append('Designer page loaded successfully')
             return True
         except:
