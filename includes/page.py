@@ -273,10 +273,7 @@ class AdminPage(BasePage):
         self.app_detail_button.click()
 
         self.driver.log.append('Viewing Oauth app detail')
-        self.oauth_detail_window = self.wait.until(visible(AdminPageLocators.OAUTH_APP_DETAIL_WINDOW))
-
-        self.driver.log.append('Getting client credentials')
-        self.oauth_credentials = self.oauth_detail_window.text
+        self.oauth_credentials = self.wait.until(visible(AdminPageLocators.OAUTH_APP_DETAIL_WINDOW)).text
 
         return self.oauth_credentials
 
