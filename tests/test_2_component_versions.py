@@ -43,18 +43,18 @@ class TestComponentVersions(BaseTest):
         try:
             # Assert Nginx version
             self.assertTrue(expected_versions['nginx'] in nginx)
-            self.driver.log[-1] += '; Correct Nginx version: ' + nginx + ' ---------- '
+            self.driver.log[-1] += 'Correct Nginx version: ' + nginx + ' ---------- '
         except:
-            self.driver.log[-1] += '; Incorrect Nginx version: ' + nginx + ', Expected: ' +\
+            self.driver.log[-1] += 'Incorrect Nginx version: ' + nginx + ', Expected: ' +\
                 expected_versions['nginx'] + ' ---------- '
             fail_flag = 1
 
         try:
             # Assert PHP version
             self.assertTrue(expected_versions['php'] in php)
-            self.driver.log[-1] += '; Correct PHP version: ' + php
+            self.driver.log[-1] += 'Correct PHP version: ' + php
         except:
-            self.driver.log[-1] += '; Incorrect PHP version: ' + php + ', Expected: ' +\
+            self.driver.log[-1] += 'Incorrect PHP version: ' + php + ', Expected: ' +\
                 expected_versions['php']
             fail_flag = 1
 
