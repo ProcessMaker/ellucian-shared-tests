@@ -41,3 +41,5 @@ class AdminPageLocators(object):
 
     """ Locators for iframes loaded through direct links """
     WORKFLOW_APPLICATIONS_CACHE_INFO = (By.ID, 'ext-gen20')
+    PROCESS_INFO_TABLE = (By.ID, 'ext-gen13-gp-section-Process Information-bd')
+    SYSTEM_INFO_TABLE = (By.ID, 'ext-gen13-gp-section-System information-bd')
