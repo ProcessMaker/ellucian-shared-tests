@@ -4,6 +4,7 @@ from element import *
 from locators import *
 import util
 from selenium.webdriver.support.expected_conditions import visibility_of_element_located as visible
+from selenium.webdriver.support.expected_conditions import frame_to_be_available_and_switch_to_it
 from selenium.webdriver.support.ui import WebDriverWait
 
 
