@@ -18,12 +18,12 @@ class TestRDSVersions(BaseTest):
 
     def setUp(self):
         ''' Setup class. '''
-        pass
+        login_page = LoginPage(self.driver, data)
+        login_page.go_to_page()
+        login_page.login()
 
     def test_component_version(self):
         ''' Test that MySQL version is correct. '''
-        login_page = LoginPage(self.driver, data)
-        login_page.login()
 
         html = AdminPage(self.driver, self.data).get_case_list_cache_builder()
         if html:
