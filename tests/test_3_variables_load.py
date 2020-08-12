@@ -47,7 +47,12 @@ class TestVariablesLoad(BaseTest):
 
         # Verify variables list can be parsed as JSON
         response, self.driver = parse_response(self.driver, auth)
-        self.assertTrue(response)
+        try:
+            self.assertTrue(response)
+            self.driver.log.append('Valid JSON response')
+        except AssertionError as e:
+            self.driver.log.append('Corrupted JSON. Variable list will not load')
+            self.assertionFailures.append(str(e))
 
 
 if __name__ == "__main__":
