@@ -6,6 +6,7 @@ import util
 from selenium.webdriver.support.expected_conditions import visibility_of_element_located as visible
 from selenium.webdriver.support.expected_conditions import frame_to_be_available_and_switch_to_it
 from selenium.webdriver.support.ui import WebDriverWait
+from time import sleep
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -233,10 +234,25 @@ class AdminPage(BasePage):
         self.driver.log.append('Navigate to Case List Cache Builder panel')
         self.go_to_page(self.data['server_url'] + '/sys' + self.data['server_workspace'] +\
             '/en/ellucianux/setup/appCacheViewConf')
-        from time import sleep
+
+        # Wait for page elements to load
         sleep(2)
+
         self.driver.log.append('Grab Case List Cache Builder text')
         return self.wait.until(visible(AdminPageLocators.WORKFLOW_APPLICATIONS_CACHE_INFO)).text
+
+    def get_system_information(self):
+        ''' Get text in System Information.'''
+        self.driver.log.append('Navigate to System Information panel')
+        self.go_to_page(self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/ellucianux/setup/systemInfo?option=processInfo')
+
+        # Wait for page elements to load
+        sleep(2)
+
+        self.process_information_table = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information-bd'))).text
+        self.system_information_table = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-System information-bd'))).text
+
+        return (self.process_information_table, self.system_information_table)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
