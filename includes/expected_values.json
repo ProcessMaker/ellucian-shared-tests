@@ -1,7 +1,7 @@
 [
     {
       "RDS": {
-        "mysql": "5.7"
+        "mysql": "5.6"
       },
       "System Information": {
         "php": "7.3.17",
@@ -23,7 +23,7 @@
         "Power Up": "3.1.4",
         "ProcessDocumenter": "1.1.2",
         "Reports": "3.5.2",
-        "Service Level Agreement": "3.0.2"  
+        "Service Level Agreement": "3.0.2"
       },
       "Languages": [
         "en",
