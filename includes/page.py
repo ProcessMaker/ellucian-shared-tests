@@ -46,12 +46,15 @@ class BasePageShell(object):
         self.page_url = self.data['server_url']
         self.wait = WebDriverWait(self.driver, 30)
 
-    def go_to_page(self):
+    def go_to_page(self, url=''):
         ''' Navigates to page_url:
                 provided through config task on Trogdor server
                 or through data defined in local __init__ file.
         '''
-        self.driver.get(self.page_url)
+        if url:
+            self.driver.get(url)
+        else:
+            self.driver.get(self.page_url)
 
 
 class BasePage(BasePageShell):
@@ -223,6 +226,16 @@ class AdminPage(BasePage):
         self.page_url = self.page_url + '/sys' + self.data['server_workspace'] +\
             '/en/ellucianux/setup/main'
         self.driver.switch_to.frame(*AdminPageLocators.ADMIN_IFRAME)
+
+    def get_case_list_cache_builder(self):
+        ''' Get text in Case List Cache Builder. '''
+        self.driver.log.append('Navigate to Case List Cache Builder panel')
+        self.go_to_page(self.data['server_url'] + '/sys' + self.data['server_workspace'] +\
+            '/en/ellucianux/setup/appCacheViewConf')
+        from time import sleep
+        sleep(2)
+        self.driver.log.append('Grab Case List Cache Builder text')
+        return self.wait.until(visible(AdminPageLocators.WORKFLOW_APPLICATIONS_CACHE_INFO)).text
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
