@@ -6,7 +6,7 @@ from util import run_test, read_from_json_file
 import re
 import json
 from login_page import LoginPage
-from processes_page import ProcessesPage
+from page import *
 
 
 class TestLanguageSpotCheck(BaseTest):
