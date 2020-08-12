@@ -8,7 +8,6 @@ from test_parent import BaseTest
 from util import run_test
 from api_requests import parse_response
 from page import *
-from oauth_page import OauthPage
 
 
 class TestVariablesLoad(BaseTest):
@@ -29,10 +28,10 @@ class TestVariablesLoad(BaseTest):
     def test_variables_load(self):
         ''' Test that variables are in a JSON-parsable format. '''
 
-        oauth_detail = OauthPage(self.driver, self.data).get_oauth_detail()
+        oauth_creds = AdminPage(self.driver, self.data).get_oauth_credentials()
 
-        client_id = re.search(r'(?<=ID:\s)\w+', oauth_detail).group(0)
-        client_secret = re.search(r'(?<=Secret:\s)\w+', oauth_detail).group(0)
+        client_id = re.search(r'(?<=ID:\s)\w+', oauth_creds).group(0)
+        client_secret = re.search(r'(?<=Secret:\s)\w+', oauth_creds).group(0)
 
         self.driver.api = {
             'url': data['server_url'],
