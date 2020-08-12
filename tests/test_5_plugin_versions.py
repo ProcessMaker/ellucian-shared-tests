@@ -15,9 +15,11 @@ class TestPluginVersions(BaseTest):
     ''' Class to navigate to Admin / Plugins Manager page. '''
 
     def setUp(self):
+        ''' Run before each test method. '''
         self.assertionFailures = []
 
     def tearDown(self):
+        ''' Run after each test method. '''
         self.assertEqual([], self.assertionFailures)
 
     def test_plugin_versions(self):
