@@ -17,10 +17,15 @@ class TestRDSVersions(BaseTest):
     ''' Class to navigate to Admin / Case List Cache Builder page. '''
 
     def setUp(self):
-        ''' Setup class. '''
+        ''' Run before each test method. '''
         login_page = LoginPage(self.driver, data)
         login_page.go_to_page()
         login_page.login()
+        self.assertionFailures = []
+
+    def tearDown(self):
+        ''' Run after each test method. '''
+        self.assertEqual([], self.assertionFailures)
 
     def test_component_version(self):
         ''' Test that MySQL version is correct. '''
@@ -38,9 +43,9 @@ class TestRDSVersions(BaseTest):
         try:
             self.assertTrue(expected_versions['mysql'] in mysql)
             self.log.append('Correct MySQL version: ' + mysql)
-        except:
+        except AssertionError as e:
             self.log.append('Incorrect MySQL version: ' + mysql + ', Expected: ' + expected_versions['mysql'])
-            self.fail()
+            self.assertionFailures.append(str(e))
 
 
 if __name__ == "__main__":
