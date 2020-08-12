@@ -16,6 +16,9 @@ class TestPluginVersions(BaseTest):
 
     def setUp(self):
         ''' Run before each test method. '''
+        login_page = LoginPage(self.driver, data)
+        login_page.go_to_page()
+        login_page.login()
         self.assertionFailures = []
 
     def tearDown(self):
@@ -24,8 +27,6 @@ class TestPluginVersions(BaseTest):
 
     def test_plugin_versions(self):
         ''' Test that versions are correct. '''
-
-        self.driver = LoginPage(self.driver, self.data).login()
 
         # Retrieve Custom Plugins dictionary from expected_values.json
         custom_plugins = read_from_json_file(self.data['repository_path'],
