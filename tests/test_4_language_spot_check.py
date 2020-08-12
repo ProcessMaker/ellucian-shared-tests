@@ -12,11 +12,22 @@ from processes_page import ProcessesPage
 class TestLanguageSpotCheck(BaseTest):
     ''' Class to run test that checks for untranslated values. '''
 
+    def setUp(self):
+        ''' Run before each test method. '''
+        login_page = LoginPage(self.driver, data)
+        login_page.go_to_page()
+        login_page.login()
+        self.assertionFailures = []
+
+    def tearDown(self):
+        ''' Run after each test method. '''
+        self.assertEqual([], self.assertionFailures)
+
     def test_language_spot_check(self):
         ''' Test that there are no visible labels. '''
 
         self.driver = LoginPage(self.driver, self.data).login()
-        
+
         ProcessesPage(self.driver, self.data).is_loaded()
 
         languages = read_from_json_file(data['repository_path'],
@@ -25,9 +36,9 @@ class TestLanguageSpotCheck(BaseTest):
         # Get current URL and re-get URL with different language
         for i in range(1, len(languages)):
             url = re.sub('/' + languages[i - 1] + '/', '/' + languages[i] + '/', self.driver.current_url)
-            
+
             self.driver.get(url)
-            
+
             ProcessesPage(self.driver, self.data).is_loaded()
 
             labels = re.search(r'\*\*(\w+)\*\*', self.driver.page_source)
