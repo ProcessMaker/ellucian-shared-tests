@@ -14,9 +14,11 @@ from page import *
 class TestLoginPage(BaseTest):
     ''' Class to run test that page loads after login. '''
     def setUp(self):
+        ''' Run before each test method. '''
         self.assertionFailures = []
 
     def tearDown(self):
+        ''' Run after each test method. '''
         self.assertEqual([], self.assertionFailures)
 
     def test_login(self):
