@@ -15,6 +15,17 @@ class TestVariablesLoad(BaseTest):
     ''' Class to navigate to /oauth2/applications page to get client_id and client_secret,
     then make API calls to PM3 REST API. '''
 
+    def setUp(self):
+        ''' Run before each test method. '''
+        login_page = LoginPage(self.driver, data)
+        login_page.go_to_page()
+        login_page.login()
+        self.assertionFailures = []
+
+    def tearDown(self):
+        ''' Run after each test method. '''
+        self.assertEqual([], self.assertionFailures)
+
     def test_variables_load(self):
         ''' Test that variables are in a JSON-parsable format. '''
 
