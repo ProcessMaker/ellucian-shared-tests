@@ -26,8 +26,6 @@ class TestLanguageSpotCheck(BaseTest):
     def test_language_spot_check(self):
         ''' Test that there are no visible labels. '''
 
-        self.driver = LoginPage(self.driver, self.data).login()
-
         ProcessesPage(self.driver, self.data).is_loaded()
 
         languages = read_from_json_file(data['repository_path'],
