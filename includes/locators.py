@@ -38,3 +38,6 @@ class AdminPageLocators(object):
     """ Class for Admin Page locators. All Admin page locators here. """
     ADMIN_IFRAME = (By.ID, 'adminFrame')
     ADMIN_SUB_IFRAME = (By.ID, 'setup-frame')
+
+    """ Locators for iframes loaded through direct links """
+    WORKFLOW_APPLICATIONS_CACHE_INFO = (By.ID, 'ext-gen20')
