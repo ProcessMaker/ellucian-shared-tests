@@ -29,8 +29,6 @@ class TestVariablesLoad(BaseTest):
     def test_variables_load(self):
         ''' Test that variables are in a JSON-parsable format. '''
 
-        self.driver = LoginPage(self.driver, self.data).login()
-
         oauth_detail = OauthPage(self.driver, self.data).get_oauth_detail()
 
         client_id = re.search(r'(?<=ID:\s)\w+', oauth_detail).group(0)
