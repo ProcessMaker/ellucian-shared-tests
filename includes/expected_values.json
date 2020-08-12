@@ -1,7 +1,7 @@
 [
     {
       "RDS": {
-        "mysql": "5.6"
+        "mysql": "5.7"
       },
       "System Information": {
         "php": "7.3.17",
