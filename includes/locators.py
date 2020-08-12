@@ -4,11 +4,11 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators(object):
     """ Class for Base Page locators. Navigation bar locators here. """
-    HOME_LINK = (By.LINK_TEXT, 'Home')
-    DESIGNER_LINK = (By.LINK_TEXT, 'Designer')
-    DASHBOARDS_LINK = (By.LINK_TEXT, 'Dashboards')
-    KPIS_LINK = (By.LINK_TEXT, 'KPIs')
-    ADMIN_LINK = (By.LINK_TEXT, 'Admin')
+    HOME_LINK = (By.ID, 'CASES')
+    DESIGNER_LINK = (By.ID, 'PROCESSES')
+    DASHBOARDS_LINK = (By.ID, 'DASHBOARD')
+    KPIS_LINK = (By.ID, 'DASHBOARD+')
+    ADMIN_LINK = (By.ID, 'SETUP')
 
 class LoginPageLocators(object):
     """ Class for Login Page locators. All Login page locators here. """
