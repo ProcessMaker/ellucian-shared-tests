@@ -31,9 +31,9 @@ class TestLoginPage(BaseTest):
         designer_page = DesignerPage(self.driver, data)
         try:
             self.assertTrue(designer_page.is_loaded())
-            self.log[-1] += ', Login succeeded'
+            self.log.append('Login succeeded')
         except AssertionError as e:
-            self.log[-1] += ', Login failed'
+            self.log.append('Login failed')
             self.assertionFailures.append(str(e))
 
 
