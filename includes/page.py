@@ -249,8 +249,8 @@ class AdminPage(BasePage):
         # Wait for page elements to load
         sleep(2)
 
-        self.process_information_table = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-Process Information-bd'))).text
-        self.system_information_table = self.wait.until(EC.visibility_of_element_located((By.ID, 'ext-gen13-gp-section-System information-bd'))).text
+        self.process_information_table = self.wait.until(visible(AdminPageLocators.PROCESS_INFO_TABLE)).text
+        self.system_information_table = self.wait.until(visible(AdminPageLocators.SYSTEM_INFO_TABLE)).text
 
         return (self.process_information_table, self.system_information_table)
 
