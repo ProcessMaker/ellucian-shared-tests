@@ -13,6 +13,11 @@ from page import *
 
 class TestLoginPage(BaseTest):
     ''' Class to run test that page loads after login. '''
+    def setUp(self):
+        self.assertionFailures = []
+
+    def tearDown(self):
+        self.assertEqual([], self.assertionFailures)
 
     def test_login(self):
         ''' Test that landing page loads. '''
@@ -24,7 +29,12 @@ class TestLoginPage(BaseTest):
 
         # Verify Designer page loads
         designer_page = DesignerPage(self.driver, data)
-        self.assertTrue(designer_page.is_loaded())
+        try:
+            self.assertTrue(designer_page.is_loaded())
+            self.log[-1] += ', Login succeeded'
+        except AssertionError as e:
+            self.log[-1] += ', Login failed'
+            self.assertionFailures.append(str(e))
 
 
 if __name__ == "__main__":
