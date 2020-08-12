@@ -46,10 +46,10 @@ class TestLanguageSpotCheck(BaseTest):
             # Assert that labels are not present on page
             try:
                 self.assertEqual(None, labels)
-                self.driver.log.append('Labels not found')
-            except:
-                self.driver.log.append('Labels found')
-                self.fail()
+                self.driver.log.append('Successfully translated')
+            except AssertionError as e:
+                self.driver.log.append('Unsuccessful translation - Labels found')
+                self.assertionFailures.append(str(e))
 
 
 if __name__ == "__main__":
