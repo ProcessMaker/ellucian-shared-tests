@@ -16,7 +16,7 @@ class TestComponentVersions(BaseTest):
         ''' Test that versions are correct. '''
 
         self.driver = LoginPage(self.driver, self.data).login()
-        
+
         process_info, system_info = AdminPage(self.driver, self.data).get_system_information()
 
         pm3 = re.search(r'(?<=ProcessMaker Ver.\s)([^\s]+)', process_info).group(0)
@@ -31,27 +31,31 @@ class TestComponentVersions(BaseTest):
         # Verify versions match expected
         self.driver.log.append('Versions: ')
         try:
-            # Assert PM3 version 
+            # Assert PM3 version
             self.assertTrue(expected_versions['pm3'] in pm3)
-            self.driver.log[-1] += 'Correct ProcessMaker'
+            self.driver.log[-1] += 'Correct ProcessMaker version: ' + pm3 +\
+                ' ---------- '
         except:
-            self.driver.log[-1] += 'Wrong ProcessMaker'
+            self.driver.log[-1] += 'Incorrect ProcessMaker version: ' + pm3 +\
+                ', Expected: ' + expected_versions['pm3'] + ' ---------- '
             fail_flag = 1
 
         try:
             # Assert Nginx version
             self.assertTrue(expected_versions['nginx'] in nginx)
-            self.driver.log[-1] += '; Correct Nginx'
+            self.driver.log[-1] += '; Correct Nginx version: ' + nginx + ' ---------- '
         except:
-            self.driver.log[-1] += '; Wrong Nginx'
+            self.driver.log[-1] += '; Incorrect Nginx version: ' + nginx + ', Expected: ' +\
+                expected_versions['nginx'] + ' ---------- '
             fail_flag = 1
 
         try:
             # Assert PHP version
             self.assertTrue(expected_versions['php'] in php)
-            self.driver.log[-1] += '; Correct PHP'
+            self.driver.log[-1] += '; Correct PHP version: ' + php
         except:
-            self.driver.log[-1] += '; Wrong PHP'
+            self.driver.log[-1] += '; Incorrect PHP version: ' + php + ', Expected: ' +\
+                expected_versions['php']
             fail_flag = 1
 
         if fail_flag == 1:
