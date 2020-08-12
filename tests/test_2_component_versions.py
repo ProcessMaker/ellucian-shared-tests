@@ -5,7 +5,7 @@ import json
 import re
 from test_parent import BaseTest
 from util import run_test, read_from_json_file
-from login_page import LoginPage
+from page import *
 from admin_page import AdminPage
 
 
