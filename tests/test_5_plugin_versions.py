@@ -40,12 +40,13 @@ class TestPluginVersions(BaseTest):
             for key in custom_plugins.keys():
                 if key in elem:
                     try:
+                        version = re.search(r'(?<=\)\s)([^\s]+)', elem).group(0)
                         self.assertTrue(custom_plugins[key] in elem)
-                        self.driver.log[-1] += 'Correct ' + key + ' version: ' + elem +\
+                        self.driver.log[-1] += 'Correct ' + key + ' version: ' + version +\
                             ' ---------- '
                     except AssertionError as e:
                         self.driver.log[-1] += 'Incorrect ' + key + ' version: ' +\
-                            elem + ', Expected: ' + custom_plugins[key] + ' ---------- '
+                            version + ', Expected: ' + custom_plugins[key] + ' ---------- '
                         self.assertionFailures.append(str(e))
 
                     del custom_plugins[key]
@@ -54,10 +55,10 @@ class TestPluginVersions(BaseTest):
         # Assert custom_plugins is empty (meaning every expected value was found)
         try:
             self.assertEqual(custom_plugins, {})
-            self.driver.log[-1] += ' ---------- ' + 'All found'
+            self.driver.log[-1] += 'All found'
         except AssertionError as e:
             not_found = ', '.join(custom_plugins)
-            self.driver.log[-1] += ' ---------- ' + 'Not found: ' + not_found
+            self.driver.log[-1] += 'Not found: ' + not_found
             self.assertionFailures.append(str(e))
 
 
