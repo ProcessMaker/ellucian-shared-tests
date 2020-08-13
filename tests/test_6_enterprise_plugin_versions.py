@@ -44,7 +44,7 @@ class TestEnterprisePluginVersions(BaseTest):
                             version + ', Expected: ' + enterprise_plugins[key] + ' ---------- '
                         self.assertionFailures.append(str(e))
 
-                    del custom_plugins[key]
+                    del enterprise_plugins[key]
                     break
 
         # Assert custom_plugins is empty (meaning every expected value was found)
