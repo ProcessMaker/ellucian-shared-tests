@@ -34,7 +34,7 @@ class TestLanguageSpotCheck(BaseTest):
         # Get current URL and re-get URL with different language
         for i in range(1, len(languages)):
             url = re.sub('/' + languages[i - 1] + '/', '/' + languages[i] + '/',
-                         landing_page.driver.current_url)
+                         self.driver.current_url)
 
             landing_page.go_to_page(url)
 
