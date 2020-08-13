@@ -34,6 +34,7 @@ class TestPluginVersions(BaseTest):
 
         # Verify all custom plugins are visible on page with correct version, and are enabled
         plugins = AdminPage(self.driver, self.data).get_plugins()
+        self.driver.log.append('')
 
         for elem in plugins:
             for key in custom_plugins.keys():
