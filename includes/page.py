@@ -256,6 +256,7 @@ class AdminPage(BasePage):
 
         return (self.process_information_table, self.system_information_table)
 
+
     def get_oauth_credentials(self):
         ''' Get oauth client id and client secret. '''
         self.driver.log.append('Navigating to Oauth Applications page')
@@ -265,7 +266,7 @@ class AdminPage(BasePage):
         self.driver.switch_to.frame(self.wait.until(visible(AdminPageLocators.ADMIN_IFRAME)))
 
         self.driver.log.append('Selecting first Oauth app table row')
-        self.applications_table = self.wait.until(visible(AdminPageLocators.OAUTH_APP_TABLE))
+        self.applications_table = self.wait.until(visible(AdminPageLocators.TABLE_ROW))
         self.applications_table.click()
 
         self.driver.log.append('Clicking on Oauth app detail button')

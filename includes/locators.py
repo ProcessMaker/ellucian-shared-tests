@@ -43,6 +43,6 @@ class AdminPageLocators(object):
     WORKFLOW_APPLICATIONS_CACHE_INFO = (By.ID, 'ext-gen20')
     PROCESS_INFO_TABLE = (By.ID, 'ext-gen13-gp-section-Process Information-bd')
     SYSTEM_INFO_TABLE = (By.ID, 'ext-gen13-gp-section-System information-bd')
-    OAUTH_APP_TABLE = (By.CLASS_NAME, 'x-grid3-row')
+    TABLE_ROW = (By.CLASS_NAME, 'x-grid3-row')
     OAUTH_APP_DETAIL_BUTTON = (By.ID, 'ext-gen42')
     OAUTH_APP_DETAIL_WINDOW = (By.ID, 'ext-comp-1010')
