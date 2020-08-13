@@ -309,7 +309,7 @@ class AdminPage(BasePage):
         while not oauth_credentials.text:
             oauth_credentials = self.wait.until(visible(AdminPageLocators.OAUTH_APP_DETAIL_WINDOW))
 
-        return oauth_credentials
+        return oauth_credentials.text
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
