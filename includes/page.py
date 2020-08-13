@@ -254,10 +254,19 @@ class AdminPage(BasePage):
         # Wait for page elements to load
         sleep(2)
 
-        self.process_information_table = self.wait.until(visible(AdminPageLocators.PROCESS_INFO_TABLE)).text
-        self.system_information_table = self.wait.until(visible(AdminPageLocators.SYSTEM_INFO_TABLE)).text
+        self.driver.log.append('Getting Process Information table')
+        process_information_table = self.wait.until(visible(AdminPageLocators.PROCESS_INFO_TABLE))
 
-        return (self.process_information_table, self.system_information_table)
+        while not process_information_table.text:
+            process_information_table = self.wait.until(visible(AdminPageLocators.PROCESS_INFO_TABLE))
+
+        system_information_table = self.wait.until(visible(AdminPageLocators.SYSTEM_INFO_TABLE))
+
+        self.driver.log.append('Getting System Information table')
+        while not system_information_table.text:
+            system_information_table = self.wait.until(visible(AdminPageLocators.SYSTEM_INFO_TABLE))
+
+        return (process_information_table.text, system_information_table.text)
 
     def get_custom_plugins(self):
         ''' Get list of plugins from /setup/pluginsMain. '''
@@ -274,6 +283,9 @@ class AdminPage(BasePage):
 
         self.wait.until(visible(AdminPageLocators.TABLE_ROW))
         self.elements = self.driver.find_elements(*AdminPageLocators.TABLE_ROW)
+
+        # Add in check: last element in list .text is not empty
+
         return [element.text for element in self.elements]
 
     def get_oauth_credentials(self):
@@ -293,9 +305,11 @@ class AdminPage(BasePage):
         self.app_detail_button.click()
 
         self.driver.log.append('Viewing Oauth app detail')
-        self.oauth_credentials = self.wait.until(visible(AdminPageLocators.OAUTH_APP_DETAIL_WINDOW)).text
+        oauth_credentials = self.wait.until(visible(AdminPageLocators.OAUTH_APP_DETAIL_WINDOW))
+        while not oauth_credentials.text:
+            oauth_credentials = self.wait.until(visible(AdminPageLocators.OAUTH_APP_DETAIL_WINDOW))
 
-        return self.oauth_credentials
+        return oauth_credentials
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
