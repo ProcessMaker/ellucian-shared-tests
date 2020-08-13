@@ -374,6 +374,29 @@ class DesignerPage(BasePage):
             self.driver.log.append('Designer page failed to load')
             return False
 
+    def new_project_has_two_options(self):
+        ''' Method to verify that New dropdown menu contains two elements. '''
+
+        self.driver.log.append('Navigating to Designer page')
+        self.go_to_page(self.page_url)
+
+        self.driver.log.append('Clicking New Project button')
+        self.driver.switch_to.frame(self.wait.until(visible(DesignerPageLocators.MAIN_IFRAME)))
+        new_button = self.wait.until(visible(DesignerPage.NEW_PROJECT_BUTTON))
+        new_button.click()
+
+        self.driver.log.append('Checking dropdown list for two options')
+        dropdown_elements = self.wait.until(visible(DesignerPageLocators.NEW_DROPDOWN_LIST))
+
+        # Wait for page to load
+        sleep(2)
+
+        if len(dropdown_elements) == 2:
+            self.driver.log.append('Two new project options found')
+            return True
+        self.driver.log.append('Incorrect number of new project options')
+        return False
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
     Classes:
