@@ -241,7 +241,9 @@ class AdminPage(BasePage):
         sleep(2)
 
         self.driver.log.append('Grab Case List Cache Builder text')
-        return self.wait.until(visible(AdminPageLocators.WORKFLOW_APPLICATIONS_CACHE_INFO)).text
+        while not workflow_applications_cache_info:
+            workflow_applications_cache_info = self.wait.until(visible(AdminPageLocators.WORKFLOW_APPLICATIONS_CACHE_INFO))
+        return workflow_applications_cache_info.text
 
     def get_system_information(self):
         ''' Get text in System Information.'''
