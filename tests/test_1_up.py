@@ -26,10 +26,6 @@ class TestLoginPage(BaseTest):
 
         # Navigate to login page and log in
         login_page = LoginPage(self.driver, data)
-        try:
-            self.assertTrue(login_page.go_to_page())
-        except AssertionError as e:
-            self.assertionFailures.append(str(e))
         login_page.login()
 
         # Verify Designer page loads
