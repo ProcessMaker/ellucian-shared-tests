@@ -389,7 +389,7 @@ class DesignerPage(BasePage):
         sleep(2)
 
         self.driver.log.append('Checking dropdown list for two options')
-        dropdown_elements = self.wait.until(visible(DesignerPageLocators.NEW_DROPDOWN_LIST))
+        dropdown_elements = self.driver.find_elements(*DesignerPageLocators.NEW_DROPDOWN_LIST)
 
         if len(dropdown_elements) == 2:
             self.driver.log.append('Two new project options found')
