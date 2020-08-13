@@ -256,6 +256,22 @@ class AdminPage(BasePage):
 
         return (self.process_information_table, self.system_information_table)
 
+    def get_custom_plugins(self):
+        ''' Get list of plugins from /setup/pluginsMain. '''
+        self.driver.log.append('Navigating to Custom Plugins page')
+        self.go_to_page(self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/ellucianux/setup/pluginsMain')
+
+        # Wait for page elements to load
+        sleep(2)
+
+
+        # Add in while loop to wait for all plugins
+        # Get number of plugins from expected_values.json
+
+
+        self.wait.until(visible(AdminPageLocators.TABLE_ROW))
+        self.elements = self.driver.find_elements(*AdminPageLocators.TABLE_ROW))
+        return [element.text for element in self.elements]
 
     def get_oauth_credentials(self):
         ''' Get oauth client id and client secret. '''
