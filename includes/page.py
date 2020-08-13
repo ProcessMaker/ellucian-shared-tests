@@ -3,6 +3,7 @@
 from element import *
 from locators import *
 import util
+import api_requests
 from selenium.webdriver.support.expected_conditions import visibility_of_element_located as visible
 from selenium.webdriver.support.expected_conditions import frame_to_be_available_and_switch_to_it
 from selenium.webdriver.support.ui import WebDriverWait
@@ -53,10 +54,16 @@ class BasePageShell(object):
                 provided through config task on Trogdor server
                 or through data defined in local __init__ file.
         '''
-        if url:
+
+        server_response = api_requests.get_response_code(data)
+        self.driver.log.append(server_response)
+        if '50' in server_response or '40' in server_response:
+            return False
+        elif url:
             self.driver.get(url)
         else:
             self.driver.get(self.page_url)
+        return True
 
 
 class BasePage(BasePageShell):
