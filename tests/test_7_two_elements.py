@@ -47,7 +47,12 @@ class TestDesignerNewDropDown(BaseTest):
     def test_designer_new_project_dropdown(self):
         ''' Verify two elements in dropdown. '''
 
-        self.assertTrue(DesignerPage(self.driver, data).new_project_has_two_elements())
+        new_process_page = DesignerPage(self.driver, data)
+
+        try:
+            self.assertTrue(new_process_page.new_project_has_two_options())
+        except AssertionError as e:
+            self.assertionFailures.append(str(e))
 
 
 if __name__ == "__main__":
