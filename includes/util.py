@@ -69,7 +69,7 @@ def parse_results(buffer):
     #    return 'ERROR'
 
 
-def timezone_check(driver, wait):
+def timezone_check(driver):
     ''' Function to check for time zone config page and bypass it.
     '''
     try:
@@ -83,21 +83,21 @@ def timezone_check(driver, wait):
     except:
         pass
 
+    wait = WebDriverWait(driver, 30)
 
     # Wait for page to load
     wait.until(EC.visibility_of_element_located((By.ID, 'pm_main_table')))
     driver.log.append('Login succeeded')
-    driver.log.append('Checking for timezone checkpoint')
+    driver.log.append('Checking for timezone reset')
 
     try:
         driver.find_element_by_id('form[BROWSER_TIME_ZONE]')
         driver.find_element_by_id('form[BTNOK]').click()
+        driver.log.append('Reset timezone')
     except selenium.common.exceptions.NoSuchElementException:
-        pass
+        driver.log.append('Timezone not reset')
 
-    driver.log.append('Timezone checkpoint passed')
-
-    return driver
+    return True
 
 def read_from_json_file(repository_path, filename, key=''):
     ''' Function to open JSON file, read, and deserialize.
