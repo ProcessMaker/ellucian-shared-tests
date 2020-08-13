@@ -45,7 +45,7 @@ class BasePageShell(object):
         '''
         self.driver = driver
         self.data = data
-        self.page_url = self.data['server_url']
+        self.page_url = self.data['server_url'].rstrip("/")
         self.wait = WebDriverWait(self.driver, 30)
 
     def go_to_page(self, url=''):
