@@ -24,13 +24,10 @@ if getenv("ENVIRONMENT") == "local":
     from sys import path
     path.append('../includes')
     from __init__ import data
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
+
 from test_parent import BaseTest
 from util import run_test
-from login_page import LoginPage
-from designer_page import DesignerPage
+from page import *
 
 
 class TestDesignerNewDropDown(BaseTest):
