@@ -270,7 +270,7 @@ class AdminPage(BasePage):
 
 
         self.wait.until(visible(AdminPageLocators.TABLE_ROW))
-        self.elements = self.driver.find_elements(*AdminPageLocators.TABLE_ROW))
+        self.elements = self.driver.find_elements(*AdminPageLocators.TABLE_ROW)
         return [element.text for element in self.elements]
 
     def get_oauth_credentials(self):
