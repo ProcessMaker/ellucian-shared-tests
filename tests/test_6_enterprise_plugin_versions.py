@@ -27,25 +27,27 @@ class TestEnterprisePluginVersions(BaseTest):
         # Retrieve Custom Plugins dictionary from expected_values.json
         enterprise_plugins = read_from_json_file(self.data['repository_path'],
                                              '/includes/expected_values.json', 'Enterprise Plugins')
-
         # Verify all custom plugins are visible on page with correct version, and are enabled
         plugins = AdminPage(self.driver, self.data).get_enterprise_plugins()
+        self.driver.log.append('')
 
-        self.driver.log.append('Enterprise Plugin versions: ')
         for elem in plugins:
             for key in enterprise_plugins.keys():
                 if key in elem:
                     try:
+                        version = re.search(r'(?<=\)\s)([^\s]+)', elem).group(0)
                         self.assertTrue(enterprise_plugins[key] in elem)
-                        self.driver.log[-1] += 'Correct ' + key + ', '
+                        self.driver.log[-1] += 'Correct ' + key + ' version: ' + version +\
+                            ' ---------- '
                     except AssertionError as e:
-                        self.driver.log[-1] += 'Wrong ' + key + ' version, '
+                        self.driver.log[-1] += 'Incorrect ' + key + ' version: ' +\
+                            version + ', Expected: ' + enterprise_plugins[key] + ' ---------- '
                         self.assertionFailures.append(str(e))
 
-                    del enterprise_plugins[key]
+                    del custom_plugins[key]
                     break
 
-        # Assert enterprise_plugins is empty (meaning every expected value was found)
+        # Assert custom_plugins is empty (meaning every expected value was found)
         try:
             self.assertEqual(enterprise_plugins, {})
             self.driver.log[-1] += 'All found'
