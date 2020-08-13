@@ -2,13 +2,9 @@
 
 import unittest
 import json
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from test_parent import BaseTest
 from util import run_test, read_from_json_file
-from login_page import LoginPage
-from admin_page import AdminPage
+from page import *
 
 
 class TestEnterprisePluginVersions(BaseTest):
@@ -44,8 +40,8 @@ class TestEnterprisePluginVersions(BaseTest):
                         self.assertionFailures.append(str(e))
 
                     del enterprise_plugins[key]
-                    break 
-        
+                    break
+
         # Assert enterprise_plugins is empty (meaning every expected value was found)
         try:
             self.assertEqual(enterprise_plugins, {})
