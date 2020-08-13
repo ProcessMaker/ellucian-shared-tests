@@ -97,8 +97,6 @@ def timezone_check(driver):
     except selenium.common.exceptions.NoSuchElementException:
         driver.log.append('Timezone not reset')
 
-    return True
-
 def read_from_json_file(repository_path, filename, key=''):
     ''' Function to open JSON file, read, and deserialize.
     Return the entire dictionary or specific key.
