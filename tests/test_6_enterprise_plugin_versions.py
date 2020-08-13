@@ -35,7 +35,7 @@ class TestEnterprisePluginVersions(BaseTest):
             for key in enterprise_plugins.keys():
                 if key in elem:
                     try:
-                        version = re.search(r'(?<=\s)((\d.)+)', elem).group(0)
+                        version = re.search(r'(?<=\s)(\d+.\d+.\d+)', elem).group(0)
                         self.assertTrue(enterprise_plugins[key] in elem)
                         self.driver.log[-1] += 'Correct ' + key + ' version: ' + version +\
                             ' ---------- '
