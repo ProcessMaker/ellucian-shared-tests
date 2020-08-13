@@ -278,12 +278,12 @@ class AdminPage(BasePage):
         # Add in while loop to wait for all plugins
         # Get number of plugins from expected_values.json
 
+        # Wait for page elements to load
+        sleep(2)
+
         self.driver.log.append('Find elements on Custom Plugins panel')
         self.wait.until(visible(AdminPageLocators.TABLE_ROW))
         self.elements = self.driver.find_elements(*AdminPageLocators.TABLE_ROW)
-
-        # Wait for page elements to load
-        sleep(2)
 
         # Add in check: last element in list .text is not empty
 
@@ -298,12 +298,12 @@ class AdminPage(BasePage):
         # Add in while loop to wait for all plugins
         # Get number of plugins from expected_values.json
 
+        # Wait for page elements to load
+        sleep(2)
+
         self.driver.log.append('Finding elements on Enterprise Plugins panel')
         self.wait.until(visible(AdminPageLocators.TABLE_ROW))
         self.elements = self.driver.find_elements(*AdminPageLocators.TABLE_ROW)
-
-        # Wait for page elements to load
-        sleep(2)
 
         # Add in check: last element in list .text is not empty
 
