@@ -36,11 +36,13 @@ class TestLanguageSpotCheck(BaseTest):
             url = re.sub('/' + languages[i - 1] + '/', '/' + languages[i] + '/',
                          self.driver.current_url)
 
+            self.driver.log.append('Navigating to translated url')
             landing_page.go_to_page(url)
 
             # Verify page has loaded
             landing_page.is_loaded()
 
+            self.driver.log.append('Searching for untranslated values')
             labels = re.search(r'\*\*(\w+)\*\*', self.driver.page_source)
 
             # Assert that labels are not present on page
