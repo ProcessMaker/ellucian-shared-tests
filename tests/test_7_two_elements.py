@@ -33,6 +33,14 @@ from page import *
 class TestDesignerNewDropDown(BaseTest):
     ''' Class to test Designer's New dropdown menu. '''
 
+    def setUp(self):
+        ''' Run before each test method. '''
+        self.assertionFailures = []
+
+    def tearDown(self):
+        ''' Run after each test method. '''
+        self.assertEqual([], self.assertionFailures)
+
     def test_designer_new_project_dropdown(self):
         ''' Verify two elements in dropdown. '''
         self.driver = LoginPage(self.driver, data).login()
