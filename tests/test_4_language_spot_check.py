@@ -26,19 +26,20 @@ class TestLanguageSpotCheck(BaseTest):
         ''' Test that there are no visible labels. '''
 
         # Verify page has loaded
-        DesignerPage(self.driver, self.data).is_loaded()
+        landing_page = DesignerPage(self.driver, self.data).is_loaded()
 
         languages = read_from_json_file(data['repository_path'],
                                         '/includes/expected_values.json', 'Languages')
 
         # Get current URL and re-get URL with different language
         for i in range(1, len(languages)):
-            url = re.sub('/' + languages[i - 1] + '/', '/' + languages[i] + '/', self.driver.current_url)
+            url = re.sub('/' + languages[i - 1] + '/', '/' + languages[i] + '/',
+                         landing_page.driver.current_url)
 
-            self.driver.get(url)
+            landing_page.go_to_page(url)
 
             # Verify page has loaded
-            DesignerPage(self.driver, self.data).is_loaded()
+            landing_page.is_loaded()
 
             labels = re.search(r'\*\*(\w+)\*\*', self.driver.page_source)
 
