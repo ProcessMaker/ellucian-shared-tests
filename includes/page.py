@@ -57,8 +57,10 @@ class BasePageShell(object):
 
         server_response = api_requests.get_response_code(self.data)
         self.driver.log.append(server_response)
+
         if '50' in server_response or '40' in server_response:
             return False
+
         elif url:
             self.driver.get(url)
         else:
@@ -169,6 +171,12 @@ class LoginPage(BasePageShell):
     def login(self):
         ''' Function to log user in to workspace.
         '''
+
+        try:
+            self.assertTrue(login_page.go_to_page())
+        except AssertionError as e:
+            self.assertionFailures.append(str(e))
+            
         # Login
         self.driver.log.append('Sending credentials')
         self.username_field_element = self.data['username']
