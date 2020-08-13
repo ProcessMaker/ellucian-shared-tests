@@ -176,7 +176,8 @@ class LoginPage(BasePageShell):
             self.assertTrue(login_page.go_to_page())
         except AssertionError as e:
             self.assertionFailures.append(str(e))
-            
+            return
+
         # Login
         self.driver.log.append('Sending credentials')
         self.username_field_element = self.data['username']
@@ -186,8 +187,7 @@ class LoginPage(BasePageShell):
         submit_button_element.click()
         self.driver.log.append('Credentials submitted')
 
-        return util.timezone_check(self.driver, self.wait)
-
+        util.timezone_check(self.driver)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
