@@ -35,6 +35,9 @@ class TestDesignerNewDropDown(BaseTest):
 
     def setUp(self):
         ''' Run before each test method. '''
+        login_page = LoginPage(self.driver, data)
+        login_page.go_to_page()
+        login_page.login()
         self.assertionFailures = []
 
     def tearDown(self):
@@ -43,7 +46,6 @@ class TestDesignerNewDropDown(BaseTest):
 
     def test_designer_new_project_dropdown(self):
         ''' Verify two elements in dropdown. '''
-        self.driver = LoginPage(self.driver, data).login()
 
         self.assertTrue(DesignerPage(self.driver, data).new_project_has_two_elements())
 
