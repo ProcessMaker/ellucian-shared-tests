@@ -36,7 +36,6 @@ class TestDesignerNewDropDown(BaseTest):
     def setUp(self):
         ''' Run before each test method. '''
         login_page = LoginPage(self.driver, data)
-        login_page.go_to_page()
         login_page.login()
         self.assertionFailures = []
 
