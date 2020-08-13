@@ -382,7 +382,7 @@ class DesignerPage(BasePage):
 
         self.driver.log.append('Clicking New Project button')
         self.driver.switch_to.frame(self.wait.until(visible(DesignerPageLocators.MAIN_IFRAME)))
-        new_button = self.wait.until(visible(DesignerPage.NEW_PROJECT_BUTTON))
+        new_button = self.wait.until(visible(DesignerPageLocators.NEW_PROJECT_BUTTON))
         new_button.click()
 
         self.driver.log.append('Checking dropdown list for two options')
