@@ -35,13 +35,13 @@ class TestEnterprisePluginVersions(BaseTest):
             for key in enterprise_plugins.keys():
                 if key in elem:
                     try:
-                        version = re.search(r'(?<=\)\s)([^\s]+)', elem).group(0)
+                        #version = re.search(r'(?<=\)\s)([^\s]+)', elem).group(0)
                         self.assertTrue(enterprise_plugins[key] in elem)
-                        self.driver.log[-1] += 'Correct ' + key + ' version: ' + version +\
+                        self.driver.log[-1] += 'Correct ' + key + ' version: ' + elem +\
                             ' ---------- '
                     except AssertionError as e:
                         self.driver.log[-1] += 'Incorrect ' + key + ' version: ' +\
-                            version + ', Expected: ' + enterprise_plugins[key] + ' ---------- '
+                            elem + ', Expected: ' + enterprise_plugins[key] + ' ---------- '
                         self.assertionFailures.append(str(e))
 
                     del enterprise_plugins[key]
