@@ -55,7 +55,7 @@ class BasePageShell(object):
                 or through data defined in local __init__ file.
         '''
 
-        server_response = api_requests.get_response_code(data)
+        server_response = api_requests.get_response_code(self.data)
         self.driver.log.append(server_response)
         if '50' in server_response or '40' in server_response:
             return False
