@@ -25,7 +25,7 @@ class HomePageLocators(object):
 class DesignerPageLocators(object):
     """ Class for Designer Page locators. All Designer page locators here. """
     MAIN_IFRAME = (By.ID, 'frameMain')
-    NEW_BUTTON = (By.ID, 'ext-gen35')
+    NEW_PROJECT_BUTTON = (By.ID, 'ext-gen35')
     NEW_DROPDOWN_LIST = (By.CLASS_NAME, 'x-menu-list-item')
 
 class DashboardsPageLocators(object):
