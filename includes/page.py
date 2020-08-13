@@ -277,7 +277,27 @@ class AdminPage(BasePage):
         # Add in while loop to wait for all plugins
         # Get number of plugins from expected_values.json
 
+        self.driver.log.append('Find elements on Custom Plugins panel')
+        self.wait.until(visible(AdminPageLocators.TABLE_ROW))
+        self.elements = self.driver.find_elements(*AdminPageLocators.TABLE_ROW)
 
+        # Wait for page elements to load
+        sleep(2)
+
+        # Add in check: last element in list .text is not empty
+
+        return [element.text for element in self.elements]
+
+    def get_enterprise_plugins(self):
+        ''' Get list of plugins from /enterprise/addonsStore. '''
+        self.driver.log.append('Navigating to Enterprise Plugins page')
+        self.go_to_page(self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/ellucianux/enterprise/addonsStore')
+
+
+        # Add in while loop to wait for all plugins
+        # Get number of plugins from expected_values.json
+
+        self.driver.log.append('Finding elements on Enterprise Plugins panel')
         self.wait.until(visible(AdminPageLocators.TABLE_ROW))
         self.elements = self.driver.find_elements(*AdminPageLocators.TABLE_ROW)
 
