@@ -29,7 +29,7 @@ class TestPluginVersions(BaseTest):
                                              '/includes/expected_values.json', 'Custom Plugins')
 
         # Verify all custom plugins are visible on page with correct version, and are enabled
-        plugins = AdminPage(self.driver, self.data).get_plugins()
+        plugins = AdminPage(self.driver, self.data).get_custom_plugins()
         self.driver.log.append('')
 
         for elem in plugins:

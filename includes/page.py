@@ -273,9 +273,6 @@ class AdminPage(BasePage):
         self.driver.log.append('Navigating to Custom Plugins page')
         self.go_to_page(self.data['server_url'] + '/sys' + self.data['server_workspace'] + '/en/ellucianux/setup/pluginsMain')
 
-        # Wait for page elements to load
-        sleep(2)
-
 
         # Add in while loop to wait for all plugins
         # Get number of plugins from expected_values.json
