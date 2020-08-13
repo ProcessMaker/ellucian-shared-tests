@@ -11,7 +11,8 @@
       "Custom Plugins": {
         "Ellucian Ethos Events": "1.3.0+012",
         "Ellucian Ethos": "1.6.1+997",
-        "ppsEllucianLdap": "1.5.0"
+        "ppsEllucianLdap": "1.5.0",
+        "SSO_SAML": "3.2.7"
       },
       "Enterprise Plugins": {
         "advanced Dashboards": "3.0.2",
