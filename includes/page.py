@@ -284,6 +284,9 @@ class AdminPage(BasePage):
         self.wait.until(visible(AdminPageLocators.TABLE_ROW))
         self.elements = self.driver.find_elements(*AdminPageLocators.TABLE_ROW)
 
+        # Wait for page elements to load
+        sleep(2)
+
         # Add in check: last element in list .text is not empty
 
         return [element.text for element in self.elements]
