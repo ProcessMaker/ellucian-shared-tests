@@ -258,7 +258,7 @@ class AdminPage(BasePage):
         self.driver.log.append('Grabbing Case List Cache Builder text')
         workflow_applications_cache_info = self.wait.until(visible(AdminPageLocators.WORKFLOW_APPLICATIONS_CACHE_INFO))
         while not workflow_applications_cache_info.text:
-            self.driver.log += '; No text found'
+            self.driver.log[-1] += '; No text found'
             workflow_applications_cache_info = self.wait.until(visible(AdminPageLocators.WORKFLOW_APPLICATIONS_CACHE_INFO))
         return workflow_applications_cache_info.text
 
