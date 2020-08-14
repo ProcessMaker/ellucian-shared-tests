@@ -255,9 +255,6 @@ class AdminPage(BasePage):
         self.go_to_page(self.data['server_url'] + '/sys' + self.data['server_workspace'] +\
             '/en/ellucianux/setup/appCacheViewConf')
 
-        # Wait for page elements to load
-        sleep(2)
-
         self.driver.log.append('Grabbing Case List Cache Builder text')
         workflow_applications_cache_info = self.wait.until(visible(AdminPageLocators.WORKFLOW_APPLICATIONS_CACHE_INFO))
         while not workflow_applications_cache_info.text:
