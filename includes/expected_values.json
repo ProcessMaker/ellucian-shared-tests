@@ -4,7 +4,7 @@
         "mysql": "5.7"
       },
       "System Information": {
-        "php": "7.3.17",
+        "php": "7.3.19",
         "nginx": "1.16.1",
         "pm3": "3.4.11"
       },
