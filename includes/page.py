@@ -51,7 +51,7 @@ class BasePageShell(object):
 
     def server_check(self):
         ''' Check if the server gives a 400 or 500 response code. '''
-        server_response = api_requests.get_response_code(self.data)
+        server_response = str(api_requests.get_response_code(self.data))
         self.driver.log.append(server_response)
 
         if '50' in server_response or '40' in server_response:
