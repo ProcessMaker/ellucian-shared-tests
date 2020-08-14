@@ -180,7 +180,6 @@ class LoginPage(BasePageShell):
             return False
 
         # Login
-        self.driver.log.append('Sending credentials')
         self.username_field_element = self.data['username']
         self.password_field_element = self.data['password']
         self.workspace_field_element = self.data['server_workspace']
@@ -257,7 +256,7 @@ class AdminPage(BasePage):
 
         # Wait for page to load
         sleep(2)
-        
+
         self.driver.log.append('Grabbing Case List Cache Builder text')
         workflow_applications_cache_info = self.wait.until(visible(AdminPageLocators.WORKFLOW_APPLICATIONS_CACHE_INFO))
         while not workflow_applications_cache_info.text:
