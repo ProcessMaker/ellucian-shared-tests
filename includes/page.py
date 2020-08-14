@@ -173,7 +173,7 @@ class LoginPage(BasePageShell):
         '''
 
         try:
-            self.assertTrue(self.go_to_page())
+            self.assertTrue(self.go_to_page(self.page_url))
         except AssertionError as e:
             self.assertionFailures.append(str(e))
             return
