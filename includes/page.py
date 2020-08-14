@@ -68,6 +68,7 @@ class BasePageShell(object):
                 self.driver.get(url)
             else:
                 self.driver.get(self.page_url)
+            return True
         return False
 
 
@@ -176,7 +177,7 @@ class LoginPage(BasePageShell):
         ''' Function to log user in to workspace.
         '''
         if not self.go_to_page():
-            return
+            return False
 
         # Login
         self.driver.log.append('Sending credentials')
@@ -188,6 +189,8 @@ class LoginPage(BasePageShell):
         self.driver.log.append('Credentials submitted')
 
         util.timezone_check(self.driver)
+
+        return True
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
