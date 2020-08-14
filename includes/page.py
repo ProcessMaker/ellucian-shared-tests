@@ -49,23 +49,26 @@ class BasePageShell(object):
         self.page_url = self.data['server_url'].rstrip("/")
         self.wait = WebDriverWait(self.driver, 30)
 
-    def go_to_page(self, url=''):
-        ''' Navigates to page_url:
-                provided through config task on Trogdor server
-                or through data defined in local __init__ file.
-        '''
-
+    def server_check(self):
+        ''' Check if the server gives a 400 or 500 response code. '''
         server_response = api_requests.get_response_code(self.data)
         self.driver.log.append(server_response)
 
         if '50' in server_response or '40' in server_response:
             return False
-
-        elif url:
-            self.driver.get(url)
-        else:
-            self.driver.get(self.page_url)
         return True
+
+    def go_to_page(self, url=''):
+        ''' Navigates to page_url:
+                provided through config task on Trogdor server
+                or through data defined in local __init__ file.
+        '''
+        if self.server_check():
+            if url:
+                self.driver.get(url)
+            else:
+                self.driver.get(self.page_url)
+        return False
 
 
 class BasePage(BasePageShell):
@@ -168,14 +171,11 @@ class LoginPage(BasePageShell):
         ''' Instantiate LoginPage class. '''
         super(LoginPage, self).__init__(driver, data)
 
+
     def login(self):
         ''' Function to log user in to workspace.
         '''
-
-        try:
-            self.assertTrue(self.go_to_page(self.page_url))
-        except AssertionError as e:
-            self.assertionFailures.append(str(e))
+        if not self.go_to_page():
             return
 
         # Login
