@@ -17,7 +17,7 @@ class TestVariablesLoad(BaseTest):
     def setUp(self):
         ''' Run before each test method. '''
         login_page = LoginPage(self.driver, data)
-        login_page.login()
+        self.assertTrue(login_page.login())
         self.assertionFailures = []
 
     def tearDown(self):

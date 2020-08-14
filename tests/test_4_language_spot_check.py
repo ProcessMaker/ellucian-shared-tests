@@ -1,4 +1,9 @@
 #!/usr/local/bin/python3
+from os import getenv
+if getenv("ENVIRONMENT") == 'local':
+    from sys import path
+    path.append('../includes')
+    from __init__ import data
 
 import unittest
 from test_parent import BaseTest
@@ -14,7 +19,7 @@ class TestLanguageSpotCheck(BaseTest):
     def setUp(self):
         ''' Run before each test method. '''
         login_page = LoginPage(self.driver, data)
-        login_page.login()
+        self.assertTrue(login_page.login())
         self.assertionFailures = []
 
     def tearDown(self):
