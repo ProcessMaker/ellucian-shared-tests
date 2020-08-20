@@ -53,7 +53,7 @@ class TestName(BaseTest):
         self.wait
 
 
-''' Main call. Only used in test file.
+''' Main call. Used in every test file.
 '''
 if __name__ == "__main__":
 
@@ -68,12 +68,6 @@ if __name__ == "__main__":
     data['repository_path'] = repository_path
 
     ''' You may add any key, value pairs to the data object.
-    Examples:
-      data['word'] = 'apple'
-      data['words'] = {'a': 'apple', 'b': 'banana', 'c': 'cantaloupe'}
-      data['number'] = 100
-      data['vegetables'] = ['pepper', 'spinach', 'squash']
-      data['class_instance'] = Class()
 
     data comes with:
       data['server_url']
