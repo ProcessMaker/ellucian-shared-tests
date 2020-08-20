@@ -11,39 +11,46 @@ from page import *
 
 ''' All Test classes must extend BaseTest. '''
 class TestName(BaseTest):
+    ''' Maximum one test per class.
+    Python's unittest convention requires that test methods begin with "test". '''
 
-  ''' Maximum one test per class.
-  Python's unittest convention requires that test methods begin with "test". '''
-  def test_to_run(self):
+    def setUp(self):
+        ''' Run before each test method. '''
 
-    ''' List to hold log messages: the last string in the list is returned to PM4 output in run_test().
-        Attached to the driver in login method and returned to the class attribute at the end of the test.
+        # Keep track of test failures without pausing tests midway
+        self.assertionFailures = []
+
+        # Log in to the server and check for 40x & 50x response codes
+        login_page = LoginPage(self.driver, data)
+        # Fail test immediately if login fails
+        self.assertTrue(login_page.login())
+
+    def tearDown(self):
+        ''' Run after each test method. '''
+
+        # Check for test failures added during execution
+        self.assertEqual([], self.assertionFailures)
+
+    def test_to_run(self):
+
+        ''' List to hold log messages: the last string in the list is returned to PM4 output in run_test().
+        Attached to the driver in BaseTest.
         Inherited from BaseTest.
-    '''
-    self.log
+        '''
+        self.driver.log
 
-    ''' Webdriver instance to navigate through pages at server url.
+        ''' Webdriver instance to navigate through pages at server url.
         Object must be passed wherever it is used. Creating a new instance loses all navigation progress,
           including login.
         Inherited from BaseTest.
-    '''
-    self.driver
+        '''
+        self.driver
 
-    ''' WebDriverWait instance to wait for elements to load on pages.
+        ''' WebDriverWait instance to wait for elements to load on pages.
         Object may be reinstantiated.
         Inherited from BaseTest with default timeout 120 seconds.
-    '''
-    self.wait
-
-    ''' Login method used at the beginning of each test navigation.
-    login() returns driver.
-    data is used here, but is defined in bootstrap.py file. Editors may underline data.
-    '''
-    self.driver = login(data, self.driver, self.log)
-
-    ''' Reattach log to class attribute at end of test.
-    '''
-    self.log = self.driver.log
+        '''
+        self.wait
 
 
 ''' Main call. Only used in test file.
