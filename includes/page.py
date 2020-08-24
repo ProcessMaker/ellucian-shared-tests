@@ -413,6 +413,14 @@ class DesignerPage(BasePage):
         except:
             self.driver.log.append('Dynaforms failed to load')
 
+    def open_workflow_triggers(self):
+        ''' Open the Triggers option on the Process Object nav bar. '''
+        try:
+            self.driver.find_element(*DesignerPageLocators.TRIGGERS_PROJECT_OBJECT).click()
+            self.driver.log.append('Loading Triggers')
+        except:
+            self.driver.log.append('Triggers failed to load')
+
     def edit_row(self):
         ''' Edit the row containing Amount. '''
         try:
@@ -421,6 +429,14 @@ class DesignerPage(BasePage):
             self.driver.log.append('Loading Amount Edit page')
         except:
             self.driver.log.append('Amount Edit page failed to load')
+
+    def click_plus_wizard(self):
+        ''' Click the +Wizard button. '''
+        try:
+            self.driver.find_element(*DesignerPageLocators.PLUS_WIZARD_BUTTON).click()
+            self.driver.log.append('Loading +Wizard triggers page')
+        except:
+            self.driver.log.append('+Wizard triggers page failed to load')
 
     def click_preview(self):
         ''' Click on preview button. '''
@@ -466,6 +482,17 @@ class DesignerPage(BasePage):
         element = self.driver.switch_to.active_element
         return element.text
         #return element.is_selected()
+
+    def count_triggers(self):
+        ''' Method to count the triggers available. '''
+        self.driver.log.append('Counting available triggers')
+        triggers = self.driver.find_elements(*DesignerPageLocators.PREDEFINED_TRIGGERS)
+        sum_triggers = len(triggers)
+        for trigger in triggers:
+            if not trigger.is_displayed():
+                sum_triggers -= 1
+        return sum_triggers
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
