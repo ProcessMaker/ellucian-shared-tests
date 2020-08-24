@@ -7,6 +7,8 @@ import api_requests
 from selenium.webdriver.support.expected_conditions import visibility_of_element_located as visible
 from selenium.webdriver.support.expected_conditions import frame_to_be_available_and_switch_to_it
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 from time import sleep
 
 
@@ -390,6 +392,44 @@ class DesignerPage(BasePage):
             self.driver.log.append('Designer page failed to load')
             return False
 
+    def open_workflow(self):
+        ''' Open Dynaform Styling workflow. '''
+        self.driver.switch_to.frame(self.wait.until(visible(DesignerPageLocators.MAIN_IFRAME)))
+        try:
+            self.wait.until(visible(DesignerPageLocators.DYNAFORM_STYLING_ROW))
+            element = self.driver.find_element(*DesignerPageLocators.DYNAFORM_STYLING_ROW)
+            action = ActionChains(self.driver)
+            action.double_click(on_element=element)
+            action.perform()
+            self.driver.log.append('Loading workflow')
+        except:
+            self.driver.log.append('Workflow failed to load')
+
+    def open_workflow_dynaforms(self):
+        ''' Open the Dynaforms option on the Process Object nav bar. '''
+        try:
+            self.driver.find_element(*DesignerPageLocators.DYNAFORMS_PROJECT_OBJECT).click()
+            self.driver.log.append('Loading Dynaforms')
+        except:
+            self.driver.log.append('Dynaforms failed to load')
+
+    def edit_row(self):
+        ''' Edit the row containing Amount. '''
+        try:
+            #row = self.driver.find_element(*DesignerPageLocators.AMOUNT_ROW).find_element_by_xpath("..")
+            self.driver.find_element(*DesignerPageLocators.AMOUNT_ROW_EDIT).click()
+            self.driver.log.append('Loading Amount Edit page')
+        except:
+            self.driver.log.append('Amount Edit page failed to load')
+
+    def click_preview(self):
+        ''' Click on preview button. '''
+        try:
+            self.wait.until(visible(DesignerPageLocators.PREVIEW_BUTTON)).click()
+            self.driver.log.append('Loading Preview')
+        except:
+            self.driver.log.append('Preview failed to load')
+
     def new_project_has_two_options(self):
         ''' Method to verify that New dropdown menu contains two elements. '''
 
@@ -412,6 +452,20 @@ class DesignerPage(BasePage):
             return True
         self.driver.log.append('Incorrect number of new project options')
         return False
+
+    def interactable_elements_are_tab_accessible(self, num_elements):
+        ''' Method to verify that all interactable elements on a page can be tabbed through. '''
+        self.driver.switch_to.frame(self.wait.until(visible(DesignerPageLocators.PREVIEW_IFRAME)))
+        self.driver.log.append('Switched to preview iframe')
+        sleep(2)
+        actions = ActionChains(self.driver)
+        for _ in range(num_elements):
+            actions = actions.send_keys(Keys.TAB)
+        actions.perform()
+        sleep(2)
+        element = self.driver.switch_to.active_element
+        return element.text
+        #return element.is_selected()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
