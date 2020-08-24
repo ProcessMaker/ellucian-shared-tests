@@ -34,5 +34,9 @@
   {
     "name": "test-8-accessibility-tabs",
     "path": "tests/test_8_accessibility_tab.py"
+  },
+  {
+    "name": "test-10-three-triggers-in-trigger-wizard",
+    "path": "tests/test_10_three_triggers.py"
   }
 ]
