@@ -18,6 +18,11 @@ Test Steps
 8.Verify that every element can be tabbed through
 
 """
+from os import getenv
+if getenv("ENVIRONMENT") == 'local':
+    from sys import path
+    path.append('../includes')
+    from __init__ import data
 
 from test_parent import BaseTest
 from util import run_test
@@ -30,13 +35,9 @@ class TestAccessibilityTabs(BaseTest):
     def setUp(self):
         ''' Run before each test method. '''
 
-        # Keep track of test failures without pausing tests midway
-        self.assertionFailures = []
-
-        # Log in to the server and check for 40x & 50x response codes
         login_page = LoginPage(self.driver, data)
-        # Fail test immediately if login fails
         self.assertTrue(login_page.login())
+        self.assertionFailures = []
 
     def tearDown(self):
         ''' Run after each test method. '''
@@ -47,10 +48,37 @@ class TestAccessibilityTabs(BaseTest):
     def test_dynaform_styling_elements_can_be_tabbed_through(self):
         ''' Navigate to preview of Dynaform Styling workflow and tab through elements. '''
 
+        # Create Designer Page object
+        designer_page = DesignerPage(self.driver, data)
 
-''' Main call. Used in every test file.
-'''
+        # Double click on Dynaform Styling workflow
+        designer_page.open_workflow()
+            # method on Designer page to search for a workflow containing text ("Dynaform Styling"
+            # in this case), then double click it
+
+        # Wait for edit workflow to load
+        designer_page.open_workflow_dynaforms()
+            # Use same double click method to double click on Dynaforms
+
+        # Wait for window to load
+        designer_page.edit_row()
+            # Find row element containing Amount
+            # Click on Edit for this row
+
+        designer_page.click_preview()
+        # Click on Preview button
+
+        # Wait for preview to load
+
+        try:
+            self.assertEqual(designer_page.interactable_elements_are_tab_accessible(23), 'Button_1')
+            self.driver.log.append('Successful accessibility check')
+        except AssertionError as e:
+            self.driver.log.append('Preview could not be tabbed through')
+            self.assertionFailures.append(str(e))
+
+
 if __name__ == "__main__":
     import __main__
-    data['repository_path'] = repository_path
-    output = run_test(TestLoginPage, data, __main__)
+    output = run_test(TestAccessibilityTabs, data, __main__)
+    
