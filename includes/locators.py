@@ -31,10 +31,15 @@ class DesignerPageLocators(object):
     """ Locators requiring input """
     DYNAFORM_STYLING_ROW = (By.XPATH, "//div[contains(text(), 'Dynaform Styling')]")
     DYNAFORMS_PROJECT_OBJECT = (By.XPATH, "//a[contains(text(),'Dynaforms')]")
+    TRIGGERS_PROJECT_OBJECT = (By.XPATH, "//a[contains(text(),'Triggers')]")
+
     AMOUNT_ROW = (By.XPATH, "//tr[contains(text(), 'Amount')]")
     AMOUNT_ROW_EDIT = (By.XPATH, "//span[contains(text(), 'Edit')]")
+    PLUS_WIZARD_BUTTON = (By.XPATH, "//span[contains(text(), 'Wizard')]")
+    
     PREVIEW_BUTTON = (By.XPATH, "//div[@class='ui-layout-north fd-toolbar-designer ui-layout-pane ui-layout-pane-north']//div[4]//img[1]")
     PREVIEW_IFRAME = (By.ID, 'pm-dynaform-preview-iframe')
+    PREDEFINED_TRIGGERS = (By.CLASS_NAME, 'pmui-accordion-item-container')
 
 class DashboardsPageLocators(object):
     """ Class for Dashboards Page locators. All Dashboards page locators here. """
