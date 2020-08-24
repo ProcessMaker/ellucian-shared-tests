@@ -28,6 +28,14 @@ class DesignerPageLocators(object):
     NEW_PROJECT_BUTTON = (By.ID, 'ext-gen35')
     NEW_DROPDOWN_LIST = (By.CLASS_NAME, 'x-menu-list-item')
 
+    """ Locators requiring input """
+    DYNAFORM_STYLING_ROW = (By.XPATH, "//div[contains(text(), 'Dynaform Styling')]")
+    DYNAFORMS_PROJECT_OBJECT = (By.XPATH, "//a[contains(text(),'Dynaforms')]")
+    AMOUNT_ROW = (By.XPATH, "//tr[contains(text(), 'Amount')]")
+    AMOUNT_ROW_EDIT = (By.XPATH, "//span[contains(text(), 'Edit')]")
+    PREVIEW_BUTTON = (By.XPATH, "//div[@class='ui-layout-north fd-toolbar-designer ui-layout-pane ui-layout-pane-north']//div[4]//img[1]")
+    PREVIEW_IFRAME = (By.ID, 'pm-dynaform-preview-iframe')
+
 class DashboardsPageLocators(object):
     """ Class for Dashboards Page locators. All Dashboards page locators here. """
 
