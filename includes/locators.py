@@ -36,10 +36,12 @@ class DesignerPageLocators(object):
     AMOUNT_ROW = (By.XPATH, "//tr[contains(text(), 'Amount')]")
     AMOUNT_ROW_EDIT = (By.XPATH, "//span[contains(text(), 'Edit')]")
     PLUS_WIZARD_BUTTON = (By.XPATH, "//span[contains(text(), 'Wizard')]")
-    
+
     PREVIEW_BUTTON = (By.XPATH, "//div[@class='ui-layout-north fd-toolbar-designer ui-layout-pane ui-layout-pane-north']//div[4]//img[1]")
     PREVIEW_IFRAME = (By.ID, 'pm-dynaform-preview-iframe')
     PREDEFINED_TRIGGERS = (By.CLASS_NAME, 'pmui-accordion-item-container')
+
+    PROCESS_ROW = (By.ID, 'x-grid3-row')
 
 class DashboardsPageLocators(object):
     """ Class for Dashboards Page locators. All Dashboards page locators here. """
