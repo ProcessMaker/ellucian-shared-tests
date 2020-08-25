@@ -381,15 +381,14 @@ class DesignerPage(BasePage):
 
     def is_loaded(self):
         ''' Verify Designer Page loads after login. '''
+        self.wait = WebDriverWait(self.driver, 5)
         self.driver.log.append('Waiting for Designer page to load')
         try:
-            self.wait.until(visible(BasePageLocators.ADMIN_LINK))
-            self.driver.log.append('Admin Link loaded')
-            self.wait.until(visible(DesignerPageLocators.MAIN_IFRAME))
-            self.driver.log.append('Designer page loaded successfully')
+            self.driver.switch_to.frame(self.driver.find_element(*DesignerPageLocators.MAIN_IFRAME))
+            self.driver.log.append('Designer page loaded in 5 seconds successfully')
             return True
         except:
-            self.driver.log.append('Designer page failed to load')
+            self.driver.log.append('Designer page failed to load in 5 seconds')
             return False
 
     def open_workflow(self):
