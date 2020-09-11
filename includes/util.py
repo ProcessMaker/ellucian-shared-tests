@@ -41,7 +41,7 @@ def run_test(classname, data, modulename):
             elif 'WARNING' in log[-1]:
                 log[-1] = parse_log_warning(log[-1])
             test_output = buffer.getvalue()
-            return {"result": parse_results(test_output), "message": log[-1]}
+            return {"result": parse_results(test_output), "message": log}
 
 def parse_log_error(log_message):
     ''' Function to capture ERROR message.
