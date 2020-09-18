@@ -41,6 +41,6 @@
   },
   {
     "name": "test-10-three-triggers-in-trigger-wizard",
-    "path": "tests/test_10_three_triggers.py"
+    "path": "tests/test_10_trigger_wizards.py"
   }
 ]
